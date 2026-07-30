@@ -1,12 +1,21 @@
 ---
 permalink: /
 title: "About Me 🤖"
-author_profile: true
+author_profile: false
+hide_title: true
 main_class: home-inline-profile
 redirect_from:
   - /about/
   - /about.html
 ---
+
+<section class="home-hero">
+  <div class="home-hero__avatar">
+    <img src="/images/zilong-huang.jpg" alt="Zilong Huang">
+  </div>
+  <div class="home-hero__body" markdown="1">
+
+<h1 class="page__title home-hero__title">About Me 🤖</h1>
 
 <div class="home-profile-card">
   <div>
@@ -23,6 +32,9 @@ redirect_from:
 
 Hi! I am Zilong Huang, **a master's student at [South China University of Technology](https://www.scut.edu.cn/en/)** in the Automation Innovation Program and a **Simulation Research Intern at Meituan LongCat**. My research focuses on **learning-based manipulation of deformable objects**, particularly garments. I aim to build scalable simulation and data-generation systems that enable robot policies to generalize across tasks and platforms and transfer reliably to the real world.
 {: .about-intro }
+
+  </div>
+</section>
 
 Selected Work ✨
 ------
