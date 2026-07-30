@@ -145,6 +145,9 @@
   vertical-align: top;
   width: 56px;
   height: 56px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid var(--global-border-color);
 
   @include breakpoint($large) {
     display: block;
@@ -156,14 +159,14 @@
     width: 56px;
     height: 56px;
     object-fit: cover;
-    object-position: 50% 48%;
+    object-position: 50% 42%;
     border-radius: 50%;
+    transform: scale(1.55);
+    transform-origin: 50% 42%;
 
     @include breakpoint($large) {
       width: 175px;
       height: 175px;
-      padding: 5px;
-      border: 1px solid var(--global-border-color);
     }
   }
 }
