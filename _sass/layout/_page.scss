@@ -16,6 +16,27 @@
   }
 }
 
+#main.home-inline-profile {
+  @include breakpoint($large) {
+    .sidebar {
+      width: 190px;
+      max-width: 190px;
+    }
+
+    .sidebar .author__content,
+    .sidebar .author__urls-wrapper {
+      display: none;
+    }
+
+    .page {
+      float: right;
+      width: calc(100% - 230px);
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
 .page {
   @include breakpoint($large) {
     @include span(10 of 12 last);
@@ -105,6 +126,49 @@
     margin-bottom: 3rem;
     font-size: 1.02rem;
     line-height: 1.7;
+  }
+
+  .home-profile-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin: -0.35rem 0 1rem;
+    color: var(--global-text-color);
+
+    @include breakpoint($medium) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    strong {
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    span {
+      color: var(--global-text-color-light);
+      font-size: 0.82rem;
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem 0.9rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      margin: 0;
+      color: var(--global-text-color-light);
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
   }
 
   .selected-work-title {

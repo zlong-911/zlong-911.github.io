@@ -2,10 +2,24 @@
 permalink: /
 title: "About Me 🤖"
 author_profile: true
+main_class: home-inline-profile
 redirect_from:
   - /about/
   - /about.html
 ---
+
+<div class="home-profile-card">
+  <div>
+    <strong>黄梓龙 · Zilong Huang</strong>
+    <span>Master's Student</span>
+  </div>
+  <ul>
+    <li><i class="fas fa-fw fa-location-dot icon-pad-right" aria-hidden="true"></i>Guangzhou, China</li>
+    <li><i class="fas fa-fw fa-building-columns icon-pad-right" aria-hidden="true"></i>SCUT</li>
+    <li><a href="mailto:auhuangzl@mail.scut.edu.cn"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>Email</a></li>
+    <li><a href="https://github.com/zlong-911"><i class="fab fa-fw fa-github icon-pad-right" aria-hidden="true"></i>GitHub</a></li>
+  </ul>
+</div>
 
 Hi! I am Zilong Huang, **a master's student at [South China University of Technology](https://www.scut.edu.cn/en/)** in the Automation Innovation Program and a **Simulation Research Intern at Meituan LongCat**. My research focuses on **learning-based manipulation of deformable objects**, particularly garments. I aim to build scalable simulation and data-generation systems that enable robot policies to generalize across tasks and platforms and transfer reliably to the real world.
 {: .about-intro }
