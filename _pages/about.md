@@ -7,9 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am **Zilong Huang**, a master's student in the **Automation Innovation Program** at [South China University of Technology (SCUT)](https://www.scut.edu.cn/en/). I am currently a **Simulation Research Intern at Meituan LongCat**.
-
-My research focuses on **learning-based manipulation of deformable objects**, particularly garments. My goal is to use scalable simulation and data generation to develop robot policies that generalize across tasks and robot platforms and transfer reliably to the real world.
+Hi! I am Zilong Huang, a master's student in the Automation Innovation Program at [SCUT](https://www.scut.edu.cn/en/) and a Simulation Research Intern at Meituan LongCat. My research focuses on learning-based manipulation of deformable objects, particularly garments. I aim to build scalable simulation and data-generation systems that enable robot policies to generalize across tasks and platforms and transfer reliably to the real world.
 
 Current Highlight ✨
 ------
