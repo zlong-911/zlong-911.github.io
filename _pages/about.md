@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am **Zilong Huang**, a master's student at [South China University of Technology](https://www.scut.edu.cn/en/), where I am part of the **Automation Innovation Program**, an integrated bachelor's-to-master's track. I am currently a **Simulation Research Intern at Meituan LongCat**.
+Hi! I am **Zilong Huang**, a master's student in the **Automation Innovation Program** at [South China University of Technology (SCUT)](https://www.scut.edu.cn/en/). I am currently a **Simulation Research Intern at Meituan LongCat**.
 
 My research focuses on **scalable simulation and data systems for learning-based manipulation of deformable objects**, particularly garments. I build end-to-end pipelines spanning parallel cloth simulation, teleoperation, trajectory curation and retargeting, photorealistic rendering, and policy training. I am interested in how large-scale simulated and human-generated data can help robots generalize across tasks and embodiments, and ultimately transfer from simulation to the real world. My current work uses **Newton, Isaac Sim, Isaac Lab, LeRobot, and OpenPI**.
 
