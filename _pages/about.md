@@ -7,17 +7,24 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I am **Zilong Huang**, a master's student in the School of Automation Science and Engineering at [South China University of Technology](https://www.scut.edu.cn/en/) and a **Simulation Research Intern at Meituan LongCat**.
+Hi! I am **Zilong Huang**, an integrated bachelor's–master's student in the **Automation Innovation Program** at the [School of Automation Science and Engineering, South China University of Technology](https://www.scut.edu.cn/en/). I am currently a **Simulation Research Intern at Meituan LongCat**.
 
-My research focuses on **robot learning**, **deformable object manipulation**, and **physics-grounded simulation**. I build scalable simulation and data systems for garment manipulation, and study how structural priors and visual representations can support generalization from simulation to the real world.
+My research focuses on **robotic manipulation of deformable objects**, with an emphasis on garment manipulation, scalable physics simulation, and sim-to-real transfer. I develop GPU-parallel simulation and data-generation systems using **NVIDIA Isaac Sim, Isaac Lab, and Newton**, and study how simulation can support perception and policy learning for real-world manipulation.
+
+Education & Experience
+------
+
+- **South China University of Technology** — Integrated Bachelor's–Master's Student, Automation Innovation Program
+- **Meituan LongCat** — Simulation Research Intern
 
 Research Interests
 ------
 
-- Robot and deformable-object manipulation
-- Scalable physics simulation and synthetic data
-- Visual affordance learning
-- Sim-to-real transfer
+- Robotic manipulation of deformable objects, especially garments
+- GPU-parallel physics simulation with Isaac Sim, Isaac Lab, and Newton
+- Simulation-based data generation and robot learning
+- Visual affordance and policy learning for manipulation
+- Sim-to-real transfer for vision-based robotic systems
 
 Current Highlight ✨
 ------
