@@ -9,10 +9,10 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "air" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
-title                    : "Zilong Huang"
+title                    : "黄梓龙 · Zilong Huang 🧵"
 title_separator          : "-"
-name                     : &name "Zilong Huang"
-description              : &description "Academic homepage of Zilong Huang — robot learning, deformable object manipulation, and simulation."
+name                     : &name "黄梓龙 · Zilong Huang"
+description              : &description "黄梓龙的科研主页 — 机器人学习、柔性物体操作与物理仿真。 Academic homepage of Zilong Huang."
 url                      : https://zlong-911.github.io # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -24,11 +24,11 @@ repository               : "zlong-911/zlong-911.github.io"
 author:
   # Biographic information
   avatar           : "zilong-huang.jpg"
-  name             : "Zilong Huang"
+  name             : "黄梓龙 · Zilong Huang 🤖"
   pronouns         : # example: "she/her"  
-  bio              : "Master's student at SCUT · Simulation Research Intern at Meituan LongCat"
-  location         : "Guangzhou, China"
-  employer         : "Meituan LongCat / SCUT"
+  bio              : "华南理工大学硕士生 · 美团 LongCat 仿真实习生"
+  location         : "广州 · Guangzhou"
+  employer         : "美团 LongCat · 华南理工大学"
   uri              : # URL
   email            : "auhuangzl@mail.scut.edu.cn"
 
@@ -85,7 +85,7 @@ author:
 # Publication Category - The following the list of publication categories and their headings
 publication_category:
   manuscripts:
-    title: 'Publications and Manuscripts'
+    title: '论文与手稿 · Publications & Manuscripts'
 
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/ for social media previews
