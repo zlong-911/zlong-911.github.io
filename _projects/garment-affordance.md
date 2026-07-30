@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Visual Affordance Priors for Garment Flattening
-description: Structural-to-visual value learning for zero-shot garment manipulation
-importance: 1
+title: Visual Affordance Priors
+description: Structural-to-visual value learning for zero-shot garment flattening
+importance: 2
 category: research
 related_publications: true
 ---
