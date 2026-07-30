@@ -18,12 +18,11 @@ Selected Work ✨
 {: .work-title }
 
 <p class="work-meta">
-Jiaxiang Luo<sup>*</sup>, <strong>Zilong Huang</strong> <span class="author-note">(student first author)</span>, Hao Cheng, and Zixiang Hong<br>
-<em>IEEE Robotics and Automation Letters</em>, 2026<br>
-<span class="author-note"><sup>*</sup> Corresponding author</span>
+Jiaxiang Luo, <strong>Zilong Huang</strong>, Hao Cheng, and Zixiang Hong<br>
+<em>IEEE Robotics and Automation Letters</em>, 2026
 </p>
 
-ClothMate exploits grasp-fling consistency to reuse interaction knowledge across garment categories. Trained jointly on five categories with 15% of the aggregate data required by separate category-specific baselines, it achieves 91.5% coverage in 4.7 steps.
+The key idea behind ClothMate is pleasantly simple: once the robot has a good grasp, the fling motion can be largely decoupled from the garment's detailed state. Building on this observation, we propose a two-stage learning framework for grasp selection and fling evaluation. With one model trained across five garment categories, ClothMate uses only 15% of the data required by category-specific baselines while reaching 91.5% coverage in 4.7 steps.
 {: .work-summary }
 
 <video controls muted playsinline preload="metadata" poster="/images/clothmate-poster.jpg" style="width: 100%; border-radius: 8px;">
