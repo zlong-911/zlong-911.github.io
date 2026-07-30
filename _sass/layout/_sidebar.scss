@@ -143,28 +143,30 @@
 .author__avatar {
   display: table-cell;
   vertical-align: top;
-  width: 56px;
-  height: 56px;
+  width: 84px;
+  height: 84px;
   overflow: hidden;
   border-radius: 50%;
   border: 1px solid var(--global-border-color);
 
   @include breakpoint($large) {
     display: block;
-    width: 175px;
-    height: 175px;
+    width: 190px;
+    height: 190px;
   }
 
   img {
-    width: 56px;
-    height: 56px;
+    width: 84px;
+    height: 84px;
     object-fit: cover;
-    object-position: 50% 50%;
+    object-position: 52% 57%;
     border-radius: 50%;
+    transform: scale(1.18);
+    transform-origin: 52% 57%;
 
     @include breakpoint($large) {
-      width: 175px;
-      height: 175px;
+      width: 190px;
+      height: 190px;
     }
   }
 }
