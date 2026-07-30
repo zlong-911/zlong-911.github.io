@@ -14,6 +14,9 @@ Selected Work ✨
 ------
 {: .selected-work-title }
 
+<article class="work-entry" markdown="1">
+<span class="work-label">Publication</span>
+
 ### ClothMate: Leveraging Grasp-Fling Consistency for Generalizable and Data-Efficient Garment Flattening
 {: .work-title }
 
@@ -34,6 +37,11 @@ ClothMate builds on a simple observation: once the robot has a good grasp, the f
 [Code](https://github.com/chongchongjjj/clothmate){: .btn }
 [Supplementary Video](/files/clothmate-supplementary.mp4){: .btn }
 
+</article>
+
+<article class="work-entry" markdown="1">
+<span class="work-label">Manuscript</span>
+
 ### Visual Affordance Priors for Generalizable Garment Flattening
 {: .work-title }
 
@@ -41,6 +49,11 @@ My ongoing research develops visual affordance priors distilled from large-scale
 {: .work-summary }
 
 [Visual Affordance Project](https://garment-affordance-review.github.io/unfold-all-anonymous/){: .btn .btn--primary }
+
+</article>
+
+<article class="work-entry" markdown="1">
+<span class="work-label">Project</span>
 
 ### Scalable Garment Trajectory Generation
 {: .work-title }
@@ -56,3 +69,5 @@ At Meituan LongCat, I work on an end-to-end simulation and data platform for gar
 <p class="notice--info">
 A scalable workflow for collecting, reusing, and rendering garment-manipulation trajectories across simulators, visual domains, and robot embodiments.
 </p>
+
+</article>
