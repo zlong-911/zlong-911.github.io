@@ -114,14 +114,39 @@
   }
 
   .work-entry {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
     margin-top: 1.5rem;
-    padding-top: 1rem;
+    padding: 1rem 0 1.25rem;
     border-top: 1px solid rgba($primary-color, 0.2);
+
+    @include breakpoint($medium) {
+      grid-template-columns: minmax(12rem, 18rem) 1fr;
+      gap: 1.4rem;
+      align-items: start;
+    }
+  }
+
+  .work-media {
+    max-width: 30rem;
+
+    @include breakpoint($medium) {
+      max-width: none;
+    }
+  }
+
+  .work-media--empty {
+    display: none;
+
+    @include breakpoint($medium) {
+      display: block;
+    }
   }
 
   .work-label {
     display: inline-block;
-    margin-bottom: 0.45rem;
+    margin-bottom: 0.35rem;
     color: var(--global-text-color-light);
     font-size: 0.68rem;
     font-weight: bold;
@@ -130,10 +155,9 @@
   }
 
   .work-title {
-    max-width: 46rem;
     margin-top: 0;
     margin-bottom: 0.35rem;
-    font-size: 1.02rem;
+    font-size: 0.98rem;
     line-height: 1.35;
   }
 
@@ -151,21 +175,27 @@
   }
 
   .work-summary {
-    max-width: 44rem;
     margin-bottom: 0.85rem;
-    font-size: 0.88rem;
-    line-height: 1.55;
+    font-size: 0.84rem;
+    line-height: 1.5;
   }
 
   .work-video {
     display: block;
     width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
     border-radius: 6px;
   }
 
-  .work-video--compact {
-    max-width: 30rem;
-    margin: 0.1rem 0 0.65rem;
+  .work-links {
+    margin-bottom: 0;
+
+    .btn {
+      margin-right: 0.25rem;
+      padding: 0.38em 0.72em;
+      font-size: 0.66rem;
+    }
   }
 
   /* blockquote citations */

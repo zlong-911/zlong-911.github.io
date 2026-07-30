@@ -14,60 +14,48 @@ Selected Work ✨
 ------
 {: .selected-work-title }
 
-<article class="work-entry" markdown="1">
-<span class="work-label">Publication</span>
-
-### ClothMate: Leveraging Grasp-Fling Consistency for Generalizable and Data-Efficient Garment Flattening
-{: .work-title }
-
-<p class="work-meta">
-Jiaxiang Luo, <strong>Zilong Huang</strong>, Hao Cheng, and Zixiang Hong<br>
-<em>IEEE Robotics and Automation Letters</em>, 2026
-</p>
-
-ClothMate builds on a simple observation: once the robot has a good grasp, the fling motion can be largely decoupled from the garment's detailed state. This leads to a two-stage learning framework that trains one model across five garment categories using only 15% of the data required by category-specific baselines.
-{: .work-summary }
-
-<video class="work-video work-video--compact" controls muted playsinline preload="metadata" poster="/images/clothmate-poster.jpg">
-  <source src="/files/clothmate-supplementary.mp4" type="video/mp4">
-  Your browser does not support embedded video.
-</video>
-
-[Paper](https://ieeexplore.ieee.org/document/11248822/){: .btn .btn--primary }
-[Code](https://github.com/chongchongjjj/clothmate){: .btn }
-[Supplementary Video](/files/clothmate-supplementary.mp4){: .btn }
-
+<article class="work-entry">
+  <div class="work-media">
+    <video class="work-video" controls muted playsinline preload="metadata" poster="/images/clothmate-poster.jpg">
+      <source src="/files/clothmate-supplementary.mp4" type="video/mp4">
+      Your browser does not support embedded video.
+    </video>
+  </div>
+  <div class="work-body">
+    <span class="work-label">Publication</span>
+    <h3 class="work-title">ClothMate: Leveraging Grasp-Fling Consistency for Generalizable and Data-Efficient Garment Flattening</h3>
+    <p class="work-meta">Jiaxiang Luo, <strong>Zilong Huang</strong>, Hao Cheng, and Zixiang Hong<br><em>IEEE Robotics and Automation Letters</em>, 2026</p>
+    <p class="work-summary">ClothMate builds on a simple observation: once the robot has a good grasp, the fling motion can be largely decoupled from the garment's detailed state. One model trains across five garment categories using only 15% of the data required by category-specific baselines.</p>
+    <p class="work-links">
+      <a class="btn btn--primary" href="https://ieeexplore.ieee.org/document/11248822/">Paper</a>
+      <a class="btn" href="https://github.com/chongchongjjj/clothmate">Code</a>
+      <a class="btn" href="/files/clothmate-supplementary.mp4">Video</a>
+    </p>
+  </div>
 </article>
 
-<article class="work-entry" markdown="1">
-<span class="work-label">Manuscript</span>
-
-### Visual Affordance Priors for Generalizable Garment Flattening
-{: .work-title }
-
-My ongoing research develops visual affordance priors distilled from large-scale structural supervision for zero-shot real-world garment manipulation. The manuscript is currently under review at *IEEE Robotics and Automation Letters*.
-{: .work-summary }
-
-[Visual Affordance Project](https://garment-affordance-review.github.io/unfold-all-anonymous/){: .btn .btn--primary }
-
+<article class="work-entry">
+  <div class="work-media work-media--empty" aria-hidden="true"></div>
+  <div class="work-body">
+    <span class="work-label">Manuscript</span>
+    <h3 class="work-title">Visual Affordance Priors for Generalizable Garment Flattening</h3>
+    <p class="work-summary">My ongoing research develops visual affordance priors distilled from large-scale structural supervision for zero-shot real-world garment manipulation. The manuscript is currently under review at <em>IEEE Robotics and Automation Letters</em>.</p>
+    <p class="work-links">
+      <a class="btn btn--primary" href="https://garment-affordance-review.github.io/unfold-all-anonymous/">Project Page</a>
+    </p>
+  </div>
 </article>
 
-<article class="work-entry" markdown="1">
-<span class="work-label">Project</span>
-
-### Scalable Garment Trajectory Generation
-{: .work-title }
-
-At Meituan LongCat, I work on an end-to-end simulation and data platform for garment manipulation. It connects GPU-parallel Newton environments, teleoperation and trajectory curation, cross-robot retargeting, Isaac-based photorealistic rendering, and downstream policy training and evaluation.
-{: .work-summary }
-
-<video controls muted loop playsinline preload="metadata" poster="/images/scalable-garment-trajectories.png" style="width: 100%; border-radius: 8px;">
-  <source src="/files/scalable-garment-trajectories.mp4" type="video/mp4">
-  Your browser does not support embedded video.
-</video>
-
-<p class="notice--info">
-A scalable workflow for collecting, reusing, and rendering garment-manipulation trajectories across simulators, visual domains, and robot embodiments.
-</p>
-
+<article class="work-entry">
+  <div class="work-media">
+    <video class="work-video" controls muted loop playsinline preload="metadata" poster="/images/scalable-garment-trajectories.png">
+      <source src="/files/scalable-garment-trajectories.mp4" type="video/mp4">
+      Your browser does not support embedded video.
+    </video>
+  </div>
+  <div class="work-body">
+    <span class="work-label">Project</span>
+    <h3 class="work-title">Scalable Garment Trajectory Generation</h3>
+    <p class="work-summary">At Meituan LongCat, I work on an end-to-end simulation and data platform for garment manipulation, connecting GPU-parallel physics, trajectory curation, retargeting, photorealistic rendering, and downstream policy training.</p>
+  </div>
 </article>
