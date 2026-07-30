@@ -9,7 +9,7 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "air" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
-title                    : "黄梓龙 · Zilong Huang"
+title                    : "Zilong Huang"
 title_separator          : "-"
 name                     : &name "黄梓龙 · Zilong Huang"
 description              : &description "Academic homepage of Zilong Huang — robot learning, deformable object manipulation, and simulation."
