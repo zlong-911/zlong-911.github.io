@@ -9,14 +9,14 @@ redirect_from:
 
 Hi! I am **Zilong Huang**. I am pursuing bachelor's and master's degrees through the **Automation Innovation Program** at [South China University of Technology](https://www.scut.edu.cn/en/). I am currently a **Simulation Research Intern at Meituan LongCat**.
 
-My research centers on **learning-based manipulation of deformable objects**, particularly garments. I am interested in building scalable physics simulation and data-generation systems for robot learning, and in learning visual affordances and action values that generalize across garment categories and transfer from simulation to the real world. My work uses **Isaac Sim, Isaac Lab, and Newton** to connect large-scale simulation with real-world manipulation.
+My research focuses on **scalable simulation and data systems for learning-based manipulation of deformable objects**, particularly garments. I build end-to-end pipelines spanning parallel cloth simulation, teleoperation, trajectory curation and retargeting, photorealistic rendering, and policy training. I am interested in how large-scale simulated and human-generated data can help robots generalize across tasks and embodiments, and ultimately transfer from simulation to the real world. My current work uses **Newton, Isaac Sim, Isaac Lab, LeRobot, and OpenPI**.
 
 Current Highlight ✨
 ------
 
 ### Scalable Garment Trajectory Generation
 
-At Meituan LongCat, I work on a Newton-based simulation and data pipeline connecting parallel cloth rollouts, trajectory recording and review, high-fidelity Isaac rendering, and downstream robot-learning datasets.
+At Meituan LongCat, I work on an end-to-end simulation and data platform for garment manipulation. It connects GPU-parallel Newton environments, teleoperation and trajectory curation, cross-robot retargeting, Isaac-based photorealistic rendering, and downstream policy training and evaluation.
 
 <video controls muted loop playsinline poster="/images/scalable-garment-trajectories.png" style="width: 100%; border-radius: 8px;">
   <source src="/files/scalable-garment-trajectories.mp4" type="video/mp4">
@@ -24,7 +24,7 @@ At Meituan LongCat, I work on a Newton-based simulation and data pipeline connec
 </video>
 
 <p class="notice--info">
-A scalable workflow from web-supervised trajectory collection and unified Newton rollouts to physics-grounded evaluation and visual sim-to-real data.
+A scalable workflow for collecting, reusing, and rendering garment-manipulation trajectories across simulators, visual domains, and robot embodiments.
 </p>
 
 ### Generalizable Garment Flattening
