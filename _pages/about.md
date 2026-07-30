@@ -18,7 +18,7 @@ Selected Work ✨
 {: .work-title }
 
 <p class="work-meta">
-Jiaxiang Luo, <strong>Zilong Huang</strong>, Hao Cheng, and Zixiang Hong<br>
+Jiaxiang Luo, <strong>Zilong Huang</strong> <span class="author-note">(student first author)</span>, Hao Cheng, and Zixiang Hong<br>
 <em>IEEE Robotics and Automation Letters</em>, 2026
 </p>
 
@@ -29,10 +29,6 @@ ClothMate exploits grasp-fling consistency to reuse interaction knowledge across
   <source src="/files/clothmate-supplementary.mp4" type="video/mp4">
   Your browser does not support embedded video.
 </video>
-
-<p class="notice--info">
-<strong>My role:</strong> I led the development of ClothMate, including method design, implementation, and both simulation and real-world experiments.
-</p>
 
 [Paper](https://ieeexplore.ieee.org/document/11248822/){: .btn .btn--primary }
 [Code](https://github.com/chongchongjjj/clothmate){: .btn }
