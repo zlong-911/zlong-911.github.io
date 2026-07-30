@@ -1,9 +1,9 @@
 main:
-  - title: "研究 · Research 🧵"
+  - title: "Projects"
     url: /research/
 
-  - title: "论文 · Publications 📚"
+  - title: "Publications"
     url: /publications/
 
-  - title: "经历 · Experience 💼"
+  - title: "Experience"
     url: /experience/
