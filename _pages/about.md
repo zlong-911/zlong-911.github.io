@@ -39,4 +39,5 @@ A scalable workflow from web-supervised trajectory collection and unified Newton
 
 My academic research studies data-efficient grasp selection for garment flattening. **ClothMate** learns grasp-fling consistency across garment categories, while my ongoing work develops visual affordance priors distilled from large-scale structural supervision for zero-shot real-world transfer.
 
-[View projects](/research/){: .btn .btn--primary }
+[Visual Affordance Project](https://garment-affordance-review.github.io/unfold-all-anonymous/){: .btn .btn--primary }
+[ClothMate on IEEE Xplore](https://ieeexplore.ieee.org/document/11248822/){: .btn }

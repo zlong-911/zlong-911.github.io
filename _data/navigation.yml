@@ -1,9 +1,1 @@
-main:
-  - title: "Projects"
-    url: /research/
-
-  - title: "Publications"
-    url: /publications/
-
-  - title: "Experience"
-    url: /experience/
+main: []
