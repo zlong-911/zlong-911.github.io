@@ -1,30 +1,23 @@
 ---
 permalink: /
-title: "About me 🤖"
+title: "About Me 🤖"
 author_profile: true
 redirect_from:
   - /about/
   - /about.html
 ---
 
-Hi! I am **Zilong Huang**, an integrated bachelor's–master's student in the **Automation Innovation Program** at the [School of Automation Science and Engineering, South China University of Technology](https://www.scut.edu.cn/en/). I am currently a **Simulation Research Intern at Meituan LongCat**.
+Hi! I am **Zilong Huang**. I am pursuing bachelor's and master's degrees through the **Automation Innovation Program** at [South China University of Technology](https://www.scut.edu.cn/en/). I am currently a **Simulation Research Intern at Meituan LongCat**.
 
-My research focuses on **robotic manipulation of deformable objects**, with an emphasis on garment manipulation, scalable physics simulation, and sim-to-real transfer. I develop GPU-parallel simulation and data-generation systems using **NVIDIA Isaac Sim, Isaac Lab, and Newton**, and study how simulation can support perception and policy learning for real-world manipulation.
-
-Education & Experience
-------
-
-- **South China University of Technology** — Integrated Bachelor's–Master's Student, Automation Innovation Program
-- **Meituan LongCat** — Simulation Research Intern
+My research focuses on **deformable object manipulation**, **robot simulation**, and **sim-to-real transfer**. I build simulation environments and data pipelines with **Isaac Sim, Isaac Lab, and Newton** for learning-based garment manipulation.
 
 Research Interests
 ------
 
-- Robotic manipulation of deformable objects, especially garments
-- GPU-parallel physics simulation with Isaac Sim, Isaac Lab, and Newton
-- Simulation-based data generation and robot learning
-- Visual affordance and policy learning for manipulation
-- Sim-to-real transfer for vision-based robotic systems
+- Deformable object manipulation
+- Robot learning for garment manipulation
+- Physics simulation and synthetic data generation
+- Sim-to-real transfer
 
 Current Highlight ✨
 ------
