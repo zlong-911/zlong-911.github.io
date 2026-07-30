@@ -22,10 +22,10 @@ Jiaxiang Luo, <strong>Zilong Huang</strong>, Hao Cheng, and Zixiang Hong<br>
 <em>IEEE Robotics and Automation Letters</em>, 2026
 </p>
 
-The key idea behind ClothMate is pleasantly simple: once the robot has a good grasp, the fling motion can be largely decoupled from the garment's detailed state. Building on this observation, we propose a two-stage learning framework for grasp selection and fling evaluation. With one model trained across five garment categories, ClothMate uses only 15% of the data required by category-specific baselines while reaching 91.5% coverage in 4.7 steps.
+ClothMate builds on a simple observation: once the robot has a good grasp, the fling motion can be largely decoupled from the garment's detailed state. This leads to a two-stage learning framework that trains one model across five garment categories using only 15% of the data required by category-specific baselines.
 {: .work-summary }
 
-<video controls muted playsinline preload="metadata" poster="/images/clothmate-poster.jpg" style="width: 100%; border-radius: 8px;">
+<video class="work-video work-video--compact" controls muted playsinline preload="metadata" poster="/images/clothmate-poster.jpg">
   <source src="/files/clothmate-supplementary.mp4" type="video/mp4">
   Your browser does not support embedded video.
 </video>

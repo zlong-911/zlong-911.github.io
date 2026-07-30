@@ -141,6 +141,17 @@
     line-height: 1.65;
   }
 
+  .work-video {
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .work-video--compact {
+    max-width: 42rem;
+    margin: 0.25rem 0 0.8rem;
+  }
+
   /* blockquote citations */
   blockquote + .small {
     margin-top: -1.5em;
