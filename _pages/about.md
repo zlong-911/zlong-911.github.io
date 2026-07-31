@@ -59,10 +59,16 @@ Selected Work ✨
 </article>
 
 <article class="work-entry">
-  <div class="work-media work-media--empty" aria-hidden="true"></div>
+  <div class="work-media">
+    <video class="work-video" controls muted playsinline preload="metadata" poster="/images/visual-affordance-priors-poster.jpg">
+      <source src="/files/visual-affordance-priors.mp4" type="video/mp4">
+      Your browser does not support embedded video.
+    </video>
+  </div>
   <div class="work-body">
     <h3 class="work-title">Visual Affordance Priors for Generalizable Garment Flattening</h3>
-    <p class="work-summary">My ongoing research develops visual affordance priors distilled from large-scale structural supervision for zero-shot real-world garment manipulation. The manuscript is currently under review at <em>IEEE Robotics and Automation Letters</em>.</p>
+    <p class="work-meta"><strong>Zilong Huang</strong> et al.<br><em>IEEE Robotics and Automation Letters</em>, under review</p>
+    <p class="work-summary">Visual Affordance Priors asks a practical question: can a robot learn where to grasp a garment in simulation and apply that knowledge directly to real images? We first learn the value of grasp pairs from large-scale physics simulation, then distill this structural knowledge into image-space affordance maps through randomized rendering. The resulting prior transfers to real garments without real-data fine-tuning and improves unfolding across 22 garment assets.</p>
     <p class="work-links">
       <a class="btn btn--primary" href="https://garment-affordance-review.github.io/unfold-all-anonymous/">Project Page</a>
     </p>
