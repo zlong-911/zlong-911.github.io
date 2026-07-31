@@ -136,7 +136,6 @@
   }
 
   .home-hero__portrait {
-    position: relative;
     align-self: center;
     aspect-ratio: 1 / 1;
     max-width: 15rem;
@@ -163,30 +162,6 @@
       object-position: 52% 57%;
       transform: scale(1.18);
       transform-origin: 52% 57%;
-    }
-  }
-
-  #theme-toggle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.7rem;
-    height: 1.7rem;
-    padding: 0;
-    border: 1px solid var(--global-border-color);
-    border-radius: 50%;
-    background: var(--global-bg-color);
-    color: var(--global-text-color-light);
-    cursor: pointer;
-
-    &:hover,
-    &:focus-visible {
-      border-color: var(--global-link-color);
-      color: var(--global-link-color);
     }
   }
 
@@ -237,6 +212,30 @@
       color: var(--global-text-color-light);
       font-size: 0.78rem;
       white-space: nowrap;
+    }
+
+    .home-theme-control {
+      display: flex;
+      align-items: center;
+    }
+
+    #theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.15rem;
+      height: 1.15rem;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--global-text-color-light);
+      font-size: 0.78rem;
+      cursor: pointer;
+
+      &:hover,
+      &:focus-visible {
+        color: var(--global-link-color);
+      }
     }
 
   }

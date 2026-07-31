@@ -15,9 +15,6 @@ redirect_from:
     <div class="home-hero__avatar">
       <img src="/images/zilong-huang.jpg" alt="Zilong Huang">
     </div>
-    <button id="theme-toggle" type="button" aria-label="Toggle light and dark mode" title="Toggle light and dark mode">
-      <i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true"></i>
-    </button>
   </div>
   <div class="home-hero__body" markdown="1">
 
@@ -31,6 +28,11 @@ redirect_from:
     <li><i class="fas fa-fw fa-building-columns icon-pad-right" aria-hidden="true"></i>SCUT</li>
     <li><a href="mailto:auhuangzl@mail.scut.edu.cn"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>Email</a></li>
     <li><a href="https://github.com/zlong-911"><i class="fab fa-fw fa-github icon-pad-right" aria-hidden="true"></i>GitHub</a></li>
+    <li class="home-theme-control">
+      <button id="theme-toggle" type="button" aria-label="Toggle light and dark mode" title="Toggle light and dark mode">
+        <i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true"></i>
+      </button>
+    </li>
   </ul>
 </div>
 
