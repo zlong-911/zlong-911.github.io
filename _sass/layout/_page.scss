@@ -129,7 +129,7 @@
     margin-bottom: 3rem;
 
     @include breakpoint($medium) {
-      grid-template-columns: minmax(12rem, 14rem) minmax(0, 1fr);
+      grid-template-columns: 12rem minmax(0, 1fr);
       align-items: stretch;
       gap: 1.75rem;
     }
