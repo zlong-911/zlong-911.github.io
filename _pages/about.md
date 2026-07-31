@@ -48,7 +48,6 @@ Selected Work ✨
     </video>
   </div>
   <div class="work-body">
-    <span class="work-label">Publication</span>
     <h3 class="work-title">ClothMate: Leveraging Grasp-Fling Consistency for Generalizable and Data-Efficient Garment Flattening</h3>
     <p class="work-meta">Jiaxiang Luo, <strong>Zilong Huang</strong>, Hao Cheng, and Zixiang Hong<br><em>IEEE Robotics and Automation Letters</em>, 2026</p>
     <p class="work-summary">ClothMate builds on a simple observation: once the robot has a good grasp, the fling motion can be largely decoupled from the garment's detailed state. One model trains across five garment categories using only 15% of the data required by category-specific baselines.</p>
@@ -63,7 +62,6 @@ Selected Work ✨
 <article class="work-entry">
   <div class="work-media work-media--empty" aria-hidden="true"></div>
   <div class="work-body">
-    <span class="work-label">Manuscript</span>
     <h3 class="work-title">Visual Affordance Priors for Generalizable Garment Flattening</h3>
     <p class="work-summary">My ongoing research develops visual affordance priors distilled from large-scale structural supervision for zero-shot real-world garment manipulation. The manuscript is currently under review at <em>IEEE Robotics and Automation Letters</em>.</p>
     <p class="work-links">
@@ -80,7 +78,6 @@ Selected Work ✨
     </video>
   </div>
   <div class="work-body">
-    <span class="work-label">Project</span>
     <h3 class="work-title">Scalable Garment Trajectory Generation</h3>
     <p class="work-summary">At Meituan LongCat, I work on an end-to-end simulation and data platform for garment manipulation, connecting GPU-parallel physics, trajectory curation, retargeting, photorealistic rendering, and downstream policy training.</p>
   </div>
