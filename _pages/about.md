@@ -50,7 +50,7 @@ Selected Work ✨
   <div class="work-body">
     <h3 class="work-title">ClothMate: Leveraging Grasp-Fling Consistency for Generalizable and Data-Efficient Garment Flattening</h3>
     <p class="work-meta">Jiaxiang Luo, <strong>Zilong Huang</strong>, Hao Cheng, and Zixiang Hong<br><em>IEEE Robotics and Automation Letters</em>, 2026</p>
-    <p class="work-summary">ClothMate builds on a simple observation: once the robot has a good grasp, the fling motion can be largely decoupled from the garment's detailed state. One model trains across five garment categories using only 15% of the data required by category-specific baselines.</p>
+    <p class="work-summary">ClothMate turns grasp-fling consistency into a two-stage learning framework. A prior-value model first learns reusable fling values for vertex pairs in canonical garment configurations; simulation-based vertex correspondence then projects these values onto arbitrary, self-occluded states to supervise an RGB-based fling policy. After coarse unfolding, a state classifier switches to a keypoint-guided pick-and-stretch policy for final alignment. Across five garment categories, a single model uses only 15% of the aggregate data required by separate category-specific baselines while achieving 91.5% coverage in 4.7 steps.</p>
     <p class="work-links">
       <a class="btn btn--primary" href="https://ieeexplore.ieee.org/document/11248822/">Paper</a>
       <a class="btn" href="https://github.com/chongchongjjj/clothmate">Code</a>
