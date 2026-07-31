@@ -129,8 +129,8 @@
     margin-bottom: 3rem;
 
     @include breakpoint($medium) {
-      grid-template-columns: minmax(12rem, 17rem) 1fr;
-      align-items: stretch;
+      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-rows: auto;
       gap: 1.75rem;
     }
   }
@@ -144,10 +144,11 @@
     max-width: 15rem;
 
     @include breakpoint($medium) {
-      width: 100%;
-      align-self: center;
+      width: auto;
+      height: 100%;
+      align-self: stretch;
       max-width: none;
-      min-height: 14rem;
+      min-height: 0;
     }
 
     img {
@@ -207,6 +208,31 @@
       color: var(--global-text-color-light);
       font-size: 0.78rem;
       white-space: nowrap;
+    }
+
+    .home-theme-control {
+      display: flex;
+      align-items: center;
+    }
+
+    #theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.7rem;
+      height: 1.7rem;
+      padding: 0;
+      border: 1px solid var(--global-border-color);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--global-text-color-light);
+      cursor: pointer;
+
+      &:hover,
+      &:focus-visible {
+        border-color: var(--global-link-color);
+        color: var(--global-link-color);
+      }
     }
   }
 
