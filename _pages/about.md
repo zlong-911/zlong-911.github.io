@@ -73,6 +73,40 @@ Selected Work ✨
       <a class="btn btn--primary" href="https://garment-affordance-review.github.io/unfold-all-anonymous/">Project Page</a>
     </p>
   </div>
+  <details
+    class="real-inference-demo"
+    data-real-inference-demo
+    data-asset-base="https://garment-affordance-review.github.io/unfold-all-anonymous"
+  >
+    <summary>
+      <span>Explore Real-World Predictions</span>
+      <small>4 scenes · 72 states</small>
+    </summary>
+    <div class="real-inference-demo__content">
+      <p>Watch how the model updates its grasp-pair predictions as a garment is gradually crumpled by hand across four real-world scenes.</p>
+      <div class="real-inference-scenes" role="tablist" aria-label="Real-world scene">
+        <button class="is-active" type="button" role="tab" aria-selected="true" data-scene="1">Scene 1</button>
+        <button type="button" role="tab" aria-selected="false" data-scene="2">Scene 2</button>
+        <button type="button" role="tab" aria-selected="false" data-scene="3">Scene 3</button>
+        <button type="button" role="tab" aria-selected="false" data-scene="4">Scene 4</button>
+      </div>
+      <div class="real-inference-stage">
+        <video
+          class="real-inference-video"
+          controls
+          muted
+          playsinline
+          preload="none"
+          aria-label="Real-world grasp-pair prediction"
+        ></video>
+      </div>
+      <div class="real-inference-navigation">
+        <button type="button" data-instance-prev aria-label="Previous state">←</button>
+        <span data-instance-caption>Scene 1 · State 01 / 26</span>
+        <button type="button" data-instance-next aria-label="Next state">→</button>
+      </div>
+    </div>
+  </details>
 </article>
 
 <article class="work-entry">
@@ -87,3 +121,5 @@ Selected Work ✨
     <p class="work-summary">At Meituan LongCat, I work on an end-to-end simulation and data platform for garment manipulation, connecting GPU-parallel physics, trajectory curation, retargeting, photorealistic rendering, and downstream policy training.</p>
   </div>
 </article>
+
+<script defer src="/assets/js/real-inference-home.js"></script>

@@ -295,6 +295,153 @@
     }
   }
 
+  .real-inference-demo {
+    grid-column: 1 / -1;
+    margin-top: 0.15rem;
+    border: 1px solid rgba($primary-color, 0.2);
+    border-radius: 8px;
+    background: rgba($primary-color, 0.025);
+    overflow: hidden;
+
+    summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.75rem 0.9rem;
+      color: var(--global-text-color);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::after {
+        content: "+";
+        margin-left: auto;
+        color: $primary-color;
+        font-size: 1rem;
+        font-weight: normal;
+        line-height: 1;
+      }
+
+      small {
+        color: var(--global-text-color-light);
+        font-size: 0.66rem;
+        font-weight: normal;
+        white-space: nowrap;
+      }
+    }
+
+    &[open] summary {
+      border-bottom: 1px solid rgba($primary-color, 0.14);
+
+      &::after {
+        content: "−";
+      }
+    }
+  }
+
+  .real-inference-demo__content {
+    padding: 0.9rem;
+
+    > p {
+      max-width: 48rem;
+      margin: 0 auto 0.75rem;
+      color: var(--global-text-color-light);
+      font-size: 0.76rem;
+      line-height: 1.45;
+      text-align: center;
+    }
+  }
+
+  .real-inference-scenes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+
+    button {
+      padding: 0.35rem 0.72rem;
+      border: 1px solid rgba($primary-color, 0.28);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--global-text-color-light);
+      font: inherit;
+      font-size: 0.68rem;
+      cursor: pointer;
+
+      &:hover,
+      &:focus-visible {
+        border-color: $primary-color;
+        color: $primary-color;
+      }
+
+      &.is-active {
+        border-color: $primary-color;
+        background: $primary-color;
+        color: #fff;
+      }
+    }
+  }
+
+  .real-inference-stage {
+    max-width: 48rem;
+    margin: 0 auto;
+    border-radius: 7px;
+    background: #111;
+    overflow: hidden;
+  }
+
+  .real-inference-video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+  }
+
+  .real-inference-navigation {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr) 2rem;
+    align-items: center;
+    gap: 0.6rem;
+    max-width: 48rem;
+    margin: 0.65rem auto 0;
+
+    span {
+      color: var(--global-text-color-light);
+      font-size: 0.68rem;
+      text-align: center;
+    }
+
+    button {
+      width: 2rem;
+      height: 2rem;
+      padding: 0;
+      border: 1px solid rgba($primary-color, 0.28);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--global-text-color);
+      font: inherit;
+      cursor: pointer;
+
+      &:hover:not(:disabled),
+      &:focus-visible {
+        border-color: $primary-color;
+        color: $primary-color;
+      }
+
+      &:disabled {
+        cursor: default;
+        opacity: 0.35;
+      }
+    }
+  }
+
   /* blockquote citations */
   blockquote + .small {
     margin-top: -1.5em;
