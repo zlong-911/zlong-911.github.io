@@ -60,8 +60,31 @@ Selected Work ✨
     <p class="work-links">
       <a class="btn btn--primary" href="https://ieeexplore.ieee.org/document/11248822/">Paper</a>
       <a class="btn" href="https://github.com/chongchongjjj/clothmate">Code</a>
+      <button
+        class="btn clothmate-details-toggle"
+        type="button"
+        data-clothmate-details-toggle
+        aria-expanded="false"
+        aria-controls="clothmate-details"
+      >Details <span aria-hidden="true">↓</span></button>
     </p>
   </div>
+  <section id="clothmate-details" class="clothmate-details" data-clothmate-details hidden>
+    <div class="clothmate-details__content">
+      <div class="clothmate-details__heading">
+        <h4>Core Insight · Grasp-Fling Consistency</h4>
+        <p>Flinging garments from semantically similar regions—such as sleeve corners, waistbands, and shoulder straps—tends to produce comparable post-fling poses and unfolding results. This consistency holds across different instances of the same garment and across garment categories.</p>
+      </div>
+      <figure class="clothmate-details__figure">
+        <img
+          src="/images/clothmate-grasp-fling-consistency.png"
+          alt="Consistent outcomes from flinging semantically similar grasps across five garment categories"
+          loading="lazy"
+        >
+        <figcaption>Rows 1–2 show different configurations of the same garment instance; Row 3 shows consistency across garment instances and categories.</figcaption>
+      </figure>
+    </div>
+  </section>
 </article>
 
 <article class="work-entry">
@@ -140,4 +163,5 @@ Selected Work ✨
   </div>
 </article>
 
+<script defer src="/assets/js/clothmate-details.js?v=1"></script>
 <script defer src="/assets/js/real-inference-home.js?v=2"></script>
