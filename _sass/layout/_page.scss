@@ -295,16 +295,17 @@
     }
 
     button.btn {
-      border-color: rgba($primary-color, 0.45);
+      border-color: var(--global-link-color);
       background: transparent;
-      color: $primary-color;
+      color: var(--global-link-color) !important;
       cursor: pointer;
 
       &:hover,
       &:focus-visible,
       &.is-active {
-        border-color: $primary-color;
-        background: rgba($primary-color, 0.08);
+        border-color: var(--global-link-color);
+        background: var(--global-link-color);
+        color: #fff !important;
       }
     }
   }
@@ -312,9 +313,9 @@
   .real-inference-demo {
     grid-column: 1 / -1;
     margin-top: 0.35rem;
-    border: 1px solid rgba($primary-color, 0.2);
+    border: 1px solid var(--global-border-color);
     border-radius: 8px;
-    background: rgba($primary-color, 0.025);
+    background: var(--global-bg-color);
     overflow: hidden;
 
     &[hidden] {
@@ -374,7 +375,7 @@
 
     button {
       padding: 0.35rem 0.72rem;
-      border: 1px solid rgba($primary-color, 0.28);
+      border: 1px solid var(--global-border-color);
       border-radius: 999px;
       background: transparent;
       color: var(--global-text-color-light);
@@ -384,13 +385,13 @@
 
       &:hover,
       &:focus-visible {
-        border-color: $primary-color;
-        color: $primary-color;
+        border-color: var(--global-link-color);
+        color: var(--global-link-color);
       }
 
       &.is-active {
-        border-color: $primary-color;
-        background: $primary-color;
+        border-color: var(--global-link-color);
+        background: var(--global-link-color);
         color: #fff;
       }
     }
@@ -429,7 +430,7 @@
       width: 2rem;
       height: 2rem;
       padding: 0;
-      border: 1px solid rgba($primary-color, 0.28);
+      border: 1px solid var(--global-border-color);
       border-radius: 50%;
       background: transparent;
       color: var(--global-text-color);
@@ -438,8 +439,8 @@
 
       &:hover:not(:disabled),
       &:focus-visible {
-        border-color: $primary-color;
-        color: $primary-color;
+        border-color: var(--global-link-color);
+        color: var(--global-link-color);
       }
 
       &:disabled {
