@@ -43,7 +43,7 @@ Selected Work ✨
 <article class="work-entry">
   <div class="work-media">
     <video class="work-video" controls muted playsinline preload="metadata" poster="/images/clothmate-poster.jpg">
-      <source src="/files/clothmate-preview.mp4" type="video/mp4">
+      <source src="/files/clothmate-supplementary.mp4" type="video/mp4">
       Your browser does not support embedded video.
     </video>
   </div>
@@ -54,7 +54,6 @@ Selected Work ✨
     <p class="work-links">
       <a class="btn btn--primary" href="https://ieeexplore.ieee.org/document/11248822/">Paper</a>
       <a class="btn" href="https://github.com/chongchongjjj/clothmate">Code</a>
-      <a class="btn" href="/files/clothmate-supplementary.mp4">Video</a>
     </p>
   </div>
 </article>
