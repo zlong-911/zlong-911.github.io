@@ -50,7 +50,8 @@
       updateControls();
     }
 
-    toggleButton.addEventListener("click", () => {
+    toggleButton.addEventListener("click", (event) => {
+      event.preventDefault();
       const willOpen = demo.hidden;
       demo.hidden = !willOpen;
       toggleButton.setAttribute("aria-expanded", String(willOpen));

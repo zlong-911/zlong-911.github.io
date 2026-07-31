@@ -1,8 +1,9 @@
 ---
 permalink: /
-title: "About Me 🤖"
+title: "Zilong Huang"
 author_profile: false
 hide_title: true
+hide_masthead: true
 main_class: home-inline-profile
 redirect_from:
   - /about/
@@ -15,11 +16,9 @@ redirect_from:
   </div>
   <div class="home-hero__body" markdown="1">
 
-<h1 class="page__title home-hero__title">About Me 🤖</h1>
-
 <div class="home-profile-card">
   <div>
-    <strong>黄梓龙 · Zilong Huang</strong>
+    <h1 class="home-profile-name">黄梓龙 · Zilong Huang</h1>
     <span>Master's Student</span>
   </div>
   <ul>
@@ -71,13 +70,14 @@ Selected Work ✨
     <p class="work-summary">Visual Affordance Priors asks a practical question: can a robot learn where to grasp a garment in simulation and apply that knowledge directly to real images? We first learn the value of grasp pairs from large-scale physics simulation, then distill this structural knowledge into image-space affordance maps through randomized rendering. The resulting prior transfers to real garments without real-data fine-tuning and improves unfolding across 22 garment assets.</p>
     <p class="work-links">
       <a class="btn btn--primary" href="https://garment-affordance-review.github.io/unfold-all-anonymous/">Project Page</a>
-      <button
+      <a
         class="btn"
-        type="button"
+        href="#real-inference-demo"
+        role="button"
         data-real-inference-toggle
         aria-expanded="false"
         aria-controls="real-inference-demo"
-      >Explore Predictions</button>
+      >Explore Predictions</a>
     </p>
   </div>
   <section
@@ -133,4 +133,4 @@ Selected Work ✨
   </div>
 </article>
 
-<script defer src="/assets/js/real-inference-home.js"></script>
+<script defer src="/assets/js/real-inference-home.js?v=2"></script>

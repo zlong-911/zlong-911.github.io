@@ -11,10 +11,12 @@ layout: compress
     {% include head/custom.html %}
   </head>
 
-  <body>
+  <body{% if page.hide_masthead %} class="no-masthead"{% endif %}>
 
     {% include browser-upgrade.html %}
-    {% include masthead.html %}
+    {% unless page.hide_masthead %}
+      {% include masthead.html %}
+    {% endunless %}
 
     {{ content }}
 
