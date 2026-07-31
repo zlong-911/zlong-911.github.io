@@ -71,19 +71,30 @@ Selected Work ✨
     <p class="work-summary">Visual Affordance Priors asks a practical question: can a robot learn where to grasp a garment in simulation and apply that knowledge directly to real images? We first learn the value of grasp pairs from large-scale physics simulation, then distill this structural knowledge into image-space affordance maps through randomized rendering. The resulting prior transfers to real garments without real-data fine-tuning and improves unfolding across 22 garment assets.</p>
     <p class="work-links">
       <a class="btn btn--primary" href="https://garment-affordance-review.github.io/unfold-all-anonymous/">Project Page</a>
+      <button
+        class="btn"
+        type="button"
+        data-real-inference-toggle
+        aria-expanded="false"
+        aria-controls="real-inference-demo"
+      >Explore Predictions</button>
     </p>
   </div>
-  <details
+  <section
+    id="real-inference-demo"
     class="real-inference-demo"
     data-real-inference-demo
     data-asset-base="https://garment-affordance-review.github.io/unfold-all-anonymous"
+    hidden
   >
-    <summary>
-      <span>Explore Real-World Predictions</span>
-      <small>4 scenes · 72 states</small>
-    </summary>
     <div class="real-inference-demo__content">
-      <p>Watch how the model updates its grasp-pair predictions as a garment is gradually crumpled by hand across four real-world scenes.</p>
+      <div class="real-inference-demo__heading">
+        <div>
+          <h4>Real-World Predictions</h4>
+          <p>Watch how the model updates its grasp-pair predictions as a garment is gradually crumpled by hand across four real-world scenes.</p>
+        </div>
+        <span>4 scenes · 72 states</span>
+      </div>
       <div class="real-inference-scenes" role="tablist" aria-label="Real-world scene">
         <button class="is-active" type="button" role="tab" aria-selected="true" data-scene="1">Scene 1</button>
         <button type="button" role="tab" aria-selected="false" data-scene="2">Scene 2</button>
@@ -106,7 +117,7 @@ Selected Work ✨
         <button type="button" data-instance-next aria-label="Next state">→</button>
       </div>
     </div>
-  </details>
+  </section>
 </article>
 
 <article class="work-entry">

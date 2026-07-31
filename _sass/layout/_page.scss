@@ -293,68 +293,75 @@
       padding: 0.38em 0.72em;
       font-size: 0.66rem;
     }
+
+    button.btn {
+      border-color: rgba($primary-color, 0.45);
+      background: transparent;
+      color: $primary-color;
+      cursor: pointer;
+
+      &:hover,
+      &:focus-visible,
+      &.is-active {
+        border-color: $primary-color;
+        background: rgba($primary-color, 0.08);
+      }
+    }
   }
 
   .real-inference-demo {
     grid-column: 1 / -1;
-    margin-top: 0.15rem;
+    margin-top: 0.35rem;
     border: 1px solid rgba($primary-color, 0.2);
     border-radius: 8px;
     background: rgba($primary-color, 0.025);
     overflow: hidden;
 
-    summary {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 0.75rem 0.9rem;
-      color: var(--global-text-color);
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      list-style: none;
-
-      &::-webkit-details-marker {
-        display: none;
-      }
-
-      &::after {
-        content: "+";
-        margin-left: auto;
-        color: $primary-color;
-        font-size: 1rem;
-        font-weight: normal;
-        line-height: 1;
-      }
-
-      small {
-        color: var(--global-text-color-light);
-        font-size: 0.66rem;
-        font-weight: normal;
-        white-space: nowrap;
-      }
-    }
-
-    &[open] summary {
-      border-bottom: 1px solid rgba($primary-color, 0.14);
-
-      &::after {
-        content: "−";
-      }
+    &[hidden] {
+      display: none;
     }
   }
 
   .real-inference-demo__content {
     padding: 0.9rem;
+  }
 
-    > p {
-      max-width: 48rem;
-      margin: 0 auto 0.75rem;
+  .real-inference-demo__heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 48rem;
+    margin: 0 auto 0.8rem;
+
+    h4 {
+      margin: 0 0 0.2rem;
+      font-size: 0.82rem;
+      line-height: 1.35;
+    }
+
+    p {
+      margin: 0;
       color: var(--global-text-color-light);
-      font-size: 0.76rem;
+      font-size: 0.72rem;
       line-height: 1.45;
-      text-align: center;
+    }
+
+    > span {
+      flex: 0 0 auto;
+      padding-top: 0.1rem;
+      color: var(--global-text-color-light);
+      font-size: 0.64rem;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 35rem) {
+      display: block;
+
+      > span {
+        display: block;
+        margin-top: 0.3rem;
+      }
     }
   }
 

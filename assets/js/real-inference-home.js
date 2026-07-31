@@ -10,6 +10,7 @@
     const demo = document.querySelector("[data-real-inference-demo]");
     if (!demo) return;
 
+    const toggleButton = document.querySelector("[data-real-inference-toggle]");
     const video = demo.querySelector(".real-inference-video");
     const sceneButtons = Array.from(demo.querySelectorAll("[data-scene]"));
     const previousButton = demo.querySelector("[data-instance-prev]");
@@ -17,7 +18,7 @@
     const caption = demo.querySelector("[data-instance-caption]");
     const assetBase = demo.dataset.assetBase;
 
-    if (!video || sceneButtons.length === 0 || !previousButton || !nextButton || !caption || !assetBase) return;
+    if (!toggleButton || !video || sceneButtons.length === 0 || !previousButton || !nextButton || !caption || !assetBase) return;
 
     let currentScene = 1;
     let currentState = 1;
@@ -49,11 +50,19 @@
       updateControls();
     }
 
-    demo.addEventListener("toggle", () => {
-      if (demo.open && !initialized) {
+    toggleButton.addEventListener("click", () => {
+      const willOpen = demo.hidden;
+      demo.hidden = !willOpen;
+      toggleButton.setAttribute("aria-expanded", String(willOpen));
+      toggleButton.classList.toggle("is-active", willOpen);
+      toggleButton.textContent = willOpen ? "Hide Predictions" : "Explore Predictions";
+
+      if (willOpen && !initialized) {
         initialized = true;
         updateMedia();
       }
+
+      if (!willOpen) video.pause();
     });
 
     sceneButtons.forEach((button) => {
