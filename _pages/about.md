@@ -58,7 +58,6 @@ Selected Work ✨
     <p class="work-meta">Jiaxiang Luo, <strong>Zilong Huang</strong>, Hao Cheng, and Zixiang Hong<br><em>IEEE Robotics and Automation Letters</em>, 2026</p>
     <p class="work-summary">ClothMate starts from a simple observation: given a good grasp, a garment's response to a fling depends far less on its detailed state. It turns this insight into a two-stage learning framework that separates action-value learning from state estimation, reducing the effective complexity of the garment's high-dimensional state space. As a result, a single model handles five garment categories using only 15% of the total training data required by separate category-specific baselines.</p>
     <p class="work-links">
-      <a class="btn btn--primary" href="/publication/clothmate">Details</a>
       <a class="btn btn--primary" href="https://ieeexplore.ieee.org/document/11248822/">Paper</a>
       <a class="btn" href="https://github.com/chongchongjjj/clothmate">Code</a>
     </p>
