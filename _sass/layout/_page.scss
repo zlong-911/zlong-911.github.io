@@ -129,8 +129,8 @@
     margin-bottom: 3rem;
 
     @include breakpoint($medium) {
-      grid-template-columns: auto minmax(0, 1fr);
-      grid-template-rows: auto;
+      grid-template-columns: minmax(12rem, 14rem) minmax(0, 1fr);
+      align-items: stretch;
       gap: 1.75rem;
     }
   }
@@ -144,11 +144,10 @@
     max-width: 15rem;
 
     @include breakpoint($medium) {
-      width: auto;
-      height: 100%;
+      width: 100%;
+      height: auto;
       align-self: stretch;
       max-width: none;
-      min-height: 0;
     }
 
     img {
