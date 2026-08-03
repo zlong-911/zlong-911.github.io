@@ -357,12 +357,14 @@
     padding: 0.9rem;
 
     @include breakpoint($medium) {
-      grid-template-columns: minmax(0, 0.846fr) minmax(0, 2.605fr);
-      align-items: start;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      align-items: stretch;
     }
   }
 
   .clothmate-details__figure-card {
+    display: flex;
+    flex-direction: column;
     min-width: 0;
 
     h4 {
@@ -370,6 +372,21 @@
       font-size: 0.82rem;
       line-height: 1.35;
     }
+  }
+
+  .clothmate-details__design {
+    margin-bottom: 0.65rem;
+
+    p {
+      margin: 0;
+      color: var(--global-text-color-light);
+      font-size: 0.72rem;
+      line-height: 1.5;
+    }
+  }
+
+  .clothmate-details__figure-card--method .clothmate-details__figure {
+    margin-top: auto;
   }
 
   .clothmate-details__figure {

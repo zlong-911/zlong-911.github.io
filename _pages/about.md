@@ -84,7 +84,10 @@ Selected Work ✨
         </figure>
       </div>
       <div class="clothmate-details__figure-card clothmate-details__figure-card--method">
-        <h4>Method Overview</h4>
+        <div class="clothmate-details__design">
+          <h4>Method Overview</h4>
+          <p>ClothMate first learns action values in canonical garment states, then transfers this knowledge to arbitrary observations through Grasp-Fling Consistency. A state classifier switches from dynamic flinging to a heuristic pick-and-stretch policy for final canonicalization and alignment.</p>
+        </div>
         <figure class="clothmate-details__figure">
           <a href="/images/clothmate-method-overview.png">
             <img
