@@ -439,6 +439,134 @@
     }
   }
 
+  .clothmate-carousel__slide {
+    &[hidden] {
+      display: none;
+    }
+
+    &.is-entering-forward {
+      animation: clothmate-slide-forward 180ms ease-out;
+    }
+
+    &.is-entering-backward {
+      animation: clothmate-slide-backward 180ms ease-out;
+    }
+  }
+
+  .clothmate-results {
+    display: grid;
+    gap: 0.7rem;
+    padding: 0.9rem;
+  }
+
+  .clothmate-results__figure {
+    width: 100%;
+    margin: 0 auto;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 7px;
+    }
+  }
+
+  .clothmate-results__copy {
+    width: 100%;
+    max-width: 72rem;
+    margin: 0 auto;
+
+    p {
+      margin: 0;
+      color: var(--global-text-color-light);
+      font-size: 0.72rem;
+      line-height: 1.5;
+    }
+  }
+
+  .clothmate-carousel__controls {
+    display: grid;
+    grid-template-columns: 2.3rem minmax(0, 1fr) 2.3rem;
+    align-items: center;
+    gap: 0.7rem;
+    max-width: 22rem;
+    margin: 0 auto;
+    padding: 0.25rem 0.9rem 0.8rem;
+  }
+
+  .clothmate-carousel__arrow {
+    display: inline-grid;
+    width: 2.3rem;
+    height: 2.3rem;
+    padding: 0;
+    place-items: center;
+    border: 1px solid var(--global-border-color);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--global-text-color);
+    font: inherit;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--global-link-color);
+      color: var(--global-link-color);
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
+  }
+
+  .clothmate-carousel__position {
+    display: grid;
+    justify-items: center;
+    gap: 0.3rem;
+    color: var(--global-text-color-light);
+    font-size: 0.66rem;
+    line-height: 1.2;
+  }
+
+  .clothmate-carousel__dots {
+    display: flex;
+    gap: 0.35rem;
+
+    button {
+      width: 0.45rem;
+      height: 0.45rem;
+      padding: 0;
+      border: 1px solid var(--global-link-color);
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+
+      &[aria-selected="true"] {
+        background: var(--global-link-color);
+      }
+    }
+  }
+
+  @keyframes clothmate-slide-forward {
+    from {
+      opacity: 0;
+      transform: translateX(8px);
+    }
+  }
+
+  @keyframes clothmate-slide-backward {
+    from {
+      opacity: 0;
+      transform: translateX(-8px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .clothmate-carousel__slide {
+      animation: none !important;
+    }
+  }
+
   .real-inference-demo {
     grid-column: 1 / -1;
     margin-top: 0.35rem;

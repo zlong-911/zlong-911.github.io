@@ -69,37 +69,66 @@ Selected Work ✨
       >Details <span aria-hidden="true">↓</span></button>
     </p>
   </div>
-  <section id="clothmate-details" class="clothmate-details" data-clothmate-details hidden>
-    <div class="clothmate-details__content">
-      <div class="clothmate-details__design clothmate-details__design--insight">
-        <p><strong>Core Insight.</strong> We noticed a simple pattern: even when a garment starts from different crumpled states (the <em>Before</em> rows in the left figure), grasping semantically similar regions—such as sleeve corners, waistbands, or shoulder straps (marked in blue)—often leads to similar post-fling poses and unfolding outcomes (the <em>After</em> rows). This pattern holds across different states of the same garment, and even across garment instances and categories. It suggests that learning to fling can be decoupled from the full complexity of a garment's state, allowing us to learn the action in a more compact space.</p>
-      </div>
-      <div class="clothmate-details__figure-card clothmate-details__figure-card--insight">
-        <figure class="clothmate-details__figure">
-          <a href="/images/clothmate-grasp-fling-consistency.png">
-            <img
-              src="/images/clothmate-grasp-fling-consistency.png"
-              alt="Consistent outcomes from flinging semantically similar grasps across five garment categories"
-              loading="lazy"
-            >
-          </a>
-        </figure>
-      </div>
-      <div class="clothmate-details__figure-card clothmate-details__figure-card--method">
-        <figure class="clothmate-details__figure">
-          <a href="/images/clothmate-method-overview.png">
-            <img
-              src="/images/clothmate-method-overview.png"
-              alt="Overview of the ClothMate two-stage value-learning and pick-and-stretch framework"
-              loading="lazy"
-            >
-          </a>
-        </figure>
-        <div class="clothmate-details__design">
-          <p><strong>Method Overview.</strong> Given a top-down RGB image, ClothMate selects two grasp points and executes a fixed fling primitive. We use Spatial Action Maps to represent these bimanual actions: each pixel encodes a pair of grasp points at fixed offsets above and below it. Rotating the input changes the grasp direction, while scaling it changes the distance between the two points. We first evaluate candidate grasps on garments in a canonical, aligned state, assigning each pair a score based on how well it unfolds the garment (Fig. a). In simulation, we know which cloth points correspond across different configurations. This lets us carry each grasp pair and its score over to crumpled states, and train the policy to select grasps directly from the current image (Fig. b). Once the garment is mostly unfolded, ClothMate switches to pick-and-stretch for final flattening and alignment (Fig. c).</p>
+  <section id="clothmate-details" class="clothmate-details" data-clothmate-details data-clothmate-carousel hidden>
+    <section class="clothmate-carousel__slide" data-clothmate-slide data-slide-label="Overview">
+      <div class="clothmate-details__content">
+        <div class="clothmate-details__design clothmate-details__design--insight">
+          <p><strong>Core Insight.</strong> We noticed a simple pattern: even when a garment starts from different crumpled states (the <em>Before</em> rows in the left figure), grasping semantically similar regions—such as sleeve corners, waistbands, or shoulder straps (marked in blue)—often leads to similar post-fling poses and unfolding outcomes (the <em>After</em> rows). This pattern holds across different states of the same garment, and even across garment instances and categories. It suggests that learning to fling can be decoupled from the full complexity of a garment's state, allowing us to learn the action in a more compact space.</p>
+        </div>
+        <div class="clothmate-details__figure-card clothmate-details__figure-card--insight">
+          <figure class="clothmate-details__figure">
+            <a href="/images/clothmate-grasp-fling-consistency.png">
+              <img
+                src="/images/clothmate-grasp-fling-consistency.png"
+                alt="Consistent outcomes from flinging semantically similar grasps across five garment categories"
+                loading="lazy"
+              >
+            </a>
+          </figure>
+        </div>
+        <div class="clothmate-details__figure-card clothmate-details__figure-card--method">
+          <figure class="clothmate-details__figure">
+            <a href="/images/clothmate-method-overview.png">
+              <img
+                src="/images/clothmate-method-overview.png"
+                alt="Overview of the ClothMate two-stage value-learning and pick-and-stretch framework"
+                loading="lazy"
+              >
+            </a>
+          </figure>
+          <div class="clothmate-details__design">
+            <p><strong>Method Overview.</strong> Given a top-down RGB image, ClothMate selects two grasp points and executes a fixed fling primitive. We use Spatial Action Maps to represent these bimanual actions: each pixel encodes a pair of grasp points at fixed offsets above and below it. Rotating the input changes the grasp direction, while scaling it changes the distance between the two points. We first evaluate candidate grasps on garments in a canonical, aligned state, assigning each pair a score based on how well it unfolds the garment (Fig. a). In simulation, we know which cloth points correspond across different configurations. This lets us carry each grasp pair and its score over to crumpled states, and train the policy to select grasps directly from the current image (Fig. b). Once the garment is mostly unfolded, ClothMate switches to pick-and-stretch for final flattening and alignment (Fig. c).</p>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+    <section class="clothmate-carousel__slide" data-clothmate-slide data-slide-label="Real-World" hidden>
+      <div class="clothmate-results">
+        <figure class="clothmate-results__figure">
+          <a href="/images/clothmate-real-world-evaluation.webp">
+            <img
+              src="/images/clothmate-real-world-evaluation.webp"
+              alt="ClothMate real-world dual-arm platform and 24 evaluation garments"
+              loading="lazy"
+            >
+          </a>
+        </figure>
+        <div class="clothmate-results__copy">
+          <p><strong>Real-World Evaluation.</strong> We tested ClothMate with two collaborative robot arms and 24 garments spanning five categories, with varied colors, patterns, and materials. Each garment was evaluated in 10 trials from randomized starting configurations. ClothMate transfers best to sleeved garments; on unseen long-legged jumpsuits, it reaches over 50% IoU and 75% coverage. Long pants, skirts, and dresses remain more challenging because their shapes and material behavior differ more from simulation.</p>
+        </div>
+      </div>
+    </section>
+    <nav class="clothmate-carousel__controls" aria-label="ClothMate detail pages">
+      <button class="clothmate-carousel__arrow" type="button" data-clothmate-previous aria-label="Previous detail page" disabled>←</button>
+      <div class="clothmate-carousel__position">
+        <span data-clothmate-status aria-live="polite">Overview · 1 / 2</span>
+        <span class="clothmate-carousel__dots" role="tablist" aria-label="Choose detail page">
+          <button type="button" role="tab" aria-label="Show Overview" aria-selected="true" data-clothmate-page="0"></button>
+          <button type="button" role="tab" aria-label="Show Real-World Evaluation" aria-selected="false" data-clothmate-page="1"></button>
+        </span>
+      </div>
+      <button class="clothmate-carousel__arrow" type="button" data-clothmate-next aria-label="Next detail page">→</button>
+    </nav>
   </section>
 </article>
 
@@ -180,4 +209,5 @@ Selected Work ✨
 </article>
 
 <script defer src="/assets/js/clothmate-details.js?v=1"></script>
+<script defer src="/assets/js/clothmate-carousel.js?v=1"></script>
 <script defer src="/assets/js/real-inference-home.js?v=2"></script>
