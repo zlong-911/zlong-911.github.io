@@ -357,7 +357,7 @@
     padding: 0.9rem;
 
     @include breakpoint($medium) {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      grid-template-columns: minmax(0, 961fr) minmax(0, 2027fr);
       align-items: stretch;
     }
   }
