@@ -358,7 +358,7 @@
 
     @include breakpoint($medium) {
       grid-template-columns: minmax(0, 961fr) minmax(0, 2027fr);
-      align-items: stretch;
+      align-items: end;
     }
   }
 
