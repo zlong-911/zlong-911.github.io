@@ -401,12 +401,29 @@
   }
 
   .clothmate-details__figure-card--method .clothmate-details__design {
-    margin: 0.65rem 0 0;
+    margin: 0.45rem 0 0;
+
+    @include breakpoint($medium) {
+      width: 95%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+
+  .clothmate-details__figure-card--insight .clothmate-details__figure {
+    @include breakpoint($medium) {
+      width: 96%;
+      margin: 0 auto;
+    }
   }
 
   .clothmate-details__figure-card--method .clothmate-details__figure {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
+
+    @include breakpoint($medium) {
+      width: 95%;
+    }
   }
 
   .clothmate-details__figure {
