@@ -71,6 +71,9 @@ Selected Work ✨
   </div>
   <section id="clothmate-details" class="clothmate-details" data-clothmate-details hidden>
     <div class="clothmate-details__content">
+      <div class="clothmate-details__design clothmate-details__design--insight">
+        <p><strong>Core Insight.</strong> We noticed a simple pattern: even when a garment starts from different crumpled states (the <em>Before</em> rows in the left figure), grasping semantically similar regions—such as sleeve corners, waistbands, or shoulder straps (marked in blue)—often leads to similar post-fling poses and unfolding outcomes (the <em>After</em> rows). This pattern holds across different states of the same garment, and even across garment instances and categories. It suggests that learning to fling can be decoupled from the full complexity of a garment's state, allowing us to learn the action in a more compact space.</p>
+      </div>
       <div class="clothmate-details__figure-card clothmate-details__figure-card--insight">
         <figure class="clothmate-details__figure">
           <a href="/images/clothmate-grasp-fling-consistency.png">
@@ -84,7 +87,6 @@ Selected Work ✨
       </div>
       <div class="clothmate-details__figure-card clothmate-details__figure-card--method">
         <div class="clothmate-details__design">
-          <p><strong>Core Insight.</strong> We noticed a simple pattern: even when a garment starts from different crumpled states (the <em>Before</em> rows in the left figure), grasping semantically similar regions—such as sleeve corners, waistbands, or shoulder straps (marked in blue)—often leads to similar post-fling poses and unfolding outcomes (the <em>After</em> rows). This pattern holds across different states of the same garment, and even across garment instances and categories. It suggests that learning to fling can be decoupled from the full complexity of a garment's state, allowing us to learn the action in a more compact space.</p>
           <p><strong>Method Overview.</strong> Given a top-down RGB image, ClothMate selects two grasp points and executes a fixed fling primitive. We use Spatial Action Maps to represent these bimanual actions: each pixel encodes a pair of grasp points at fixed offsets above and below it. Rotating the input changes the grasp direction, while scaling it changes the distance between the two points. We first evaluate candidate grasps on garments in a canonical, aligned state, assigning each pair a score based on how well it unfolds the garment (Fig. a). In simulation, we know which cloth points correspond across different configurations. This lets us carry each grasp pair and its score over to crumpled states, and train the policy to select grasps directly from the current image (Fig. b). Once the garment is mostly unfolded, ClothMate switches to pick-and-stretch for final flattening and alignment (Fig. c).</p>
         </div>
         <figure class="clothmate-details__figure">
