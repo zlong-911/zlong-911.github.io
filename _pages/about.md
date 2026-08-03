@@ -72,7 +72,10 @@ Selected Work ✨
   <section id="clothmate-details" class="clothmate-details" data-clothmate-details hidden>
     <div class="clothmate-details__content">
       <div class="clothmate-details__figure-card clothmate-details__figure-card--insight">
-        <h4>Core Insight</h4>
+        <div class="clothmate-details__design">
+          <h4>Core Insight</h4>
+          <p>We noticed a simple pattern: even when a garment starts from different crumpled states (the <em>Before</em> rows in the left figure), grasping semantically similar regions—such as sleeve corners, waistbands, or shoulder straps (marked in blue)—often leads to similar post-fling poses and unfolding outcomes (the <em>After</em> rows). This pattern holds across different states of the same garment, and even across garment instances and categories. We call it <strong>Grasp-Fling Consistency</strong>. It suggests that learning to fling can be decoupled from the full complexity of a garment's state, allowing us to learn the action in a more compact space.</p>
+        </div>
         <figure class="clothmate-details__figure">
           <a href="/images/clothmate-grasp-fling-consistency.png">
             <img
