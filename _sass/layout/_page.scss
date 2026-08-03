@@ -422,7 +422,8 @@
     margin: 0 auto;
 
     @include breakpoint($medium) {
-      width: 95%;
+      width: 88%;
+      margin: auto;
     }
   }
 
