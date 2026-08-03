@@ -384,6 +384,10 @@
       font-size: 0.72rem;
       line-height: 1.5;
     }
+
+    p + p {
+      margin-top: 0.55rem;
+    }
   }
 
   .clothmate-details__figure-card--method .clothmate-details__figure {
