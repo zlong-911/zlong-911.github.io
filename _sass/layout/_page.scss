@@ -358,7 +358,7 @@
 
     @include breakpoint($medium) {
       grid-template-columns: minmax(0, 961fr) minmax(0, 2027fr);
-      align-items: stretch;
+      align-items: start;
     }
   }
 
@@ -401,7 +401,7 @@
   }
 
   .clothmate-details__figure-card--method .clothmate-details__design {
-    margin: 0.45rem 0 0;
+    margin: 0.2rem 0 0;
 
     @include breakpoint($medium) {
       width: 95%;
@@ -417,19 +417,13 @@
     }
   }
 
-  .clothmate-details__figure-card--insight {
-    @include breakpoint($medium) {
-      justify-content: flex-end;
-    }
-  }
-
   .clothmate-details__figure-card--method .clothmate-details__figure {
     width: 100%;
     margin: 0 auto;
 
     @include breakpoint($medium) {
       width: 88%;
-      margin: auto;
+      margin: 0 auto;
     }
   }
 
