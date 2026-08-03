@@ -358,7 +358,7 @@
 
     @include breakpoint($medium) {
       grid-template-columns: minmax(0, 961fr) minmax(0, 2027fr);
-      align-items: end;
+      align-items: stretch;
     }
   }
 
@@ -413,7 +413,13 @@
   .clothmate-details__figure-card--insight .clothmate-details__figure {
     @include breakpoint($medium) {
       width: 96%;
-      margin: auto auto 0;
+      margin: 0 auto;
+    }
+  }
+
+  .clothmate-details__figure-card--insight {
+    @include breakpoint($medium) {
+      justify-content: flex-end;
     }
   }
 
