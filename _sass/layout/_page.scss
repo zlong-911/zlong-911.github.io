@@ -413,7 +413,7 @@
   .clothmate-details__figure-card--insight .clothmate-details__figure {
     @include breakpoint($medium) {
       width: 96%;
-      margin: 0 auto;
+      margin: auto auto 0;
     }
   }
 
