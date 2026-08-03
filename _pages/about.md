@@ -79,9 +79,12 @@ Selected Work ✨
           <figure class="clothmate-details__figure">
             <a href="/images/clothmate-grasp-fling-consistency.png">
               <img
-                src="/images/clothmate-grasp-fling-consistency.png"
+                src="/images/clothmate-grasp-fling-consistency-preview.webp"
                 alt="Consistent outcomes from flinging semantically similar grasps across five garment categories"
+                width="1400"
+                height="1651"
                 loading="lazy"
+                decoding="async"
               >
             </a>
           </figure>
@@ -90,9 +93,12 @@ Selected Work ✨
           <figure class="clothmate-details__figure">
             <a href="/images/clothmate-method-overview.png">
               <img
-                src="/images/clothmate-method-overview.png"
+                src="/images/clothmate-method-overview-preview.webp"
                 alt="Overview of the ClothMate two-stage value-learning and pick-and-stretch framework"
+                width="2400"
+                height="921"
                 loading="lazy"
+                decoding="async"
               >
             </a>
           </figure>
@@ -109,7 +115,10 @@ Selected Work ✨
             <img
               src="/images/clothmate-real-world-evaluation.webp"
               alt="ClothMate real-world dual-arm platform and 24 evaluation garments"
+              width="3200"
+              height="813"
               loading="lazy"
+              decoding="async"
             >
           </a>
         </figure>
