@@ -71,18 +71,8 @@ Selected Work ✨
   </div>
   <section id="clothmate-details" class="clothmate-details" data-clothmate-details hidden>
     <div class="clothmate-details__content">
-      <div class="clothmate-details__panel">
-        <h4>Method Overview</h4>
-        <p>ClothMate decomposes garment flattening into a compact two-stage learning problem.</p>
-        <ol>
-          <li><strong>Learn grasp values</strong> from simulated garment states and candidate grasp pairs.</li>
-          <li><strong>Reuse fling consistency</strong> so similar semantic grasps share outcome knowledge across states and categories.</li>
-          <li><strong>Train one category-shared model</strong> that handles shirts, pants, jumpsuits, dresses, and skirts with much less data.</li>
-        </ol>
-      </div>
-      <div class="clothmate-details__panel">
-        <h4>Core Insight · Grasp-Fling Consistency</h4>
-        <p>Flinging garments from semantically similar regions—such as sleeve corners, waistbands, and shoulder straps—tends to produce comparable post-fling poses and unfolding results across instances and categories.</p>
+      <div class="clothmate-details__figure-card clothmate-details__figure-card--insight">
+        <h4>Core Insight</h4>
         <figure class="clothmate-details__figure">
           <a href="/images/clothmate-grasp-fling-consistency.png">
             <img
@@ -91,7 +81,18 @@ Selected Work ✨
               loading="lazy"
             >
           </a>
-          <figcaption>Open the full figure for all before/after cases.</figcaption>
+        </figure>
+      </div>
+      <div class="clothmate-details__figure-card clothmate-details__figure-card--method">
+        <h4>Method Overview</h4>
+        <figure class="clothmate-details__figure">
+          <a href="/images/clothmate-method-overview.png">
+            <img
+              src="/images/clothmate-method-overview.png"
+              alt="Overview of the ClothMate two-stage value-learning and pick-and-stretch framework"
+              loading="lazy"
+            >
+          </a>
         </figure>
       </div>
     </div>
