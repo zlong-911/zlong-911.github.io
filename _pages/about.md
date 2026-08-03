@@ -86,9 +86,6 @@ Selected Work ✨
         </figure>
       </div>
       <div class="clothmate-details__figure-card clothmate-details__figure-card--method">
-        <div class="clothmate-details__design">
-          <p><strong>Method Overview.</strong> Given a top-down RGB image, ClothMate selects two grasp points and executes a fixed fling primitive. We use Spatial Action Maps to represent these bimanual actions: each pixel encodes a pair of grasp points at fixed offsets above and below it. Rotating the input changes the grasp direction, while scaling it changes the distance between the two points. We first evaluate candidate grasps on garments in a canonical, aligned state, assigning each pair a score based on how well it unfolds the garment (Fig. a). In simulation, we know which cloth points correspond across different configurations. This lets us carry each grasp pair and its score over to crumpled states, and train the policy to select grasps directly from the current image (Fig. b). Once the garment is mostly unfolded, ClothMate switches to pick-and-stretch for final flattening and alignment (Fig. c).</p>
-        </div>
         <figure class="clothmate-details__figure">
           <a href="/images/clothmate-method-overview.png">
             <img
@@ -98,6 +95,9 @@ Selected Work ✨
             >
           </a>
         </figure>
+        <div class="clothmate-details__design">
+          <p><strong>Method Overview.</strong> Given a top-down RGB image, ClothMate selects two grasp points and executes a fixed fling primitive. We use Spatial Action Maps to represent these bimanual actions: each pixel encodes a pair of grasp points at fixed offsets above and below it. Rotating the input changes the grasp direction, while scaling it changes the distance between the two points. We first evaluate candidate grasps on garments in a canonical, aligned state, assigning each pair a score based on how well it unfolds the garment (Fig. a). In simulation, we know which cloth points correspond across different configurations. This lets us carry each grasp pair and its score over to crumpled states, and train the policy to select grasps directly from the current image (Fig. b). Once the garment is mostly unfolded, ClothMate switches to pick-and-stretch for final flattening and alignment (Fig. c).</p>
+        </div>
       </div>
     </div>
   </section>
