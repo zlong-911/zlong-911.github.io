@@ -465,7 +465,7 @@
 
     @include breakpoint($medium) {
       grid-template-columns: minmax(0, 2027fr) minmax(0, 961fr);
-      align-items: start;
+      align-items: center;
     }
   }
 
@@ -481,7 +481,7 @@
     gap: 0.6rem;
 
     @include breakpoint($medium) {
-      width: 88%;
+      width: 94%;
       margin: 0 auto;
     }
   }
