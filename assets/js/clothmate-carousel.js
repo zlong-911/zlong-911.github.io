@@ -12,6 +12,9 @@
     const pageButtons = Array.from(
       carousel.querySelectorAll("[data-clothmate-page]"),
     );
+    const autoplayVideos = Array.from(
+      carousel.querySelectorAll("[data-clothmate-autoplay-video]"),
+    );
 
     if (!slides.length || !previousButton || !nextButton || !status) return;
 
@@ -42,6 +45,14 @@
 
       pageButtons.forEach((button, index) => {
         button.setAttribute("aria-selected", String(index === currentPage));
+      });
+
+      autoplayVideos.forEach((video) => {
+        if (slides[currentPage].contains(video)) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
       });
     };
 

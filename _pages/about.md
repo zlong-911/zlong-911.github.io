@@ -110,9 +110,6 @@ Selected Work ✨
     </section>
     <section class="clothmate-carousel__slide" data-clothmate-slide data-slide-label="Results" hidden>
       <div class="clothmate-results">
-        <div class="clothmate-results__summary">
-          <p><strong>Results.</strong> ClothMate trains one policy jointly across long sleeves, pants, jumpsuits, dresses, and skirts using only 15% of the aggregate data required by separate category-specific baselines. The shared model converges quickly and produces consistent unfolding behavior across all five garment categories.</p>
-        </div>
         <div class="clothmate-results__grid">
           <div class="clothmate-results__card clothmate-results__analysis">
             <figure class="clothmate-results__value">
@@ -131,19 +128,15 @@ Selected Work ✨
               <p><strong>Value Analysis.</strong> The teacher's high-value grasp pairs keep appearing around aligned semantic regions after rotation, scale changes, and cross-instance transfer. This shared value structure explains why ClothMate does not need to model every wrinkle-level state: much like a person flattening clothes, it learns a few familiar semantic grasp combinations, then finds them again when the garment is crumpled.</p>
             </div>
           </div>
-          <figure class="clothmate-results__card clothmate-results__video-card">
-            <video class="clothmate-results__video" controls muted playsinline preload="metadata" poster="/images/clothmate-five-category-results-poster.jpg">
+          <div class="clothmate-results__card clothmate-results__video-card">
+            <video class="clothmate-results__video" data-clothmate-autoplay-video controls loop muted playsinline preload="metadata" poster="/images/clothmate-five-category-results-poster.jpg">
               <source src="/files/clothmate-five-category-results.mp4" type="video/mp4">
               Your browser does not support embedded video.
             </video>
-            <figcaption class="clothmate-results__labels" aria-label="Video columns from left to right">
-              <span>Long sleeve</span>
-              <span>Pants</span>
-              <span>Jumpsuit</span>
-              <span>Dress</span>
-              <span>Skirt</span>
-            </figcaption>
-          </figure>
+            <div class="clothmate-results__copy">
+              <p><strong>Results.</strong> ClothMate trains one policy jointly across long sleeves, pants, jumpsuits, dresses, and skirts using only 15% of the aggregate data required by separate category-specific baselines. The shared model converges quickly and produces consistent unfolding behavior across all five garment categories.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -238,5 +231,5 @@ Selected Work ✨
 </article>
 
 <script defer src="/assets/js/clothmate-details.js?v=1"></script>
-<script defer src="/assets/js/clothmate-carousel.js?v=1"></script>
+<script defer src="/assets/js/clothmate-carousel.js?v=2"></script>
 <script defer src="/assets/js/real-inference-home.js?v=2"></script>

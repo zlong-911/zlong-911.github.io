@@ -455,21 +455,7 @@
 
   .clothmate-results {
     display: grid;
-    gap: 0.75rem;
     padding: 0.9rem;
-  }
-
-  .clothmate-results__summary {
-    width: 100%;
-    max-width: 72rem;
-    margin: 0 auto;
-
-    p {
-      margin: 0;
-      color: var(--global-text-color-light);
-      font-size: 0.72rem;
-      line-height: 1.5;
-    }
   }
 
   .clothmate-results__grid {
@@ -495,7 +481,8 @@
   .clothmate-results__video-card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    gap: 0.6rem;
 
     @include breakpoint($medium) {
       width: 88%;
@@ -509,21 +496,6 @@
     height: auto;
     border-radius: 7px;
     background: #000;
-  }
-
-  .clothmate-results__labels {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 0.35rem;
-    margin-top: 0.35rem;
-    color: var(--global-text-color-light);
-    font-size: 0.62rem;
-    line-height: 1.2;
-    text-align: center;
-
-    span {
-      overflow-wrap: anywhere;
-    }
   }
 
   .clothmate-results__analysis {
@@ -540,6 +512,11 @@
   .clothmate-results__value {
     width: 100%;
     margin: 0;
+
+    @include breakpoint($medium) {
+      width: 81.5%;
+      margin: 0 auto;
+    }
 
     img {
       display: block;
