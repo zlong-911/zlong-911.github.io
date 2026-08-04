@@ -111,6 +111,15 @@ Selected Work ✨
     <section class="clothmate-carousel__slide" data-clothmate-slide data-slide-label="Results" hidden>
       <div class="clothmate-results">
         <div class="clothmate-results__grid">
+          <div class="clothmate-results__card clothmate-results__video-card">
+            <video class="clothmate-results__video" data-clothmate-autoplay-video controls loop muted playsinline preload="metadata" poster="/images/clothmate-five-category-results-poster.jpg">
+              <source src="/files/clothmate-five-category-results.mp4" type="video/mp4">
+              Your browser does not support embedded video.
+            </video>
+            <div class="clothmate-results__copy">
+              <p><strong>Results.</strong> ClothMate trains one policy jointly across long sleeves, pants, jumpsuits, dresses, and skirts using only 15% of the aggregate data required by separate category-specific baselines. The shared model converges quickly and produces consistent unfolding behavior across all five garment categories.</p>
+            </div>
+          </div>
           <div class="clothmate-results__card clothmate-results__analysis">
             <figure class="clothmate-results__value">
               <a href="/images/clothmate-teacher-value.webp">
@@ -126,15 +135,6 @@ Selected Work ✨
             </figure>
             <div class="clothmate-results__copy">
               <p><strong>Value Analysis.</strong> The teacher's high-value grasp pairs keep appearing around aligned semantic regions after rotation, scale changes, and cross-instance transfer. This shared value structure explains why ClothMate does not need to model every wrinkle-level state: much like a person flattening clothes, it learns a few familiar semantic grasp combinations, then finds them again when the garment is crumpled.</p>
-            </div>
-          </div>
-          <div class="clothmate-results__card clothmate-results__video-card">
-            <video class="clothmate-results__video" data-clothmate-autoplay-video controls loop muted playsinline preload="metadata" poster="/images/clothmate-five-category-results-poster.jpg">
-              <source src="/files/clothmate-five-category-results.mp4" type="video/mp4">
-              Your browser does not support embedded video.
-            </video>
-            <div class="clothmate-results__copy">
-              <p><strong>Results.</strong> ClothMate trains one policy jointly across long sleeves, pants, jumpsuits, dresses, and skirts using only 15% of the aggregate data required by separate category-specific baselines. The shared model converges quickly and produces consistent unfolding behavior across all five garment categories.</p>
             </div>
           </div>
         </div>
