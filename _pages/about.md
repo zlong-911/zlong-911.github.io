@@ -136,6 +136,13 @@ Selected Work ✨
               <source src="/files/clothmate-five-category-results.mp4" type="video/mp4">
               Your browser does not support embedded video.
             </video>
+            <figcaption class="clothmate-results__labels" aria-label="Video columns from left to right">
+              <span>Long sleeve</span>
+              <span>Pants</span>
+              <span>Jumpsuit</span>
+              <span>Dress</span>
+              <span>Skirt</span>
+            </figcaption>
           </figure>
         </div>
       </div>
