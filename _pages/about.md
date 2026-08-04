@@ -110,15 +110,16 @@ Selected Work ✨
     </section>
     <section class="clothmate-carousel__slide" data-clothmate-slide data-slide-label="Results" hidden>
       <div class="clothmate-results">
+        <div class="clothmate-results__copy">
+          <p><strong>Results.</strong> We train a single policy across five garment categories using only 15% of the data required by separate category-specific baselines. We found that the model converges quickly and produces consistent flattening behavior across all five categories.</p>
+          <p><strong>Value Analysis.</strong> To understand why this works, we visualize the teacher's value predictions from our ablation study. Across garment instances and even across categories, we observe a shared structure in the value distributions: high-value grasps tend to correspond to the same kinds of semantic point pairs. This pattern also provides a simple intuition for how people fling garments. Rather than reasoning about every wrinkle, it may be enough to learn a small set of common, sensible semantic grasp combinations and find them again in the current garment state.</p>
+        </div>
         <div class="clothmate-results__grid">
           <div class="clothmate-results__card clothmate-results__video-card">
             <video class="clothmate-results__video" data-clothmate-autoplay-video controls loop muted playsinline preload="metadata" poster="/images/clothmate-five-category-results-poster.jpg">
               <source src="/files/clothmate-five-category-results.mp4" type="video/mp4">
               Your browser does not support embedded video.
             </video>
-            <div class="clothmate-results__copy">
-              <p><strong>Results.</strong> ClothMate trains one policy jointly across long sleeves, pants, jumpsuits, dresses, and skirts using only 15% of the aggregate data required by separate category-specific baselines. The shared model converges quickly and produces consistent unfolding behavior across all five garment categories.</p>
-            </div>
           </div>
           <div class="clothmate-results__card clothmate-results__analysis">
             <figure class="clothmate-results__value">
@@ -133,9 +134,6 @@ Selected Work ✨
                 >
               </a>
             </figure>
-            <div class="clothmate-results__copy">
-              <p><strong>Value Analysis.</strong> The teacher's high-value grasp pairs keep appearing around aligned semantic regions after rotation, scale changes, and cross-instance transfer. This shared value structure explains why ClothMate does not need to model every wrinkle-level state: much like a person flattening clothes, it learns a few familiar semantic grasp combinations, then finds them again when the garment is crumpled.</p>
-            </div>
           </div>
         </div>
       </div>

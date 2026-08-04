@@ -455,6 +455,7 @@
 
   .clothmate-results {
     display: grid;
+    gap: 0.65rem;
     padding: 0.9rem;
   }
 
@@ -469,14 +470,8 @@
   }
 
   .clothmate-results__card {
-    box-sizing: content-box;
     min-width: 0;
     margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 1px solid rgba($primary-color, 0.16);
-    border-radius: 8px;
-    background: rgba(#fff, 0.16);
   }
 
   .clothmate-results__video-card {
@@ -525,16 +520,19 @@
   }
 
   .clothmate-results__copy {
-    box-sizing: border-box;
     width: 100%;
-    margin: 0 auto;
-    padding: 0.65rem;
+    max-width: 78rem;
+    margin: 0 auto 0.15rem;
 
     p {
       margin: 0;
       color: var(--global-text-color-light);
       font-size: 0.72rem;
       line-height: 1.5;
+    }
+
+    p + p {
+      margin-top: 0.55rem;
     }
   }
 
