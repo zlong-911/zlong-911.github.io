@@ -108,22 +108,40 @@ Selected Work ✨
         </div>
       </div>
     </section>
-    <section class="clothmate-carousel__slide" data-clothmate-slide data-slide-label="Real-World" hidden>
+    <section class="clothmate-carousel__slide" data-clothmate-slide data-slide-label="Results" hidden>
       <div class="clothmate-results">
-        <figure class="clothmate-results__figure">
-          <a href="/images/clothmate-real-world-evaluation.webp">
-            <img
-              src="/images/clothmate-real-world-evaluation.webp"
-              alt="ClothMate real-world dual-arm platform and 24 evaluation garments"
-              width="3200"
-              height="813"
-              loading="lazy"
-              decoding="async"
-            >
-          </a>
+        <div class="clothmate-results__summary">
+          <p><strong>Results.</strong> ClothMate trains one policy jointly across long sleeves, pants, jumpsuits, dresses, and skirts using only 15% of the aggregate data required by separate category-specific baselines. The shared model converges quickly and produces consistent unfolding behavior across all five garment categories.</p>
+        </div>
+        <figure class="clothmate-results__video-card">
+          <video class="clothmate-results__video" controls muted playsinline preload="metadata" poster="/images/clothmate-five-category-results-poster.jpg">
+            <source src="/files/clothmate-five-category-results.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+          <figcaption class="clothmate-results__labels" aria-label="Video columns from left to right">
+            <span>Long sleeve</span>
+            <span>Pants</span>
+            <span>Jumpsuit</span>
+            <span>Dress</span>
+            <span>Skirt</span>
+          </figcaption>
         </figure>
-        <div class="clothmate-results__copy">
-          <p><strong>Real-World Evaluation.</strong> We tested ClothMate with two collaborative robot arms and 24 garments spanning five categories, with varied colors, patterns, and materials. Each garment was evaluated in 10 trials from randomized starting configurations. ClothMate transfers best to sleeved garments; on unseen long-legged jumpsuits, it reaches over 50% IoU and 75% coverage. Long pants, skirts, and dresses remain more challenging because their shapes and material behavior differ more from simulation.</p>
+        <div class="clothmate-results__analysis">
+          <figure class="clothmate-results__value">
+            <a href="/images/clothmate-teacher-value.webp">
+              <img
+                src="/images/clothmate-teacher-value.webp"
+                alt="Teacher value maps showing shared hot regions across garment categories and transformed instances"
+                width="1400"
+                height="1163"
+                loading="lazy"
+                decoding="async"
+              >
+            </a>
+          </figure>
+          <div class="clothmate-results__copy">
+            <p><strong>Value Analysis.</strong> In the teacher's value predictions, high-value grasp pairs keep appearing around aligned semantic regions even after rotation, scale changes, and cross-instance transfer. This shared value structure helps explain why fling learning does not need to model every wrinkle-level state in full detail. Much like a person flattening clothes, the policy first learns a few familiar semantic grasp combinations, then finds them again when the garment is crumpled.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -133,7 +151,7 @@ Selected Work ✨
         <span data-clothmate-status aria-live="polite">Overview · 1 / 2</span>
         <span class="clothmate-carousel__dots" role="tablist" aria-label="Choose detail page">
           <button type="button" role="tab" aria-label="Show Overview" aria-selected="true" data-clothmate-page="0"></button>
-          <button type="button" role="tab" aria-label="Show Real-World Evaluation" aria-selected="false" data-clothmate-page="1"></button>
+          <button type="button" role="tab" aria-label="Show Results" aria-selected="false" data-clothmate-page="1"></button>
         </span>
       </div>
       <button class="clothmate-carousel__arrow" type="button" data-clothmate-next aria-label="Next detail page">→</button>
