@@ -161,18 +161,17 @@ Selected Work ✨
   </div>
   <div class="work-body">
     <h3 class="work-title">Visual Affordance Priors for Generalizable Garment Flattening</h3>
-    <p class="work-meta"><strong>Zilong Huang</strong>, Sipeng Lu, and Jiaxiang Luo<sup>*</sup><br><em>IEEE Robotics and Automation Letters</em>, under review</p>
+    <p class="work-meta"><strong>Zilong Huang</strong>, Sipeng Lu, and Jiaxiang Luo<sup>*</sup><br>Under review</p>
     <p class="work-summary">Visual Affordance Priors asks a practical question: can a robot learn where to grasp a garment in simulation and apply that knowledge directly to real images? We first learn the value of grasp pairs from large-scale physics simulation, then distill this structural knowledge into image-space affordance maps through randomized rendering. The resulting prior transfers to real garments without real-data fine-tuning and improves unfolding across 22 garment assets.</p>
     <p class="work-links">
       <a class="btn btn--primary" href="https://garment-affordance-review.github.io/unfold-all-anonymous/">Project Page</a>
-      <a
+      <button
         class="btn"
-        href="#real-inference-demo"
-        role="button"
+        type="button"
         data-real-inference-toggle
         aria-expanded="false"
         aria-controls="real-inference-demo"
-      >Explore Predictions</a>
+      >Details <span aria-hidden="true">↓</span></button>
     </p>
   </div>
   <section
@@ -259,4 +258,4 @@ Selected Work ✨
 
 <script defer src="/assets/js/clothmate-details.js?v=1"></script>
 <script defer src="/assets/js/clothmate-carousel.js?v=2"></script>
-<script defer src="/assets/js/real-inference-home.js?v=3"></script>
+<script defer src="/assets/js/real-inference-home.js?v=4"></script>

@@ -83,13 +83,12 @@
       updateControls();
     }
 
-    toggleButton.addEventListener("click", (event) => {
-      event.preventDefault();
+    toggleButton.addEventListener("click", () => {
       const willOpen = demo.hidden;
       demo.hidden = !willOpen;
       toggleButton.setAttribute("aria-expanded", String(willOpen));
       toggleButton.classList.toggle("is-active", willOpen);
-      toggleButton.textContent = willOpen ? "Hide Predictions" : "Explore Predictions";
+      toggleButton.innerHTML = `Details <span aria-hidden="true">${willOpen ? "↑" : "↓"}</span>`;
 
       if (willOpen && !initialized) {
         initialized = true;
