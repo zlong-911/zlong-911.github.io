@@ -6,6 +6,21 @@
     4: 13,
   };
 
+  const artfCategories = {
+    towels: {
+      label: "Towels",
+      src: "/images/visual-affordance-priors/artf-towels.jpg",
+    },
+    tshirts: {
+      label: "T-shirts",
+      src: "/images/visual-affordance-priors/artf-tshirts.jpg",
+    },
+    shorts: {
+      label: "Shorts",
+      src: "/images/visual-affordance-priors/artf-shorts.jpg",
+    },
+  };
+
   document.addEventListener("DOMContentLoaded", () => {
     const demo = document.querySelector("[data-real-inference-demo]");
     if (!demo) return;
@@ -17,6 +32,9 @@
     const nextButton = demo.querySelector("[data-instance-next]");
     const caption = demo.querySelector("[data-instance-caption]");
     const assetBase = demo.dataset.assetBase;
+    const artfButtons = Array.from(demo.querySelectorAll("[data-artf-category]"));
+    const artfPreview = demo.querySelector("[data-artf-preview]");
+    const artfCaption = demo.querySelector("[data-artf-caption]");
 
     if (!toggleButton || !video || sceneButtons.length === 0 || !previousButton || !nextButton || !caption || !assetBase) return;
 
@@ -25,6 +43,21 @@
     let initialized = false;
 
     const pad = (value) => String(value).padStart(3, "0");
+
+    function updateArtfPreview(category) {
+      const item = artfCategories[category];
+      if (!item || !artfPreview || !artfCaption) return;
+
+      artfPreview.src = item.src;
+      artfPreview.alt = `Zero-shot grasp-pair predictions for ${item.label.toLowerCase()} across eight unseen aRTF-Clothes scenes`;
+      artfCaption.textContent = `${item.label} · eight unseen scenes`;
+
+      artfButtons.forEach((button) => {
+        const isActive = button.dataset.artfCategory === category;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-selected", String(isActive));
+      });
+    }
 
     function updateControls() {
       const count = sceneCounts[currentScene];
@@ -71,6 +104,12 @@
         currentScene = Number(button.dataset.scene);
         currentState = 1;
         updateMedia();
+      });
+    });
+
+    artfButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        updateArtfPreview(button.dataset.artfCategory);
       });
     });
 

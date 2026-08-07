@@ -675,7 +675,19 @@
     }
   }
 
-  .real-inference-scenes {
+  .vap-artf-showcase {
+    max-width: 72rem;
+    margin: 0 auto 1.1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--global-border-color);
+  }
+
+  .vap-artf-heading {
+    max-width: 72rem;
+  }
+
+  .real-inference-scenes,
+  .vap-artf-tabs {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -702,6 +714,42 @@
         border-color: var(--global-link-color);
         background: var(--global-link-color);
         color: #fff;
+      }
+    }
+  }
+
+  .vap-artf-stage {
+    max-width: 72rem;
+    margin: 0 auto;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 7px;
+      background: #111;
+    }
+
+    figcaption {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      margin-top: 0.45rem;
+      color: var(--global-text-color-light);
+      font-size: 0.64rem;
+      line-height: 1.4;
+
+      a {
+        flex: 0 0 auto;
+      }
+
+      @media (max-width: 35rem) {
+        display: block;
+
+        a {
+          display: inline-block;
+          margin-top: 0.2rem;
+        }
       }
     }
   }

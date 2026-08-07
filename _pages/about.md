@@ -183,6 +183,35 @@ Selected Work ✨
     hidden
   >
     <div class="real-inference-demo__content">
+      <section class="vap-artf-showcase" data-vap-artf-showcase>
+        <div class="real-inference-demo__heading vap-artf-heading">
+          <div>
+            <h4>Zero-Shot Predictions Across Environments</h4>
+            <p>Representative predictions on aRTF-Clothes. The same model identifies semantically meaningful grasp pairs across eight unseen scenes without fine-tuning on real images.</p>
+          </div>
+          <span>3 categories · 8 scenes</span>
+        </div>
+        <div class="vap-artf-tabs" role="tablist" aria-label="aRTF-Clothes garment category">
+          <button class="is-active" type="button" role="tab" aria-selected="true" data-artf-category="towels">Towels</button>
+          <button type="button" role="tab" aria-selected="false" data-artf-category="tshirts">T-shirts</button>
+          <button type="button" role="tab" aria-selected="false" data-artf-category="shorts">Shorts</button>
+        </div>
+        <figure class="vap-artf-stage">
+          <img
+            src="/images/visual-affordance-priors/artf-towels.jpg"
+            alt="Zero-shot grasp-pair predictions for towels across eight unseen aRTF-Clothes scenes"
+            width="1920"
+            height="540"
+            loading="lazy"
+            decoding="async"
+            data-artf-preview
+          >
+          <figcaption>
+            <span data-artf-caption>Towels · eight unseen scenes</span>
+            <a href="https://garment-affordance-review.github.io/unfold-all-anonymous/#artf-visualization">Explore the full benchmark</a>
+          </figcaption>
+        </figure>
+      </section>
       <div class="real-inference-demo__heading">
         <div>
           <h4>Real-World Predictions</h4>
@@ -230,4 +259,4 @@ Selected Work ✨
 
 <script defer src="/assets/js/clothmate-details.js?v=1"></script>
 <script defer src="/assets/js/clothmate-carousel.js?v=2"></script>
-<script defer src="/assets/js/real-inference-home.js?v=2"></script>
+<script defer src="/assets/js/real-inference-home.js?v=3"></script>
