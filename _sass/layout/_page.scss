@@ -465,7 +465,7 @@
 
     @include breakpoint($medium) {
       grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
-      align-items: stretch;
+      align-items: start;
     }
   }
 
@@ -474,16 +474,6 @@
     min-width: 0;
     gap: 0.65rem;
     align-content: start;
-  }
-
-  .clothmate-results__column--simulation {
-    @include breakpoint($medium) {
-      grid-template-rows: auto 1fr;
-
-      .clothmate-results__video-card {
-        align-self: end;
-      }
-    }
   }
 
   .clothmate-results__card {
