@@ -110,30 +110,40 @@ Selected Work ✨
     </section>
     <section class="clothmate-carousel__slide" data-clothmate-slide data-slide-label="Results" hidden>
       <div class="clothmate-results">
-        <div class="clothmate-results__copy">
-          <p><strong>Results.</strong> We train a single policy across five garment categories using only 15% of the data required by separate category-specific baselines. We found that the model converges quickly and produces consistent flattening behavior across all five categories.</p>
-          <p><strong>Value Analysis.</strong> To understand why this works, we visualize the teacher's value predictions from our ablation study. Across garment instances and even across categories, we observe a shared structure in the value distributions: high-value grasps tend to correspond to the same kinds of semantic point pairs. This pattern also provides a simple intuition for how people fling garments. Rather than reasoning about every wrinkle, it may be enough to learn a small set of common, sensible semantic grasp combinations and find them again in the current garment state.</p>
-        </div>
         <div class="clothmate-results__grid">
-          <div class="clothmate-results__card clothmate-results__video-card">
-            <video class="clothmate-results__video" data-clothmate-autoplay-video controls loop muted playsinline preload="metadata" poster="/images/clothmate-five-category-results-poster.jpg">
-              <source src="/files/clothmate-five-category-results.mp4" type="video/mp4">
-              Your browser does not support embedded video.
-            </video>
+          <div class="clothmate-results__column clothmate-results__column--simulation">
+            <div class="clothmate-results__copy">
+              <p><strong>Results.</strong> We train a single policy across five garment categories using only 15% of the data required by separate category-specific baselines. We found that the model converges quickly and produces consistent flattening behavior across all five categories.</p>
+              <p><strong>Value Analysis.</strong> To understand why this works, we visualize the teacher's value predictions from our ablation study. Across garment instances and even across categories, we observe a shared structure in the value distributions: high-value grasps tend to correspond to the same kinds of semantic point pairs. This pattern also provides a simple intuition for how people fling garments. Rather than reasoning about every wrinkle, it may be enough to learn a small set of common, sensible semantic grasp combinations and find them again in the current garment state.</p>
+            </div>
+            <div class="clothmate-results__card clothmate-results__video-card">
+              <video class="clothmate-results__video" data-clothmate-autoplay-video aria-label="ClothMate simulation results across five garment categories" controls loop muted playsinline preload="metadata" poster="/images/clothmate-five-category-results-poster.jpg">
+                <source src="/files/clothmate-five-category-results.mp4" type="video/mp4">
+                Your browser does not support embedded video.
+              </video>
+            </div>
           </div>
-          <div class="clothmate-results__card clothmate-results__analysis">
-            <figure class="clothmate-results__value">
-              <a href="/images/clothmate-teacher-value.webp">
-                <img
-                  src="/images/clothmate-teacher-value.webp"
-                  alt="Teacher value maps showing shared hot regions across garment categories and transformed instances"
-                  width="1400"
-                  height="1163"
-                  loading="lazy"
-                  decoding="async"
-                >
-              </a>
-            </figure>
+          <div class="clothmate-results__column clothmate-results__column--real">
+            <div class="clothmate-results__card clothmate-results__video-card">
+              <video class="clothmate-results__video" data-clothmate-autoplay-video aria-label="ClothMate real-world results across 24 garments" controls loop muted playsinline preload="metadata" poster="/images/clothmate-real-results-poster.jpg">
+                <source src="/files/clothmate-real-results.mp4" type="video/mp4">
+                Your browser does not support embedded video.
+              </video>
+            </div>
+            <div class="clothmate-results__card clothmate-results__analysis">
+              <figure class="clothmate-results__value">
+                <a href="/images/clothmate-teacher-value.webp">
+                  <img
+                    src="/images/clothmate-teacher-value.webp"
+                    alt="Teacher value maps showing shared hot regions across garment categories and transformed instances"
+                    width="1400"
+                    height="1163"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </a>
+              </figure>
+            </div>
           </div>
         </div>
       </div>

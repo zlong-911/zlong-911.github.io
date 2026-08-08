@@ -465,7 +465,28 @@
 
     @include breakpoint($medium) {
       grid-template-columns: minmax(0, 2027fr) minmax(0, 961fr);
-      align-items: center;
+      align-items: start;
+    }
+  }
+
+  .clothmate-results__column {
+    display: grid;
+    min-width: 0;
+    gap: 0.65rem;
+    align-content: start;
+  }
+
+  .clothmate-results__column--simulation {
+    @include breakpoint($medium) {
+      width: 98%;
+      margin: 0 auto;
+    }
+  }
+
+  .clothmate-results__column--real {
+    @include breakpoint($medium) {
+      width: 96%;
+      margin: 0 auto;
     }
   }
 
@@ -479,11 +500,6 @@
     flex-direction: column;
     justify-content: flex-start;
     gap: 0.6rem;
-
-    @include breakpoint($medium) {
-      width: 98%;
-      margin: 0 auto;
-    }
   }
 
   .clothmate-results__video {
@@ -498,11 +514,6 @@
     display: grid;
     gap: 0.6rem;
     align-content: start;
-
-    @include breakpoint($medium) {
-      width: 96%;
-      margin: 0 auto;
-    }
   }
 
   .clothmate-results__value {
@@ -521,8 +532,7 @@
 
   .clothmate-results__copy {
     width: 100%;
-    max-width: 78rem;
-    margin: 0 auto 0.15rem;
+    margin: 0;
 
     p {
       margin: 0;
