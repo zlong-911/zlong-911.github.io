@@ -464,8 +464,8 @@
     gap: 0.65rem;
 
     @include breakpoint($medium) {
-      grid-template-columns: minmax(0, 2027fr) minmax(0, 961fr);
-      align-items: start;
+      grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+      align-items: stretch;
     }
   }
 
@@ -478,15 +478,20 @@
 
   .clothmate-results__column--simulation {
     @include breakpoint($medium) {
-      width: 98%;
-      margin: 0 auto;
+      grid-template-rows: auto 1fr;
+
+      .clothmate-results__video-card {
+        align-self: end;
+      }
     }
   }
 
   .clothmate-results__column--real {
     @include breakpoint($medium) {
-      width: 96%;
-      margin: 0 auto;
+      .clothmate-results__analysis {
+        width: 65%;
+        margin: 0 auto;
+      }
     }
   }
 
