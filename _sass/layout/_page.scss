@@ -486,15 +486,6 @@
     }
   }
 
-  .clothmate-results__column--real {
-    @include breakpoint($medium) {
-      .clothmate-results__analysis {
-        width: 65%;
-        margin: 0 auto;
-      }
-    }
-  }
-
   .clothmate-results__card {
     min-width: 0;
     margin: 0;
