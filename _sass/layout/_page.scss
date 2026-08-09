@@ -464,16 +464,9 @@
     gap: 0.65rem;
 
     @include breakpoint($medium) {
-      grid-template-columns: minmax(0, 1926fr) minmax(0, 1062fr);
+      grid-template-columns: minmax(0, 1477fr) minmax(0, 1000fr);
       align-items: start;
     }
-  }
-
-  .clothmate-results__column {
-    display: grid;
-    min-width: 0;
-    gap: 0.65rem;
-    align-content: start;
   }
 
   .clothmate-results__card {
@@ -505,6 +498,10 @@
   .clothmate-results__value {
     width: 100%;
     margin: 0;
+
+    a {
+      display: block;
+    }
 
     img {
       display: block;

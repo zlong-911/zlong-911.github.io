@@ -110,41 +110,31 @@ Selected Work ✨
     </section>
     <section class="clothmate-carousel__slide" data-clothmate-slide data-slide-label="Results" hidden>
       <div class="clothmate-results">
+        <div class="clothmate-results__copy">
+          <p><strong>Results.</strong> We jointly train one policy across five garment categories with only 15% of the aggregate data used by separate category-specific baselines. The model converges quickly and produces consistent flattening behavior across categories.</p>
+          <p><strong>Real-World Evaluation.</strong> We evaluate ClothMate with two collaborative robot arms and 24 garments from five categories: shirts, jumpsuits, dresses, pants, and skirts. The set includes different colors, patterns, and materials. Each garment is tested from randomized starting configurations.</p>
+          <p><strong>Value Analysis.</strong> The teacher's value predictions show a shared structure across garment instances and categories. High-value grasps recur around the same kinds of semantic point pairs, even after rotation and scale changes. This suggests that the policy can learn a compact set of common grasp combinations, then locate them again in a crumpled garment without representing every wrinkle in detail.</p>
+        </div>
         <div class="clothmate-results__grid">
-          <div class="clothmate-results__column clothmate-results__column--simulation">
-            <div class="clothmate-results__copy">
-              <p><strong>Results.</strong> We jointly train one policy across five garment categories with only 15% of the aggregate data used by separate category-specific baselines. The model converges quickly and produces consistent flattening behavior across categories.</p>
-              <p><strong>Real-World Evaluation.</strong> We evaluate ClothMate with two collaborative robot arms and 24 garments from five categories: shirts, jumpsuits, dresses, pants, and skirts. The set includes different colors, patterns, and materials. Each garment is tested from randomized starting configurations.</p>
-              <p><strong>Value Analysis.</strong> The teacher's value predictions show a shared structure across garment instances and categories. High-value grasps recur around the same kinds of semantic point pairs, even after rotation and scale changes. This suggests that the policy can learn a compact set of common grasp combinations, then locate them again in a crumpled garment without representing every wrinkle in detail.</p>
-            </div>
-            <div class="clothmate-results__card clothmate-results__video-card">
-              <video class="clothmate-results__video" data-clothmate-autoplay-video aria-label="ClothMate simulation results across five garment categories" controls loop muted playsinline preload="metadata" poster="/images/clothmate-five-category-results-poster.jpg">
-                <source src="/files/clothmate-five-category-results.mp4" type="video/mp4">
-                Your browser does not support embedded video.
-              </video>
-            </div>
+          <div class="clothmate-results__card clothmate-results__video-card">
+            <video class="clothmate-results__video" data-clothmate-autoplay-video aria-label="ClothMate real-world results across 24 garments" controls loop muted playsinline preload="metadata" poster="/images/clothmate-real-results-poster.jpg">
+              <source src="/files/clothmate-real-results.mp4" type="video/mp4">
+              Your browser does not support embedded video.
+            </video>
           </div>
-          <div class="clothmate-results__column clothmate-results__column--real">
-            <div class="clothmate-results__card clothmate-results__analysis">
-              <figure class="clothmate-results__value">
-                <a href="/images/clothmate-teacher-value.webp">
-                  <img
-                    src="/images/clothmate-teacher-value.webp"
-                    alt="Teacher value maps showing shared hot regions across garment categories and transformed instances"
-                    width="1400"
-                    height="1163"
-                    loading="lazy"
-                    decoding="async"
-                  >
-                </a>
-              </figure>
-            </div>
-            <div class="clothmate-results__card clothmate-results__video-card">
-              <video class="clothmate-results__video" data-clothmate-autoplay-video aria-label="ClothMate real-world results across 24 garments" controls loop muted playsinline preload="metadata" poster="/images/clothmate-real-results-poster.jpg">
-                <source src="/files/clothmate-real-results.mp4" type="video/mp4">
-                Your browser does not support embedded video.
-              </video>
-            </div>
+          <div class="clothmate-results__card clothmate-results__analysis">
+            <figure class="clothmate-results__value">
+              <a href="/images/clothmate-teacher-value.webp">
+                <img
+                  src="/images/clothmate-teacher-value.webp"
+                  alt="Teacher value maps showing shared hot regions across garment categories and transformed instances"
+                  width="1400"
+                  height="1163"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </a>
+            </figure>
           </div>
         </div>
       </div>
