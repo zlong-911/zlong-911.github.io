@@ -56,7 +56,7 @@ Selected Work ✨
   <div class="work-body">
     <h3 class="work-title">ClothMate: Leveraging Grasp-Fling Consistency for Generalizable and Data-Efficient Garment Flattening</h3>
     <p class="work-meta">Jiaxiang Luo, <strong>Zilong Huang</strong>, Hao Cheng, and Zixiang Hong<br><em>IEEE Robotics and Automation Letters</em>, 2026</p>
-    <p class="work-summary">ClothMate starts from a simple observation: given a good grasp, a garment's response to a fling depends far less on its detailed state. It turns this insight into a two-stage learning framework that separates action-value learning from state estimation, reducing the effective complexity of the garment's high-dimensional state space. As a result, a single model handles five garment categories using only 15% of the total training data required by separate category-specific baselines.</p>
+    <p class="work-summary">ClothMate starts from a simple observation: flinging from semantically analogous garment regions often produces consistent responses, even across garment instances and categories. Its two-stage framework learns grasp values in canonicalized, aligned states and transfers them to arbitrary crumpled configurations through vertex mapping. This allows a single policy to handle five garment categories using just 15% of the aggregate data required by separate category-specific baselines.</p>
     <p class="work-links">
       <a class="btn btn--primary" href="https://ieeexplore.ieee.org/document/11248822/">Paper</a>
       <a class="btn" href="https://github.com/chongchongjjj/clothmate">Code</a>
@@ -103,7 +103,7 @@ Selected Work ✨
             </a>
           </figure>
           <div class="clothmate-details__design">
-            <p><strong>Method Overview.</strong> Given a top-down RGB image, ClothMate selects two grasp points and executes a fixed fling primitive. We use Spatial Action Maps to represent these bimanual actions: each pixel encodes a pair of grasp points at fixed offsets above and below it. Rotating the input changes the grasp direction, while scaling it changes the distance between the two points. We first evaluate candidate grasps on garments in a canonical, aligned state, assigning each pair a score based on how well it unfolds the garment (Fig. a). In simulation, we know which cloth points correspond across different configurations. This lets us carry each grasp pair and its score over to crumpled states, and train the policy to select grasps directly from the current image (Fig. b). Once the garment is mostly unfolded, ClothMate switches to pick-and-stretch for final flattening and alignment (Fig. c).</p>
+            <p><strong>Method Overview.</strong> Given a top-down RGB image, ClothMate selects two grasp points and executes a fixed fling primitive. We use Spatial Action Maps to represent these bimanual actions: each pixel encodes a pair of grasp points at fixed offsets above and below it. Rotating the input changes the grasp direction, while scaling it changes the distance between the two points. We first evaluate candidate grasps on garments in a canonicalized, aligned state, assigning each pair a value based on how well it unfolds the garment (Fig. a). Simulation provides vertex correspondences across configurations, allowing us to project each grasp pair and its value onto crumpled states and train the policy to select grasps directly from the current image (Fig. b). Once the garment is mostly unfolded, ClothMate switches to pick-and-stretch for final flattening and alignment (Fig. c).</p>
           </div>
         </div>
       </div>
@@ -122,7 +122,7 @@ Selected Work ✨
               <a href="/images/clothmate-teacher-value.webp">
                 <img
                   src="/images/clothmate-teacher-value.webp"
-                  alt="Teacher value maps showing shared hot regions across garment categories and transformed instances"
+                  alt="Prior Value Module outputs showing a shared grasp-value structure across garment categories and transformed instances"
                   width="1400"
                   height="1163"
                   loading="lazy"
@@ -140,9 +140,8 @@ Selected Work ✨
             </video>
           </div>
           <div class="clothmate-results__copy">
-            <p><strong>Results.</strong> We jointly train one policy across five garment categories with only 15% of the aggregate data used by separate category-specific baselines. The model converges quickly and produces consistent flattening behavior across categories.</p>
-            <p><strong>Real-World Evaluation.</strong> We evaluate ClothMate with two collaborative robot arms and 24 garments from five categories: shirts, jumpsuits, dresses, pants, and skirts. The set includes different colors, patterns, and materials. Each garment is tested from randomized starting configurations.</p>
-            <p><strong>Value Analysis.</strong> The teacher's value predictions show a shared structure across garment instances and categories. High-value grasps recur around the same kinds of semantic point pairs, even after rotation and scale changes. This suggests that the policy can learn a compact set of common grasp combinations, then locate them again in a crumpled garment without representing every wrinkle in detail.</p>
+            <p><strong>Results.</strong> ClothMate trains a single policy across five garment categories using just 15% of the aggregate data required to train separate category-specific baselines. On the simulated shirt benchmark, it improves coverage from 85.0% to 91.5% while reducing the average number of interaction steps from 7.0 to 4.7 relative to Cloth-Funnels. We further evaluate ClothMate on 24 real garments across five categories using a dual-arm robot. Across the eight shirts tested by both methods, ClothMate improves mean IoU from 37.2% to 57.4% and mean coverage from 75.6% to 83.1%.</p>
+            <p><strong>Grasp-Fling Consistency.</strong> The Prior Value Module reveals a shared grasp-value structure across garment instances and categories. Through vertex mapping, ClothMate learns this structure in canonicalized, aligned states and transfers it to arbitrary crumpled configurations. This resembles how people approach garment manipulation: first identify semantically meaningful grasp locations, then find those locations in the crumpled cloth, rather than explicitly modeling every wrinkle. This reusable grasp prior helps explain why ClothMate can generalize across instances and categories with limited data.</p>
           </div>
         </div>
       </div>
