@@ -48,8 +48,8 @@ Selected Work ✨
 
 <article class="work-entry">
   <div class="work-media">
-    <video class="work-video" controls muted playsinline preload="metadata" poster="/images/clothmate-poster.jpg">
-      <source src="/files/clothmate-supplementary.mp4" type="video/mp4">
+    <video class="work-video" controls muted playsinline preload="none" poster="/images/clothmate-poster.jpg">
+      <source src="/files/clothmate-preview.mp4" type="video/mp4">
       Your browser does not support embedded video.
     </video>
   </div>
@@ -112,7 +112,7 @@ Selected Work ✨
       <div class="clothmate-results">
         <div class="clothmate-results__grid">
           <div class="clothmate-results__card clothmate-results__video-card">
-            <video class="clothmate-results__video" data-clothmate-autoplay-video aria-label="ClothMate simulation results across five garment categories" controls loop muted playsinline preload="metadata" poster="/images/clothmate-five-category-results-poster.jpg">
+            <video class="clothmate-results__video" data-clothmate-autoplay-video aria-label="ClothMate simulation results across five garment categories" controls loop muted playsinline preload="none" poster="/images/clothmate-five-category-results-poster.jpg">
               <source src="/files/clothmate-five-category-results.mp4" type="video/mp4">
               Your browser does not support embedded video.
             </video>
@@ -134,7 +134,7 @@ Selected Work ✨
         </div>
         <div class="clothmate-results__real-row">
           <div class="clothmate-results__card clothmate-results__video-card">
-            <video class="clothmate-results__video" data-clothmate-autoplay-video aria-label="ClothMate real-world results across 24 garments" controls loop muted playsinline preload="metadata" poster="/images/clothmate-real-results-poster.jpg">
+            <video class="clothmate-results__video" data-clothmate-autoplay-video aria-label="ClothMate real-world results across 24 garments" controls loop muted playsinline preload="none" poster="/images/clothmate-real-results-poster.jpg">
               <source src="/files/clothmate-real-results.mp4" type="video/mp4">
               Your browser does not support embedded video.
             </video>
@@ -163,7 +163,7 @@ Selected Work ✨
 
 <article class="work-entry">
   <div class="work-media">
-    <video class="work-video" controls muted playsinline preload="metadata" poster="/images/visual-affordance-priors-poster.jpg">
+    <video class="work-video" controls muted playsinline preload="none" poster="/images/visual-affordance-priors-poster.jpg">
       <source src="/files/visual-affordance-priors.mp4" type="video/mp4">
       Your browser does not support embedded video.
     </video>
@@ -254,7 +254,7 @@ Selected Work ✨
 
 <article class="work-entry">
   <div class="work-media">
-    <video class="work-video" controls muted loop playsinline preload="metadata" poster="/images/scalable-garment-trajectories.png">
+    <video class="work-video" controls muted loop playsinline preload="none" poster="/images/scalable-garment-trajectories.png">
       <source src="/files/scalable-garment-trajectories.mp4" type="video/mp4">
       Your browser does not support embedded video.
     </video>

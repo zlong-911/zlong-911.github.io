@@ -21,6 +21,38 @@
     let currentPage = 0;
     let touchStartX = null;
     let touchStartY = null;
+    const visibleVideos = new WeakSet();
+    let videoObserver = null;
+
+    const syncAutoplay = () => {
+      autoplayVideos.forEach((video) => {
+        const isActive = slides[currentPage].contains(video);
+        const isVisible = !videoObserver || visibleVideos.has(video);
+
+        if (isActive && isVisible) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    };
+
+    if ("IntersectionObserver" in window) {
+      videoObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              visibleVideos.add(entry.target);
+            } else {
+              visibleVideos.delete(entry.target);
+            }
+          });
+          syncAutoplay();
+        },
+        { rootMargin: "160px 0px", threshold: 0.05 },
+      );
+      autoplayVideos.forEach((video) => videoObserver.observe(video));
+    }
 
     const showPage = (nextPage, direction = 1) => {
       const targetPage = Math.max(0, Math.min(slides.length - 1, nextPage));
@@ -47,13 +79,7 @@
         button.setAttribute("aria-selected", String(index === currentPage));
       });
 
-      autoplayVideos.forEach((video) => {
-        if (slides[currentPage].contains(video)) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      });
+      syncAutoplay();
     };
 
     previousButton.addEventListener("click", () => {
