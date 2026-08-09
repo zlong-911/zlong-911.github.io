@@ -464,10 +464,8 @@
     gap: 0.65rem;
 
     @include breakpoint($medium) {
-      grid-template-columns: minmax(0, 1477fr) minmax(0, 1000fr);
+      grid-template-columns: minmax(0, 2076fr) minmax(0, 1000fr);
       align-items: start;
-      width: 79.65%;
-      margin-inline: auto;
     }
   }
 

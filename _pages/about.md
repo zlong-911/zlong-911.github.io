@@ -117,8 +117,8 @@ Selected Work ✨
         </div>
         <div class="clothmate-results__grid">
           <div class="clothmate-results__card clothmate-results__video-card">
-            <video class="clothmate-results__video" data-clothmate-autoplay-video aria-label="ClothMate real-world results across 24 garments" controls loop muted playsinline preload="metadata" poster="/images/clothmate-real-results-poster.jpg">
-              <source src="/files/clothmate-real-results.mp4" type="video/mp4">
+            <video class="clothmate-results__video" data-clothmate-autoplay-video aria-label="ClothMate simulation results across five garment categories" controls loop muted playsinline preload="metadata" poster="/images/clothmate-five-category-results-poster.jpg">
+              <source src="/files/clothmate-five-category-results.mp4" type="video/mp4">
               Your browser does not support embedded video.
             </video>
           </div>
