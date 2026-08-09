@@ -475,7 +475,7 @@
     align-items: center;
 
     @include breakpoint($medium) {
-      grid-template-columns: minmax(0, 961fr) minmax(0, 2027fr);
+      grid-template-columns: minmax(0, 1477fr) minmax(0, 1600fr);
     }
   }
 
