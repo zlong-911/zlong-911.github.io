@@ -186,12 +186,11 @@ Selected Work ✨
     id="real-inference-demo"
     class="real-inference-demo"
     data-real-inference-demo
-    data-asset-base="https://garment-affordance-review.github.io/unfold-all-anonymous"
     hidden
   >
     <div class="visual-affordance-overview">
       <div class="visual-affordance-overview__intro">
-        <p><strong>Method Overview.</strong> The project turns low-cost structural supervision into a deployable visual grasp prior. Parallel physics first evaluates ordered grasp pairs, a point-cloud teacher learns the pair-value field, synthetic rendering transfers the teacher signal into image space, and the final policy predicts coordinated first- and second-grasp heatmaps from a single RGB observation.</p>
+        <p><strong>Design Idea.</strong> Instead of asking a visual policy to discover good garment grasps from pixels alone, we first learn what makes a dual-grasp pair structurally useful on the garment surface, then transfer that knowledge into image space. In practice, parallel physics evaluates ordered grasp pairs, a point-cloud teacher learns the pair-value field, synthetic rendering connects teacher predictions to RGB observations, and the final policy predicts coordinated first- and second-grasp heatmaps from a single view.</p>
       </div>
       <div class="visual-affordance-method-grid">
         <figure class="visual-affordance-method-card visual-affordance-method-card--wide">
@@ -250,65 +249,6 @@ Selected Work ✨
           </div>
           <figcaption>Top: first-grasp affordance. Bottom: second-grasp affordance conditioned on the current first point.</figcaption>
         </figure>
-      </div>
-    </div>
-    <div class="real-inference-demo__content">
-      <section class="vap-artf-showcase" data-vap-artf-showcase>
-        <div class="real-inference-demo__heading vap-artf-heading">
-          <div>
-            <h4>Zero-Shot Predictions Across Environments</h4>
-            <p>Representative predictions on aRTF-Clothes. The same model identifies semantically meaningful grasp pairs across eight unseen scenes without fine-tuning on real images.</p>
-          </div>
-          <span>3 categories · 8 scenes</span>
-        </div>
-        <div class="vap-artf-tabs" role="tablist" aria-label="aRTF-Clothes garment category">
-          <button class="is-active" type="button" role="tab" aria-selected="true" data-artf-category="towels">Towels</button>
-          <button type="button" role="tab" aria-selected="false" data-artf-category="tshirts">T-shirts</button>
-          <button type="button" role="tab" aria-selected="false" data-artf-category="shorts">Shorts</button>
-        </div>
-        <figure class="vap-artf-stage">
-          <img
-            src="/images/visual-affordance-priors/artf-towels.jpg"
-            alt="Zero-shot grasp-pair predictions for towels across eight unseen aRTF-Clothes scenes"
-            width="1920"
-            height="540"
-            loading="lazy"
-            decoding="async"
-            data-artf-preview
-          >
-          <figcaption>
-            <span data-artf-caption>Towels · eight unseen scenes</span>
-            <a href="https://garment-affordance-review.github.io/unfold-all-anonymous/#artf-visualization">Explore the full benchmark</a>
-          </figcaption>
-        </figure>
-      </section>
-      <div class="real-inference-demo__heading">
-        <div>
-          <h4>Real-World Predictions</h4>
-          <p>Watch how the model updates its grasp-pair predictions as a garment is gradually crumpled by hand across four real-world scenes.</p>
-        </div>
-        <span>4 scenes · 72 states</span>
-      </div>
-      <div class="real-inference-scenes" role="tablist" aria-label="Real-world scene">
-        <button class="is-active" type="button" role="tab" aria-selected="true" data-scene="1">Scene 1</button>
-        <button type="button" role="tab" aria-selected="false" data-scene="2">Scene 2</button>
-        <button type="button" role="tab" aria-selected="false" data-scene="3">Scene 3</button>
-        <button type="button" role="tab" aria-selected="false" data-scene="4">Scene 4</button>
-      </div>
-      <div class="real-inference-stage">
-        <video
-          class="real-inference-video"
-          controls
-          muted
-          playsinline
-          preload="none"
-          aria-label="Real-world grasp-pair prediction"
-        ></video>
-      </div>
-      <div class="real-inference-navigation">
-        <button type="button" data-instance-prev aria-label="Previous state">←</button>
-        <span data-instance-caption>Scene 1 · State 01 / 26</span>
-        <button type="button" data-instance-next aria-label="Next state">→</button>
       </div>
     </div>
   </section>
