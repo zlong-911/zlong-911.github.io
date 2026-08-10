@@ -189,6 +189,69 @@ Selected Work ✨
     data-asset-base="https://garment-affordance-review.github.io/unfold-all-anonymous"
     hidden
   >
+    <div class="visual-affordance-overview">
+      <div class="visual-affordance-overview__intro">
+        <p><strong>Method Overview.</strong> The project turns low-cost structural supervision into a deployable visual grasp prior. Parallel physics first evaluates ordered grasp pairs, a point-cloud teacher learns the pair-value field, synthetic rendering transfers the teacher signal into image space, and the final policy predicts coordinated first- and second-grasp heatmaps from a single RGB observation.</p>
+      </div>
+      <div class="visual-affordance-method-grid">
+        <figure class="visual-affordance-method-card visual-affordance-method-card--wide">
+          <div class="visual-affordance-method-card__heading">
+            <span>01</span>
+            <h4>Offline Action Collection</h4>
+          </div>
+          <div class="visual-affordance-method-media visual-affordance-method-media--video">
+            <video autoplay loop muted playsinline preload="metadata" aria-label="Parallel simulation collection with many garment environments">
+              <source src="/files/visual-affordance-method/offline_collection.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption>Parallel physics environments collect pair-conditioned garment interaction outcomes.</figcaption>
+        </figure>
+        <figure class="visual-affordance-method-card">
+          <div class="visual-affordance-method-card__heading">
+            <span>02</span>
+            <h4>Pair-Value Teacher</h4>
+          </div>
+          <div class="visual-affordance-teacher" data-vap-teacher>
+            <canvas data-vap-teacher-canvas aria-label="Point-cloud pair-value teacher preview"></canvas>
+            <div class="visual-affordance-teacher__legend" aria-hidden="true">
+              <span>Low</span>
+              <i></i>
+              <span>High</span>
+            </div>
+          </div>
+          <figcaption data-vap-teacher-caption>Top candidate second grasps are connected to the selected first-grasp anchor.</figcaption>
+        </figure>
+        <figure class="visual-affordance-method-card visual-affordance-method-card--wide">
+          <div class="visual-affordance-method-card__heading">
+            <span>03</span>
+            <h4>Synthetic Visual Data</h4>
+          </div>
+          <div class="visual-affordance-method-media">
+            <img
+              src="/images/visual-affordance-priors/synthetic_collection.gif"
+              alt="Rendered garment mosaics for visual supervision"
+              width="960"
+              height="540"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+          <figcaption>Randomized RGB renderings preserve mesh correspondence for image-space supervision.</figcaption>
+        </figure>
+        <figure class="visual-affordance-method-card">
+          <div class="visual-affordance-method-card__heading">
+            <span>04</span>
+            <h4>Visual Pair Policy Dynamics</h4>
+          </div>
+          <div class="visual-affordance-method-media visual-affordance-method-media--portrait">
+            <video autoplay loop muted playsinline preload="metadata" aria-label="First- and second-grasp heatmap dynamics">
+              <source src="/files/visual-affordance-method/a1_a2_asset_1.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption>Top: first-grasp affordance. Bottom: second-grasp affordance conditioned on the current first point.</figcaption>
+        </figure>
+      </div>
+    </div>
     <div class="real-inference-demo__content">
       <section class="vap-artf-showcase" data-vap-artf-showcase>
         <div class="real-inference-demo__heading vap-artf-heading">
@@ -267,3 +330,4 @@ Selected Work ✨
 <script defer src="/assets/js/clothmate-details.js?v=1"></script>
 <script defer src="/assets/js/clothmate-carousel.js?v=2"></script>
 <script defer src="/assets/js/real-inference-home.js?v=4"></script>
+<script defer src="/assets/js/visual-affordance-method.js?v=1"></script>

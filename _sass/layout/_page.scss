@@ -639,6 +639,149 @@
     padding: 0.9rem;
   }
 
+  .visual-affordance-overview {
+    padding: 0.9rem;
+    border-bottom: 1px solid var(--global-border-color);
+  }
+
+  .visual-affordance-overview__intro {
+    max-width: 52rem;
+    margin: 0 auto 0.85rem;
+
+    p {
+      margin: 0;
+      color: var(--global-text-color-light);
+      font-size: 0.72rem;
+      line-height: 1.5;
+    }
+  }
+
+  .visual-affordance-method-grid {
+    display: grid;
+    gap: 0.7rem;
+
+    @include breakpoint($medium) {
+      grid-template-columns: minmax(0, 1.78fr) minmax(14rem, 0.72fr);
+    }
+  }
+
+  .visual-affordance-method-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    margin: 0;
+    padding: 0.65rem;
+    border: 1px solid var(--global-border-color);
+    border-radius: 8px;
+    background: var(--global-bg-color);
+
+    figcaption {
+      margin-top: 0.5rem;
+      color: var(--global-text-color-light);
+      font-size: 0.62rem;
+      font-weight: 600;
+      line-height: 1.4;
+      text-align: center;
+    }
+  }
+
+  .visual-affordance-method-card--wide {
+    @include breakpoint($medium) {
+      grid-column: 1;
+    }
+  }
+
+  .visual-affordance-method-card__heading {
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    min-height: 1.7rem;
+    margin-bottom: 0.45rem;
+
+    span {
+      color: var(--global-link-color);
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    h4 {
+      margin: 0;
+      font-size: 0.74rem;
+      line-height: 1.25;
+    }
+  }
+
+  .visual-affordance-method-media {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 6px;
+    background: #111;
+    overflow: hidden;
+
+    video,
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .visual-affordance-method-media--portrait {
+    aspect-ratio: 2 / 3;
+    background: #f4f5f7;
+
+    video {
+      object-fit: contain;
+    }
+  }
+
+  .visual-affordance-teacher {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    border: 1px solid var(--global-border-color);
+    border-radius: 6px;
+    background:
+      linear-gradient(rgba(148, 163, 184, 0.16) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.16) 1px, transparent 1px),
+      var(--global-bg-color);
+    background-size: 18px 18px;
+    overflow: hidden;
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .visual-affordance-teacher__legend {
+    position: absolute;
+    right: 0.6rem;
+    bottom: 0.55rem;
+    left: 0.6rem;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.45rem;
+    border: 1px solid rgba(229, 231, 235, 0.9);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.76);
+    color: #374151;
+    font-size: 0.55rem;
+    font-weight: 800;
+    pointer-events: none;
+
+    i {
+      height: 0.42rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #2563eb 0%, #14b8a6 34%, #facc15 68%, #ef4444 100%);
+    }
+  }
+
   .real-inference-demo__heading {
     display: flex;
     align-items: flex-start;
