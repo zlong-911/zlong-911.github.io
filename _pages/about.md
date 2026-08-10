@@ -170,7 +170,7 @@ Selected Work ✨
   <div class="work-body">
     <h3 class="work-title">Visual Affordance Priors for Generalizable Garment Flattening</h3>
     <p class="work-meta"><strong>Zilong Huang</strong>, Sipeng Lu, and Jiaxiang Luo<sup>*</sup><br>Under review</p>
-    <p class="work-summary">Visual Affordance Priors asks a practical question: can a robot learn where to grasp a garment in simulation and apply that knowledge directly to real images? We first learn the value of grasp pairs from large-scale physics simulation, then distill this structural knowledge into image-space affordance maps through randomized rendering. The resulting prior transfers to real garments without real-data fine-tuning and improves unfolding across 22 garment assets.</p>
+    <p class="work-summary">This project asks whether the central idea behind ClothMate can scale beyond a small, controlled benchmark. ClothMate showed that reusable grasp values can make garment flattening data-efficient; here, we rebuild that idea for broader garment assets, richer visual variation, and real-image deployment by separating structural pair-value learning from visual affordance prediction.</p>
     <p class="work-links">
       <a class="btn btn--primary" href="https://garment-affordance-review.github.io/unfold-all-anonymous/">Project Page</a>
       <button
@@ -190,10 +190,10 @@ Selected Work ✨
   >
     <div class="visual-affordance-overview">
       <div class="visual-affordance-overview__intro">
-        <h4>Design Idea</h4>
-        <p><strong>Goal.</strong> Learn where a robot should grasp a crumpled garment from a single RGB view, without relying on real-data fine-tuning for every new garment or scene.</p>
-        <p><strong>Key Move.</strong> Separate structural reasoning from visual deployment: first learn what makes a dual-grasp pair useful on the garment surface, then transfer that pair-value knowledge into image space.</p>
-        <p><strong>Implementation.</strong> Parallel physics evaluates ordered grasp pairs, a point-cloud teacher fills in the pair-value field, synthetic rendering connects teacher predictions to RGB observations, and the final visual prior predicts coordinated first- and second-grasp heatmaps.</p>
+        <h4>Scaling ClothMate's Grasp Prior</h4>
+        <p><strong>What we want.</strong> A robot should be able to look at a crumpled garment and choose a useful pair of grasp points, even when the garment shape, texture, camera view, and scene differ from training.</p>
+        <p><strong>Why ClothMate is the starting point.</strong> ClothMate showed that value-based garment manipulation can be data-efficient when the robot learns reusable grasp structure instead of relearning every crumpled state from scratch. The open question is whether that idea still works when we scale the asset pool, rendering variation, and real-world visual domain.</p>
+        <p><strong>How we scale it.</strong> We first learn grasp-pair value in a structural domain, where simulation can cheaply evaluate many ordered pairs on garment geometry. Then we project that teacher signal into randomized RGB renderings, training a visual prior that predicts the first grasp and the second grasp conditioned on it.</p>
       </div>
       <div class="visual-affordance-method-grid">
         <figure class="visual-affordance-method-card visual-affordance-method-card--wide">
@@ -269,5 +269,5 @@ Selected Work ✨
 <script defer src="/assets/js/clothmate-details.js?v=1"></script>
 <script defer src="/assets/js/clothmate-carousel.js?v=2"></script>
 <script defer src="/assets/js/real-inference-home.js?v=4"></script>
-<script defer src="/assets/js/vendor/three.min.js?v=0.160.0"></script>
+<script defer src="/assets/js/three.min.js?v=0.160.0"></script>
 <script defer src="/assets/js/visual-affordance-method.js?v=2"></script>
