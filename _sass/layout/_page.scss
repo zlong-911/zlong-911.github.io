@@ -675,11 +675,17 @@
 
   .visual-affordance-method-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1.58fr) minmax(9rem, 0.72fr);
     gap: 0.45rem;
 
     @media (max-width: 35rem) {
       grid-template-columns: 1fr;
+    }
+  }
+
+  .visual-affordance-method-card--wide {
+    @include breakpoint($medium) {
+      grid-column: 1;
     }
   }
 
@@ -726,7 +732,7 @@
 
   .visual-affordance-method-media {
     width: 100%;
-    height: clamp(5.8rem, 11vw, 8.2rem);
+    aspect-ratio: 16 / 9;
     border-radius: 6px;
     background: #111;
     overflow: hidden;
@@ -741,6 +747,7 @@
   }
 
   .visual-affordance-method-media--portrait {
+    aspect-ratio: 2 / 3;
     background: #f4f5f7;
 
     video {
@@ -751,7 +758,7 @@
   .visual-affordance-teacher {
     position: relative;
     width: 100%;
-    height: clamp(5.8rem, 11vw, 8.2rem);
+    aspect-ratio: 2 / 3;
     border: 1px solid var(--global-border-color);
     border-radius: 6px;
     background:

@@ -196,7 +196,7 @@ Selected Work ✨
         <p><strong>Implementation.</strong> Parallel physics evaluates ordered grasp pairs, a point-cloud teacher fills in the pair-value field, synthetic rendering connects teacher predictions to RGB observations, and the final visual prior predicts coordinated first- and second-grasp heatmaps.</p>
       </div>
       <div class="visual-affordance-method-grid">
-        <figure class="visual-affordance-method-card">
+        <figure class="visual-affordance-method-card visual-affordance-method-card--wide">
           <div class="visual-affordance-method-card__heading">
             <span>01</span>
             <h4>Offline Action Collection</h4>
@@ -223,7 +223,7 @@ Selected Work ✨
           </div>
           <figcaption data-vap-teacher-caption>Teacher ranks candidate second grasps.</figcaption>
         </figure>
-        <figure class="visual-affordance-method-card">
+        <figure class="visual-affordance-method-card visual-affordance-method-card--wide">
           <div class="visual-affordance-method-card__heading">
             <span>03</span>
             <h4>Synthetic Visual Data</h4>
