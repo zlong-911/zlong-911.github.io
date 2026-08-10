@@ -206,7 +206,6 @@ Selected Work ✨
               <source src="/files/visual-affordance-method/offline_collection.mp4" type="video/mp4">
             </video>
           </div>
-          <figcaption>Physics labels grasp-pair outcomes.</figcaption>
         </figure>
         <figure class="visual-affordance-method-card">
           <div class="visual-affordance-method-card__heading">
@@ -221,7 +220,6 @@ Selected Work ✨
               <span>High</span>
             </div>
           </div>
-          <figcaption data-vap-teacher-caption>Teacher ranks candidate second grasps.</figcaption>
         </figure>
         <figure class="visual-affordance-method-card visual-affordance-method-card--wide">
           <div class="visual-affordance-method-card__heading">
@@ -238,7 +236,6 @@ Selected Work ✨
               decoding="async"
             >
           </div>
-          <figcaption>Rendering links geometry to pixels.</figcaption>
         </figure>
         <figure class="visual-affordance-method-card">
           <div class="visual-affordance-method-card__heading">
@@ -250,7 +247,6 @@ Selected Work ✨
               <source src="/files/visual-affordance-method/a1_a2_asset_1.mp4" type="video/mp4">
             </video>
           </div>
-          <figcaption>Policy predicts paired grasp heatmaps.</figcaption>
         </figure>
       </div>
     </div>
@@ -273,4 +269,5 @@ Selected Work ✨
 <script defer src="/assets/js/clothmate-details.js?v=1"></script>
 <script defer src="/assets/js/clothmate-carousel.js?v=2"></script>
 <script defer src="/assets/js/real-inference-home.js?v=4"></script>
-<script defer src="/assets/js/visual-affordance-method.js?v=1"></script>
+<script defer src="/assets/js/vendor/three.min.js?v=0.160.0"></script>
+<script defer src="/assets/js/visual-affordance-method.js?v=2"></script>

@@ -2,160 +2,289 @@
   document.addEventListener("DOMContentLoaded", () => {
     const stage = document.querySelector("[data-vap-teacher]");
     const canvas = document.querySelector("[data-vap-teacher-canvas]");
-    const caption = document.querySelector("[data-vap-teacher-caption]");
     if (!stage || !canvas) return;
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const state = {
+      data: null,
+      assetIndex: 0,
+      anchorIndex: 0,
+      cameraZ: 2.8,
+      dragging: false,
+      moved: false,
+      lastX: 0,
+      lastY: 0,
+      initialized: false,
+      pendingResizeObserver: null,
+      scene: null,
+      camera: null,
+      renderer: null,
+      group: null,
+      pointsObject: null,
+      raycaster: null,
+      pointer: null,
+    };
 
-    const colors = [
+    const colorStops = [
       [37, 99, 235],
       [20, 184, 166],
       [250, 204, 21],
       [239, 68, 68],
     ];
-    let teacherData = null;
-    let assetIndex = 0;
-    let anchorIndex = 0;
-    let timer = null;
-    let initialized = false;
 
-    const mix = (a, b, t) => a + (b - a) * t;
+    function setStageMessage(message) {
+      stage.dataset.message = message;
+      stage.classList.toggle("is-loading", Boolean(message));
+    }
 
     function colorFor(value) {
-      const t = Math.max(0, Math.min(1, value));
-      const scaled = t * (colors.length - 1);
-      const index = Math.min(colors.length - 2, Math.floor(scaled));
+      const clamped = Math.max(0, Math.min(1, value));
+      const scaled = clamped * (colorStops.length - 1);
+      const index = Math.min(colorStops.length - 2, Math.floor(scaled));
       const local = scaled - index;
-      const c0 = colors[index];
-      const c1 = colors[index + 1];
-      return `rgb(${mix(c0[0], c1[0], local)}, ${mix(c0[1], c1[1], local)}, ${mix(c0[2], c1[2], local)})`;
+      const a = colorStops[index];
+      const b = colorStops[index + 1];
+      return [
+        (a[0] + (b[0] - a[0]) * local) / 255,
+        (a[1] + (b[1] - a[1]) * local) / 255,
+        (a[2] + (b[2] - a[2]) * local) / 255,
+      ];
+    }
+
+    function normalizeScores(scores) {
+      const min = Math.min(...scores);
+      const max = Math.max(...scores);
+      return scores.map((score) => (score - min) / (max - min + 1e-6));
+    }
+
+    function currentAsset() {
+      return state.data.assets[state.assetIndex];
+    }
+
+    function currentAnchor() {
+      return currentAsset().anchors[state.anchorIndex];
+    }
+
+    function render() {
+      if (!state.renderer || !state.scene || !state.camera) return;
+      state.camera.position.z = state.cameraZ;
+      state.renderer.render(state.scene, state.camera);
     }
 
     function resize() {
+      if (!state.renderer || !state.camera) return;
       const rect = stage.getBoundingClientRect();
       if (rect.width < 2 || rect.height < 2) return;
-      const ratio = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.round(rect.width * ratio);
-      canvas.height = Math.round(rect.height * ratio);
-      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-      draw();
+      state.camera.aspect = rect.width / rect.height;
+      state.camera.updateProjectionMatrix();
+      state.renderer.setSize(rect.width, rect.height, false);
+      render();
     }
 
-    function project(points, width, height) {
-      const xs = points.map((point) => point[0]);
-      const ys = points.map((point) => point[1]);
-      const minX = Math.min(...xs);
-      const maxX = Math.max(...xs);
-      const minY = Math.min(...ys);
-      const maxY = Math.max(...ys);
-      const scale = Math.min(
-        (width * 0.74) / (maxX - minX || 1),
-        (height * 0.58) / (maxY - minY || 1),
+    function clearGroup() {
+      if (!state.group) return;
+      while (state.group.children.length > 0) {
+        const child = state.group.children.pop();
+        if (child.geometry) child.geometry.dispose();
+        if (child.material) child.material.dispose();
+      }
+      state.pointsObject = null;
+    }
+
+    function addMarker(point, color, radius) {
+      const geometry = new THREE.SphereGeometry(radius, 16, 12);
+      const material = new THREE.MeshBasicMaterial({ color });
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(point[0], point[1], point[2]);
+      state.group.add(mesh);
+    }
+
+    function updateScene() {
+      if (!state.data || !state.group) return;
+      const asset = currentAsset();
+      const anchor = currentAnchor();
+      const normalized = normalizeScores(anchor.scores);
+
+      clearGroup();
+
+      const positions = new Float32Array(asset.points.length * 3);
+      const colors = new Float32Array(asset.points.length * 3);
+      asset.points.forEach((point, index) => {
+        positions.set(point, index * 3);
+        colors.set(colorFor(normalized[index]), index * 3);
+      });
+
+      const pointGeometry = new THREE.BufferGeometry();
+      pointGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+      pointGeometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+      state.pointsObject = new THREE.Points(
+        pointGeometry,
+        new THREE.PointsMaterial({
+          size: 0.062,
+          sizeAttenuation: true,
+          vertexColors: true,
+        }),
       );
-      const cx = width / 2 - ((minX + maxX) / 2) * scale;
-      const cy = height * 0.43 + ((minY + maxY) / 2) * scale;
+      state.group.add(state.pointsObject);
 
-      return points.map((point) => ({
-        x: point[0] * scale + cx,
-        y: -point[1] * scale + cy,
-      }));
-    }
-
-    function normalize(values) {
-      const min = Math.min(...values);
-      const max = Math.max(...values);
-      return values.map((value) => (value - min) / (max - min + 1e-6));
-    }
-
-    function draw() {
-      if (!teacherData || !ctx) return;
-      const width = canvas.clientWidth;
-      const height = canvas.clientHeight;
-      if (width < 2 || height < 2) return;
-
-      const asset = teacherData.assets[assetIndex];
-      const anchor = asset.anchors[anchorIndex];
-      const points = project(asset.points, width, height);
-      const values = normalize(anchor.scores);
-      const anchorPoint = points[anchor.index];
-
-      ctx.clearRect(0, 0, width, height);
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(37, 99, 235, 0.45)";
+      const anchorPoint = asset.points[anchor.index];
+      const linePositions = [];
       anchor.topPairs.slice(0, 12).forEach((pair) => {
-        const target = points[pair.j];
-        ctx.beginPath();
-        ctx.moveTo(anchorPoint.x, anchorPoint.y);
-        ctx.lineTo(target.x, target.y);
-        ctx.stroke();
+        const target = asset.points[pair.j];
+        linePositions.push(anchorPoint[0], anchorPoint[1], anchorPoint[2], target[0], target[1], target[2]);
       });
+      const lineGeometry = new THREE.BufferGeometry();
+      lineGeometry.setAttribute("position", new THREE.Float32BufferAttribute(linePositions, 3));
+      state.group.add(
+        new THREE.LineSegments(
+          lineGeometry,
+          new THREE.LineBasicMaterial({ color: 0x2563eb, transparent: true, opacity: 0.6 }),
+        ),
+      );
 
-      points.forEach((point, index) => {
-        ctx.fillStyle = colorFor(values[index]);
-        ctx.globalAlpha = 0.86;
-        ctx.fillRect(point.x - 1.6, point.y - 1.6, 3.2, 3.2);
-      });
-      ctx.globalAlpha = 1;
-
+      addMarker(anchorPoint, 0xdc2626, 0.034);
       anchor.topPairs.slice(0, 6).forEach((pair, index) => {
-        const point = points[pair.j];
-        ctx.fillStyle = index === 0 ? "#f97316" : "#2563eb";
-        ctx.beginPath();
-        ctx.arc(point.x, point.y, index === 0 ? 5.2 : 4.2, 0, Math.PI * 2);
-        ctx.fill();
+        addMarker(asset.points[pair.j], index === 0 ? 0xf97316 : 0x2563eb, index === 0 ? 0.028 : 0.023);
       });
 
-      ctx.fillStyle = "#dc2626";
-      ctx.beginPath();
-      ctx.arc(anchorPoint.x, anchorPoint.y, 5.8, 0, Math.PI * 2);
-      ctx.fill();
-
-      const best = anchor.topPairs[0];
-      if (caption && best) {
-        caption.textContent = `Best pair: x1 ${anchor.index}, x2 ${best.j}, reward ${best.score.toFixed(3)}.`;
-      }
+      render();
     }
 
-    function step() {
-      if (!teacherData) return;
-      const asset = teacherData.assets[assetIndex];
-      anchorIndex += 1;
-      if (anchorIndex >= asset.anchors.length) {
-        anchorIndex = 0;
-        assetIndex = (assetIndex + 1) % teacherData.assets.length;
+    function initThree() {
+      if (!window.THREE) {
+        setStageMessage("Point cloud renderer failed to load.");
+        return false;
       }
-      draw();
+
+      state.scene = new THREE.Scene();
+      state.scene.background = new THREE.Color(0xffffff);
+      state.camera = new THREE.PerspectiveCamera(30, 1, 0.01, 20);
+      state.camera.position.set(0, 0, state.cameraZ);
+      state.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+      state.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      state.group = new THREE.Group();
+      state.scene.add(state.group);
+      state.raycaster = new THREE.Raycaster();
+      state.raycaster.params.Points.threshold = 0.035;
+      state.pointer = new THREE.Vector2();
+
+      const grid = new THREE.GridHelper(1.35, 14, 0xd1d5db, 0xe5e7eb);
+      grid.rotation.x = Math.PI / 2;
+      grid.position.z = -0.34;
+      state.scene.add(grid);
+      resize();
+      return true;
+    }
+
+    function setAnchor(index) {
+      if (!state.data) return;
+      const asset = currentAsset();
+      state.anchorIndex = (index + asset.anchors.length) % asset.anchors.length;
+      updateScene();
+    }
+
+    function setAsset(index) {
+      if (!state.data) return;
+      state.assetIndex = (index + state.data.assets.length) % state.data.assets.length;
+      state.anchorIndex = 0;
+      updateScene();
+    }
+
+    function pickPoint(event) {
+      if (!state.pointsObject || !state.raycaster || !state.pointer || !state.camera) return -1;
+      const rect = canvas.getBoundingClientRect();
+      state.pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      state.pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      state.raycaster.setFromCamera(state.pointer, state.camera);
+      const hits = state.raycaster.intersectObject(state.pointsObject, false);
+      return hits.length ? hits[0].index : -1;
+    }
+
+    function nearestAnchorIndex(pointIndex) {
+      const asset = currentAsset();
+      const clicked = asset.points[pointIndex];
+      let bestIndex = 0;
+      let bestDistance = Infinity;
+      asset.anchors.forEach((anchor, index) => {
+        const point = asset.points[anchor.index];
+        const distance = (point[0] - clicked[0]) ** 2 + (point[1] - clicked[1]) ** 2 + (point[2] - clicked[2]) ** 2;
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          bestIndex = index;
+        }
+      });
+      return bestIndex;
     }
 
     function initialize() {
-      if (initialized) return;
-      initialized = true;
+      if (state.initialized) return;
+      state.initialized = true;
+      setStageMessage("Loading pair-value field...");
+      if (!initThree()) return;
+
       fetch("/assets/data/pair_value_teacher_demo.json")
         .then((response) => response.json())
         .then((data) => {
-          teacherData = data;
-          resize();
-          timer = window.setInterval(step, 1800);
+          state.data = data;
+          setStageMessage("");
+          updateScene();
+          if (window.ResizeObserver) {
+            state.pendingResizeObserver = new ResizeObserver(resize);
+            state.pendingResizeObserver.observe(stage);
+          } else {
+            window.addEventListener("resize", resize);
+          }
         })
         .catch(() => {
-          if (caption) caption.textContent = "Pair-value teacher preview failed to load.";
+          setStageMessage("Pair-value teacher data failed to load.");
         });
     }
 
-    if (window.ResizeObserver) {
-      new ResizeObserver(resize).observe(stage);
-    } else {
-      window.addEventListener("resize", resize);
-    }
+    canvas.addEventListener("pointerdown", (event) => {
+      if (!state.group) return;
+      state.dragging = true;
+      state.moved = false;
+      state.lastX = event.clientX;
+      state.lastY = event.clientY;
+      canvas.setPointerCapture(event.pointerId);
+    });
 
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden && timer) {
-        window.clearInterval(timer);
-        timer = null;
-      } else if (!document.hidden && !timer) {
-        timer = window.setInterval(step, 1800);
-      }
+    canvas.addEventListener("pointermove", (event) => {
+      if (!state.dragging || !state.group) return;
+      const dx = event.clientX - state.lastX;
+      const dy = event.clientY - state.lastY;
+      if (Math.abs(dx) + Math.abs(dy) > 2) state.moved = true;
+      state.group.rotation.z += dx * 0.008;
+      state.group.rotation.x = Math.max(-1.45, Math.min(1.1, state.group.rotation.x + dy * 0.008));
+      state.lastX = event.clientX;
+      state.lastY = event.clientY;
+      render();
+    });
+
+    canvas.addEventListener("pointerup", (event) => {
+      state.dragging = false;
+      if (state.moved || !state.data) return;
+      const point = pickPoint(event);
+      if (point >= 0) setAnchor(nearestAnchorIndex(point));
+    });
+
+    canvas.addEventListener("pointerleave", () => {
+      state.dragging = false;
+    });
+
+    canvas.addEventListener(
+      "wheel",
+      (event) => {
+        event.preventDefault();
+        state.cameraZ *= event.deltaY > 0 ? 1.08 : 0.92;
+        state.cameraZ = Math.max(1.25, Math.min(3.5, state.cameraZ));
+        render();
+      },
+      { passive: false },
+    );
+
+    window.addEventListener("methodAssetChange", (event) => {
+      if (!event.detail || event.detail.source === "teacher") return;
+      setAsset(Number(event.detail.index) || 0);
     });
 
     const details = document.querySelector("[data-real-inference-demo]");

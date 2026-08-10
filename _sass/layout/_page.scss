@@ -675,8 +675,8 @@
 
   .visual-affordance-method-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.58fr) minmax(9rem, 0.72fr);
-    gap: 0.45rem;
+    grid-template-columns: minmax(0, 1fr) minmax(8rem, 0.375fr);
+    gap: 0.45rem 0.55rem;
 
     @media (max-width: 35rem) {
       grid-template-columns: 1fr;
@@ -700,6 +700,7 @@
     background: var(--global-bg-color);
 
     figcaption {
+      display: none;
       margin-top: 0.35rem;
       color: var(--global-text-color-light);
       font-size: 0.58rem;
@@ -713,8 +714,7 @@
     display: flex;
     align-items: baseline;
     gap: 0.32rem;
-    min-height: 1.25rem;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.18rem;
 
     span {
       color: var(--global-link-color);
@@ -767,11 +767,37 @@
       var(--global-bg-color);
     background-size: 18px 18px;
     overflow: hidden;
+    cursor: grab;
 
     canvas {
       display: block;
       width: 100%;
       height: 100%;
+      touch-action: none;
+    }
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    &::after {
+      content: attr(data-message);
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--global-text-color-light);
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    &.is-loading::after {
+      display: flex;
     }
   }
 
