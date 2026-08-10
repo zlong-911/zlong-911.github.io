@@ -190,10 +190,13 @@ Selected Work ✨
   >
     <div class="visual-affordance-overview">
       <div class="visual-affordance-overview__intro">
-        <p><strong>Design Idea.</strong> Instead of asking a visual policy to discover good garment grasps from pixels alone, we first learn what makes a dual-grasp pair structurally useful on the garment surface, then transfer that knowledge into image space. In practice, parallel physics evaluates ordered grasp pairs, a point-cloud teacher learns the pair-value field, synthetic rendering connects teacher predictions to RGB observations, and the final policy predicts coordinated first- and second-grasp heatmaps from a single view.</p>
+        <h4>Design Idea</h4>
+        <p><strong>Goal.</strong> Learn where a robot should grasp a crumpled garment from a single RGB view, without relying on real-data fine-tuning for every new garment or scene.</p>
+        <p><strong>Key Move.</strong> Separate structural reasoning from visual deployment: first learn what makes a dual-grasp pair useful on the garment surface, then transfer that pair-value knowledge into image space.</p>
+        <p><strong>Implementation.</strong> Parallel physics evaluates ordered grasp pairs, a point-cloud teacher fills in the pair-value field, synthetic rendering connects teacher predictions to RGB observations, and the final visual prior predicts coordinated first- and second-grasp heatmaps.</p>
       </div>
       <div class="visual-affordance-method-grid">
-        <figure class="visual-affordance-method-card visual-affordance-method-card--wide">
+        <figure class="visual-affordance-method-card">
           <div class="visual-affordance-method-card__heading">
             <span>01</span>
             <h4>Offline Action Collection</h4>
@@ -203,7 +206,7 @@ Selected Work ✨
               <source src="/files/visual-affordance-method/offline_collection.mp4" type="video/mp4">
             </video>
           </div>
-          <figcaption>Parallel physics environments collect pair-conditioned garment interaction outcomes.</figcaption>
+          <figcaption>Physics labels grasp-pair outcomes.</figcaption>
         </figure>
         <figure class="visual-affordance-method-card">
           <div class="visual-affordance-method-card__heading">
@@ -218,9 +221,9 @@ Selected Work ✨
               <span>High</span>
             </div>
           </div>
-          <figcaption data-vap-teacher-caption>Top candidate second grasps are connected to the selected first-grasp anchor.</figcaption>
+          <figcaption data-vap-teacher-caption>Teacher ranks candidate second grasps.</figcaption>
         </figure>
-        <figure class="visual-affordance-method-card visual-affordance-method-card--wide">
+        <figure class="visual-affordance-method-card">
           <div class="visual-affordance-method-card__heading">
             <span>03</span>
             <h4>Synthetic Visual Data</h4>
@@ -235,7 +238,7 @@ Selected Work ✨
               decoding="async"
             >
           </div>
-          <figcaption>Randomized RGB renderings preserve mesh correspondence for image-space supervision.</figcaption>
+          <figcaption>Rendering links geometry to pixels.</figcaption>
         </figure>
         <figure class="visual-affordance-method-card">
           <div class="visual-affordance-method-card__heading">
@@ -247,7 +250,7 @@ Selected Work ✨
               <source src="/files/visual-affordance-method/a1_a2_asset_1.mp4" type="video/mp4">
             </video>
           </div>
-          <figcaption>Top: first-grasp affordance. Bottom: second-grasp affordance conditioned on the current first point.</figcaption>
+          <figcaption>Policy predicts paired grasp heatmaps.</figcaption>
         </figure>
       </div>
     </div>

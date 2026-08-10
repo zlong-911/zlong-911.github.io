@@ -113,7 +113,7 @@
 
       const best = anchor.topPairs[0];
       if (caption && best) {
-        caption.textContent = `Current best predicted pair: x1 point ${anchor.index}, x2 point ${best.j}, reward ${best.score.toFixed(3)}.`;
+        caption.textContent = `Best pair: x1 ${anchor.index}, x2 ${best.j}, reward ${best.score.toFixed(3)}.`;
       }
     }
 

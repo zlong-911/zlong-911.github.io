@@ -640,13 +640,26 @@
   }
 
   .visual-affordance-overview {
+    display: grid;
+    gap: 0.9rem;
     padding: 0.9rem;
     border-bottom: 1px solid var(--global-border-color);
+
+    @include breakpoint($medium) {
+      grid-template-columns: minmax(14rem, 0.72fr) minmax(0, 1.28fr);
+      align-items: start;
+    }
   }
 
   .visual-affordance-overview__intro {
-    max-width: 52rem;
-    margin: 0 auto 0.85rem;
+    max-width: 34rem;
+    margin: 0;
+
+    h4 {
+      margin: 0 0 0.45rem;
+      font-size: 0.82rem;
+      line-height: 1.3;
+    }
 
     p {
       margin: 0;
@@ -654,14 +667,19 @@
       font-size: 0.72rem;
       line-height: 1.5;
     }
+
+    p + p {
+      margin-top: 0.5rem;
+    }
   }
 
   .visual-affordance-method-grid {
     display: grid;
-    gap: 0.7rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem;
 
-    @include breakpoint($medium) {
-      grid-template-columns: minmax(0, 1.78fr) minmax(14rem, 0.72fr);
+    @media (max-width: 35rem) {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -670,51 +688,45 @@
     flex-direction: column;
     min-width: 0;
     margin: 0;
-    padding: 0.65rem;
+    padding: 0.45rem;
     border: 1px solid var(--global-border-color);
-    border-radius: 8px;
+    border-radius: 7px;
     background: var(--global-bg-color);
 
     figcaption {
-      margin-top: 0.5rem;
+      margin-top: 0.35rem;
       color: var(--global-text-color-light);
-      font-size: 0.62rem;
+      font-size: 0.58rem;
       font-weight: 600;
-      line-height: 1.4;
+      line-height: 1.25;
       text-align: center;
-    }
-  }
-
-  .visual-affordance-method-card--wide {
-    @include breakpoint($medium) {
-      grid-column: 1;
     }
   }
 
   .visual-affordance-method-card__heading {
     display: flex;
     align-items: baseline;
-    gap: 0.45rem;
-    min-height: 1.7rem;
-    margin-bottom: 0.45rem;
+    gap: 0.32rem;
+    min-height: 1.25rem;
+    margin-bottom: 0.35rem;
 
     span {
       color: var(--global-link-color);
-      font-size: 0.62rem;
+      font-size: 0.54rem;
       font-weight: 800;
       letter-spacing: 0.08em;
     }
 
     h4 {
       margin: 0;
-      font-size: 0.74rem;
+      font-size: 0.64rem;
       line-height: 1.25;
     }
   }
 
   .visual-affordance-method-media {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    height: clamp(5.8rem, 11vw, 8.2rem);
     border-radius: 6px;
     background: #111;
     overflow: hidden;
@@ -729,7 +741,6 @@
   }
 
   .visual-affordance-method-media--portrait {
-    aspect-ratio: 2 / 3;
     background: #f4f5f7;
 
     video {
@@ -740,7 +751,7 @@
   .visual-affordance-teacher {
     position: relative;
     width: 100%;
-    aspect-ratio: 2 / 3;
+    height: clamp(5.8rem, 11vw, 8.2rem);
     border: 1px solid var(--global-border-color);
     border-radius: 6px;
     background:
@@ -759,24 +770,24 @@
 
   .visual-affordance-teacher__legend {
     position: absolute;
-    right: 0.6rem;
-    bottom: 0.55rem;
-    left: 0.6rem;
+    right: 0.38rem;
+    bottom: 0.35rem;
+    left: 0.38rem;
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
     gap: 0.4rem;
-    padding: 0.35rem 0.45rem;
+    padding: 0.22rem 0.32rem;
     border: 1px solid rgba(229, 231, 235, 0.9);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.76);
     color: #374151;
-    font-size: 0.55rem;
+    font-size: 0.46rem;
     font-weight: 800;
     pointer-events: none;
 
     i {
-      height: 0.42rem;
+      height: 0.32rem;
       border-radius: 999px;
       background: linear-gradient(90deg, #2563eb 0%, #14b8a6 34%, #facc15 68%, #ef4444 100%);
     }
