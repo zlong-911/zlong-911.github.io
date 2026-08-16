@@ -9,6 +9,7 @@ Meituan · LongCat
 ======
 
 **Simulation Research Intern**<br>
+May 2026 -- Present<br>
 Garment manipulation · Robot learning · Physics simulation
 
 - Developing a vectorized Newton-based environment for large-scale deformable-object manipulation.
@@ -20,6 +21,11 @@ South China University of Technology
 ======
 
 **Master's Student**<br>
+September 2024 -- Present<br>
 School of Automation Science and Engineering
 
-My research explores generalizable garment manipulation through value learning, visual affordances, simulation, and sim-to-real transfer.
+Recommended for direct admission from the Automation Innovation Program. My research explores generalizable garment manipulation through value learning, visual affordances, simulation, and sim-to-real transfer.
+
+**Undergraduate Student**<br>
+September 2020 -- July 2024<br>
+Automation Innovation Program

@@ -54,6 +54,61 @@
   }
 }
 
+.masthead__simple {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 2.5rem;
+}
+
+.masthead__brand {
+  color: var(--global-masthead-link-color);
+  font-weight: 700;
+}
+
+.masthead__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--global-masthead-link-color);
+    font-family: $sans-serif;
+    font-size: $type-size-6;
+    line-height: 1;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--global-masthead-link-color-hover);
+    }
+  }
+
+  #theme-toggle {
+    width: 1.5rem;
+    height: 1.5rem;
+
+    .theme-icon {
+      display: none;
+      width: 1.1rem;
+      height: 1.1rem;
+      flex: 0 0 auto;
+    }
+
+    .theme-icon.is-visible {
+      display: block;
+    }
+  }
+}
+
 .masthead__menu-item {
   background-color: var(--global-bg-color);
   display: block;

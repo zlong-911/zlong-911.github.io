@@ -1,8 +1,90 @@
 (() => {
   document.addEventListener("DOMContentLoaded", () => {
+    const overview = document.querySelector(".visual-affordance-overview");
+    const methodSteps = Array.from(document.querySelectorAll("[data-vap-method-step]"));
+    const methodCards = Array.from(document.querySelectorAll("[data-vap-method-card]"));
+    const syntheticImage = document.querySelector("[data-vap-animated-src]");
+
+    const selectMethodStep = (index) => {
+      methodSteps.forEach((step, stepIndex) => {
+        const isActive = stepIndex === index;
+        step.classList.toggle("is-active", isActive);
+        step.setAttribute("aria-pressed", String(isActive));
+      });
+      methodCards.forEach((card, cardIndex) => {
+        card.classList.toggle("is-active", cardIndex === index);
+      });
+      if (index === 2 && syntheticImage?.dataset.vapAnimatedSrc) {
+        syntheticImage.src = syntheticImage.dataset.vapAnimatedSrc;
+        delete syntheticImage.dataset.vapAnimatedSrc;
+      }
+      window.dispatchEvent(new CustomEvent("vapmethodchange"));
+    };
+
+    if (overview && methodSteps.length === methodCards.length) {
+      overview.classList.add("has-method-interaction");
+      methodSteps.forEach((step, index) => {
+        step.addEventListener("mouseenter", () => selectMethodStep(index));
+        step.addEventListener("focus", () => selectMethodStep(index));
+        step.addEventListener("click", () => {
+          selectMethodStep(index);
+          if (window.matchMedia("(max-width: 47.99em)").matches) {
+            const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            methodCards[index].scrollIntoView({
+              behavior: reduceMotion ? "auto" : "smooth",
+              block: "center",
+            });
+          }
+        });
+      });
+      methodCards.forEach((card, index) => {
+        card.addEventListener("mouseenter", () => selectMethodStep(index));
+        card.addEventListener("click", () => selectMethodStep(index));
+      });
+    }
+
     const stage = document.querySelector("[data-vap-teacher]");
     const canvas = document.querySelector("[data-vap-teacher-canvas]");
     if (!stage || !canvas) return;
+
+    let threePromise = null;
+    let dataTextPromise = null;
+    let dataPromise = null;
+
+    function loadThree() {
+      if (window.THREE) return Promise.resolve();
+      if (threePromise) return threePromise;
+      threePromise = new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = "/assets/js/three.min.js?v=0.160.0";
+        script.async = true;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+      return threePromise;
+    }
+
+    function preloadData() {
+      if (!dataTextPromise) {
+        dataTextPromise = fetch("/assets/data/pair_value_teacher_demo.min.json")
+          .then((response) => {
+            if (!response.ok) throw new Error("Pair-value data request failed.");
+            return response.text();
+          });
+      }
+      return dataTextPromise;
+    }
+
+    function loadData() {
+      if (!dataPromise) dataPromise = preloadData().then((text) => JSON.parse(text));
+      return dataPromise;
+    }
+
+    function warmResources() {
+      loadThree().catch(() => {});
+      preloadData().catch(() => {});
+    }
 
     const state = {
       data: null,
@@ -219,11 +301,9 @@
       if (state.initialized) return;
       state.initialized = true;
       setStageMessage("Loading pair-value field...");
-      if (!initThree()) return;
-
-      fetch("/assets/data/pair_value_teacher_demo.json")
-        .then((response) => response.json())
-        .then((data) => {
+      Promise.all([loadThree(), loadData()])
+        .then(([, data]) => {
+          if (!initThree()) throw new Error("Three.js failed to initialize.");
           state.data = data;
           setStageMessage("");
           updateScene();
@@ -235,6 +315,7 @@
           }
         })
         .catch(() => {
+          state.initialized = false;
           setStageMessage("Pair-value teacher data failed to load.");
         });
     }
@@ -291,6 +372,9 @@
     const toggle = document.querySelector("[data-real-inference-toggle]");
     if (details && !details.hidden) initialize();
     if (toggle) {
+      toggle.addEventListener("mouseenter", warmResources, { once: true });
+      toggle.addEventListener("focus", warmResources, { once: true });
+      toggle.addEventListener("pointerdown", warmResources, { once: true });
       toggle.addEventListener("click", () => {
         if (details && !details.hidden) initialize();
       });

@@ -12,47 +12,30 @@
     const pageButtons = Array.from(
       carousel.querySelectorAll("[data-clothmate-page]"),
     );
-    const autoplayVideos = Array.from(
-      carousel.querySelectorAll("[data-clothmate-autoplay-video]"),
-    );
+    const videos = Array.from(carousel.querySelectorAll("video"));
 
     if (!slides.length || !previousButton || !nextButton || !status) return;
 
     let currentPage = 0;
     let touchStartX = null;
     let touchStartY = null;
-    const visibleVideos = new WeakSet();
-    let videoObserver = null;
-
-    const syncAutoplay = () => {
-      autoplayVideos.forEach((video) => {
-        const isActive = slides[currentPage].contains(video);
-        const isVisible = !videoObserver || visibleVideos.has(video);
-
-        if (isActive && isVisible) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
+    const hydrateSlideMedia = (slide) => {
+      slide.querySelectorAll("video[data-deferred-poster]").forEach((video) => {
+        video.poster = video.dataset.deferredPoster;
+        delete video.dataset.deferredPoster;
       });
     };
 
-    if ("IntersectionObserver" in window) {
-      videoObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              visibleVideos.add(entry.target);
-            } else {
-              visibleVideos.delete(entry.target);
-            }
-          });
-          syncAutoplay();
-        },
-        { rootMargin: "160px 0px", threshold: 0.05 },
-      );
-      autoplayVideos.forEach((video) => videoObserver.observe(video));
-    }
+    const syncPlayback = () => {
+      videos.forEach((video) => {
+        const isActive = slides[currentPage].contains(video);
+        if (carousel.hidden || !isActive) {
+          video.pause();
+        } else {
+          video.play().catch(() => {});
+        }
+      });
+    };
 
     const showPage = (nextPage, direction = 1) => {
       const targetPage = Math.max(0, Math.min(slides.length - 1, nextPage));
@@ -60,6 +43,7 @@
 
       slides[currentPage].hidden = true;
       slides[targetPage].hidden = false;
+      hydrateSlideMedia(slides[targetPage]);
       slides[targetPage].classList.remove(
         "is-entering-forward",
         "is-entering-backward",
@@ -79,7 +63,7 @@
         button.setAttribute("aria-selected", String(index === currentPage));
       });
 
-      syncAutoplay();
+      syncPlayback();
     };
 
     previousButton.addEventListener("click", () => {
@@ -125,5 +109,10 @@
       },
       { passive: true },
     );
+
+    new MutationObserver(syncPlayback).observe(carousel, {
+      attributes: true,
+      attributeFilter: ["hidden"],
+    });
   });
 })();

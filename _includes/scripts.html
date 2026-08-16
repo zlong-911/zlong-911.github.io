@@ -1,4 +1,8 @@
+{% unless page.main_js == false %}
 <script type="module" src="{{ base_path }}/assets/js/main.min.js"></script>
+{% endunless %}
+<script defer src="{{ base_path }}/assets/js/language-toggle.js"></script>
+<script defer src="{{ base_path }}/assets/js/theme-toggle.js"></script>
 
 {% include analytics.html %}
 

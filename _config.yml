@@ -23,7 +23,7 @@ repository               : "zlong-911/zlong-911.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "zilong-huang.jpg"
+  avatar           : "zilong-huang.webp"
   name             : "黄梓龙 · Zilong Huang"
   pronouns         : # example: "she/her"  
   bio              : "Master's Student"
@@ -51,7 +51,7 @@ author:
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : "zlong-911"
+  github           :
   kaggle           : # Username  
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 

@@ -7,12 +7,20 @@
 
     if (!toggleButton || !details) return;
 
+    const setToggleLabel = () => {
+      const label = document.documentElement.lang === "zh-CN" ? "详情" : "Details";
+      const arrow = details.hidden ? "↓" : "↑";
+      toggleButton.innerHTML = `${label} <span aria-hidden="true">${arrow}</span>`;
+    };
+
     toggleButton.addEventListener("click", () => {
       const willOpen = details.hidden;
       details.hidden = !willOpen;
       toggleButton.setAttribute("aria-expanded", String(willOpen));
       toggleButton.classList.toggle("is-active", willOpen);
-      toggleButton.innerHTML = `Details <span aria-hidden="true">${willOpen ? "↑" : "↓"}</span>`;
+      setToggleLabel();
     });
+
+    window.addEventListener("languagechange", setToggleLabel);
   });
 })();
