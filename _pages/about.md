@@ -399,18 +399,336 @@ redirect_from:
   </section>
 </article>
 
-<article class="work-entry">
+<article class="work-entry work-entry--clothdojo">
   <div class="work-media">
-    <video class="work-video work-video--wide" controls muted loop playsinline preload="none" poster="/images/scalable-garment-trajectories-cropped.webp" data-viewport-autoplay>
-      <source src="/files/scalable-garment-trajectories-cropped.mp4" type="video/mp4">
+    <video id="clothdojo-video" class="work-video" controls playsinline preload="metadata" poster="/images/clothdojo/overview-poster.jpg" aria-label="ClothDojo full project video">
+      <source src="/files/clothdojo/clothdojo-full.mp4" type="video/mp4">
       <span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span>
     </video>
   </div>
   <div class="work-body">
-    <h3 class="work-title" data-i18n="trajectory.title">Scalable Garment Simulation & Data Pipeline</h3>
-    <p class="work-meta" data-i18n="trajectory.meta">Meituan LongCat · Simulation Research Intern, 2026</p>
-    <p class="work-summary" data-i18n="trajectory.summary">This system project builds the data and learning infrastructure behind bimanual garment manipulation. It connects Newton/Style3D cloth simulation, particle-level grasping, VR teleoperation, EpisodeV1 trajectory recording, Isaac RTX visual generation, and LeRobot/OpenPI/RLinf training interfaces into a reproducible pipeline for collecting, reviewing, rendering, retargeting, and evaluating cloth manipulation data.</p>
+    <h3 class="work-title" data-i18n="clothdojo.title">ClothDojo: Learned Data Generation and Benchmarking for Bimanual Garment Flattening and Folding</h3>
+    <p class="work-meta" data-i18n="clothdojo.meta">Meituan LongCat · Research project, 2026</p>
+    <p class="work-summary" data-i18n="clothdojo.summary">ClothDojo is a simulation platform for learning long-horizon, closed-loop garment manipulation. A policy trained with VR demonstrations and targeted human corrections generates nearly 8,000 successful flattening and folding trajectories across hundreds of garments. Re-rendered RGB trajectories support downstream policy training, while shared initial states and task metrics enable systematic evaluation.</p>
+    <p class="work-links">
+      <a class="btn btn--primary" href="/files/clothdojo/clothdojo-paper.pdf" data-i18n="home.paper">Paper</a>
+      <button class="btn" type="button" data-clothdojo-toggle aria-expanded="false" aria-controls="clothdojo-details" data-i18n="home.details">Details <span aria-hidden="true">↓</span></button>
+    </p>
   </div>
+  <section id="clothdojo-details" class="clothdojo-details" data-clothdojo-details hidden>
+    <section class="clothdojo-slide clothdojo-slide--assets" data-clothdojo-slide data-slide-label-en="Platform" data-slide-label-zh="平台">
+      <div class="clothdojo-slide__grid">
+        <div class="clothdojo-slide__copy">
+          <h4 data-i18n="clothdojo.chapter1Heading">A platform for continuous garment manipulation</h4>
+          <p data-i18n="clothdojo.chapter1Text">ClothDojo brings bimanual flattening and folding into a shared closed-loop simulation environment. It combines robot dynamics with cloth physics and covers 500 structurally diverse garments and varied initial states.</p>
+          <p data-i18n="clothdojo.chapter1Detail">The learned data generator ultimately collects 7,848 successful trajectories across the two tasks. Browse a small sample of garment assets alongside independently selected RGB rollout examples.</p>
+        </div>
+        <div class="clothdojo-asset-gallery" data-clothdojo-asset-gallery>
+          <canvas width="1520" height="639" role="img" aria-label="Random garment asset sample" data-clothdojo-asset-canvas></canvas>
+          <div class="clothdojo-asset-gallery__controls">
+            <button type="button" data-clothdojo-asset-random data-i18n="clothdojo.asset.random" disabled>Shuffle assets</button>
+          </div>
+        </div>
+        <div class="clothdojo-rgb-dataset" data-clothdojo-rgb-dataset>
+          <div class="clothdojo-rgb-dataset__labels">
+            <span data-i18n="clothdojo.asset.flatten">Flattening</span>
+            <span data-i18n="clothdojo.asset.fold">Folding</span>
+          </div>
+          <div class="clothdojo-rgb-dataset__grid">
+            <video muted loop playsinline preload="none" aria-label="RGB trajectory sample 1" data-clothdojo-rgb-tile></video>
+            <video muted loop playsinline preload="none" aria-label="RGB trajectory sample 2" data-clothdojo-rgb-tile></video>
+            <video muted loop playsinline preload="none" aria-label="RGB trajectory sample 3" data-clothdojo-rgb-tile></video>
+            <video muted loop playsinline preload="none" aria-label="RGB trajectory sample 4" data-clothdojo-rgb-tile></video>
+            <video muted loop playsinline preload="none" aria-label="RGB trajectory sample 5" data-clothdojo-rgb-tile></video>
+            <video muted loop playsinline preload="none" aria-label="RGB trajectory sample 6" data-clothdojo-rgb-tile></video>
+            <video muted loop playsinline preload="none" aria-label="RGB trajectory sample 7" data-clothdojo-rgb-tile></video>
+            <video muted loop playsinline preload="none" aria-label="RGB trajectory sample 8" data-clothdojo-rgb-tile></video>
+            <video muted loop playsinline preload="none" aria-label="RGB trajectory sample 9" data-clothdojo-rgb-tile></video>
+            <video muted loop playsinline preload="none" aria-label="RGB trajectory sample 10" data-clothdojo-rgb-tile></video>
+            <video muted loop playsinline preload="none" aria-label="RGB trajectory sample 11" data-clothdojo-rgb-tile></video>
+            <video muted loop playsinline preload="none" aria-label="RGB trajectory sample 12" data-clothdojo-rgb-tile></video>
+          </div>
+          <div class="clothdojo-rgb-dataset__controls">
+            <button type="button" data-clothdojo-rgb-random data-i18n="clothdojo.asset.randomRgb" disabled>Sample RGB rollouts</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="clothdojo-slide clothdojo-slide--pair" data-clothdojo-slide data-slide-label-en="White · NOCS · Mirror" data-slide-label-zh="白色 · NOCS · 镜像" hidden>
+      <div class="clothdojo-pair">
+        <div class="clothdojo-pair__intro">
+          <h4 data-i18n="clothdojo.chapter2Heading">White texture, NOCS, and mirror augmentation</h4>
+          <p data-i18n="clothdojo.chapter2Text">Three policies are evaluated from the same garment and initial state: a uniform white texture baseline, NOCS surface coordinates without augmentation, and NOCS with bilateral mirror augmentation.</p>
+          <p data-i18n="clothdojo.chapter2Detail">These are separate policy rollouts, not one trajectory recolored three ways. The videos show the visual conditions; the ablation pages report success rates over the full evaluation.</p>
+        </div>
+        <figure class="clothdojo-pair__synced">
+          <div class="clothdojo-pair__labels" aria-hidden="true">
+            <span data-i18n="clothdojo.whiteLabel">White texture</span>
+            <span>NOCS</span>
+            <span data-i18n="clothdojo.mirrorLabel">Mirror augmentation</span>
+          </div>
+          <video class="clothdojo-clip" controls playsinline preload="metadata" poster="/images/clothdojo/texture/white-nocs-mirror.jpg" src="/files/clothdojo/texture/white-nocs-mirror.mp4" aria-label="Synchronized White, NOCS, and mirror augmentation rollouts"></video>
+          <figcaption class="clothdojo-pair__captions">
+            <span data-i18n="clothdojo.whiteCaption">Uniform garment color; no canonical surface coordinates.</span>
+            <span data-i18n="clothdojo.nocsCaption">Canonical surface colors, without mirror augmentation.</span>
+            <span data-i18n="clothdojo.mirrorCaption">NOCS policy trained with bilateral mirror augmentation.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="clothdojo-slide" data-clothdojo-slide data-slide-label-en="Rollouts & corrections" data-slide-label-zh="执行与纠错" hidden>
+      <div class="clothdojo-slide__grid">
+        <div class="clothdojo-slide__copy">
+          <h4 data-i18n="clothdojo.chapter3Heading">Keep successes and correct failures</h4>
+          <p data-i18n="clothdojo.chapter3Text">The policy runs offline to generate trajectories. Task metrics retain successful rollouts; for selected failures, an operator reviews the rollout, restores an earlier state, and continues from there in VR.</p>
+          <p data-i18n="clothdojo.chapter3Detail">Those corrections are fed back into training, concentrating human effort on states the policy actually struggles with.</p>
+          <div class="clothdojo-slide__facts">
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter3Fact1Label">Generate</strong><span data-i18n="clothdojo.chapter3Fact1Value">Autonomous rollouts</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter3Fact2Label">Keep</strong><span data-i18n="clothdojo.chapter3Fact2Value">Successful trajectories</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter3Fact3Label">Correct</strong><span data-i18n="clothdojo.chapter3Fact3Value">Selected failures in VR</span></div>
+          </div>
+        </div>
+        <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/rollouts-corrections-poster.jpg" aria-label="Autonomous rollouts and human corrections">
+          <source src="/files/clothdojo/rollouts-corrections.mp4" type="video/mp4">
+          <span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span>
+        </video>
+      </div>
+    </section>
+    <section class="clothdojo-slide" data-clothdojo-slide data-slide-label-en="Rendering & benchmark" data-slide-label-zh="渲染与评测" hidden>
+      <div class="clothdojo-slide__grid">
+        <div class="clothdojo-slide__copy">
+          <h4 data-i18n="clothdojo.chapter4Heading">Turn physical trajectories into reusable training data</h4>
+          <p data-i18n="clothdojo.chapter4Text">The frozen policies generate 3,992 flattening and 3,856 folding trajectories. Successful physical rollouts are replayed with varied appearances to render RGB observations for downstream policies that do not receive NOCS.</p>
+          <p data-i18n="clothdojo.chapter4Detail">Saved initial states and common task metrics support controlled comparisons across garment appearances. The next page shows how reference motions transfer to compatible robots.</p>
+          <div class="clothdojo-slide__facts">
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter4Fact1Label">Flattening</strong><span data-i18n="clothdojo.chapter4Fact1Value">3,992 successes</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter4Fact2Label">Folding</strong><span data-i18n="clothdojo.chapter4Fact2Value">3,856 successes</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter4Fact3Label">Output</strong><span data-i18n="clothdojo.chapter4Fact3Value">RGB observations</span></div>
+          </div>
+        </div>
+        <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/rendering-benchmark-poster.jpg" aria-label="RGB rendering and benchmark">
+          <source src="/files/clothdojo/rendering-benchmark.mp4" type="video/mp4">
+          <span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span>
+        </video>
+      </div>
+    </section>
+    <section class="clothdojo-slide" data-clothdojo-slide data-slide-label-en="Robot retargeting" data-slide-label-zh="机器人重定向" hidden>
+      <div class="clothdojo-slide__grid">
+        <div class="clothdojo-slide__copy">
+          <h4 data-i18n="clothdojo.chapter11Heading">Retargeting across robot embodiments</h4>
+          <p data-i18n="clothdojo.chapter11Text">Select a task and robot to inspect individual retargeted garment motions across five compatible embodiments. Saved initial states and common metrics support repeatable policy comparisons.</p>
+          <p data-i18n="clothdojo.chapter11Detail">These clips illustrate embodiment coverage; reported policy success rates come from the full evaluation.</p>
+          <div class="clothdojo-slide__facts">
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter11Fact1Label">Robots</strong><span data-i18n="clothdojo.chapter11Fact1Value">Five embodiments</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter11Fact2Label">Tasks</strong><span data-i18n="clothdojo.chapter11Fact2Value">Flatten + fold</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter11Fact3Label">Evaluation</strong><span data-i18n="clothdojo.chapter11Fact3Value">Shared initial states</span></div>
+          </div>
+        </div>
+        <div class="clothdojo-focus" data-clothdojo-focus data-focus-family="retarget" data-focus-task="robot">
+          <div class="clothdojo-focus__conditions" role="tablist" aria-label="Choose task">
+            <button type="button" role="tab" aria-selected="true" data-focus-condition="flatten" data-i18n="clothdojo.asset.flatten">Flattening</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-condition="fold" data-i18n="clothdojo.asset.fold">Folding</button>
+          </div>
+          <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/focus/retarget/robot_flatten/aloha2.jpg" src="/files/clothdojo/focus/retarget/robot_flatten/aloha2.mp4" aria-label="Aloha 2 flattening"></video>
+          <div class="clothdojo-focus__methods" role="tablist" aria-label="Choose robot">
+            <button type="button" role="tab" aria-selected="true" data-focus-method="aloha2">ALOHA 2</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-method="ur5e_2f85">UR5e</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-method="fr3_duo">FR3 Duo</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-method="piper">Piper</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-method="x5">X5</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="clothdojo-slide" data-clothdojo-slide data-slide-label-en="Flattening ablation" data-slide-label-zh="铺平消融" hidden>
+      <div class="clothdojo-slide__grid">
+        <div class="clothdojo-slide__copy">
+          <h4 data-i18n="clothdojo.chapter5Heading">What helps the generator flatten garments?</h4>
+          <p data-i18n="clothdojo.chapter5Text">The flattening ablation compares the generator with and without NOCS cues and mirror augmentation. Both help in closed-loop trials on seen and unseen garments, where crumpled cloth can hide its structure and either arm may need to lead.</p>
+          <p data-i18n="clothdojo.chapter5Detail">This evaluates the data-generation policy itself, before downstream RGB policy training.</p>
+          <div class="clothdojo-slide__facts">
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter5Fact1Label">Task</strong><span data-i18n="clothdojo.chapter5Fact1Value">Garment flattening</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter5Fact2Label">Factors</strong><span data-i18n="clothdojo.chapter5Fact2Value">NOCS + mirroring</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter5Fact3Label">Test</strong><span data-i18n="clothdojo.chapter5Fact3Value">Seen and unseen assets</span></div>
+          </div>
+        </div>
+        <div class="clothdojo-ablation">
+          <h5 data-i18n="clothdojo.ablationRate">Overall success rate</h5>
+          <div class="clothdojo-ablation__row" role="img" aria-label="White: 24.8% overall success"><span>White</span><div class="clothdojo-ablation__track"><i style="width: 24.8%"></i></div><strong>24.8%</strong></div>
+          <div class="clothdojo-ablation__row" role="img" aria-label="+ NOCS: 62.9% overall success"><span>+ NOCS</span><div class="clothdojo-ablation__track"><i style="width: 62.9%"></i></div><strong>62.9%</strong></div>
+          <div class="clothdojo-ablation__row" role="img" aria-label="+ Mirror: 69.6% overall success"><span>+ Mirror</span><div class="clothdojo-ablation__track"><i style="width: 69.6%"></i></div><strong>69.6%</strong></div>
+          <div class="clothdojo-ablation__row" role="img" aria-label="+ HIL: 76.5% overall success"><span>+ HIL</span><div class="clothdojo-ablation__track"><i style="width: 76.5%"></i></div><strong>76.5%</strong></div>
+          <details class="clothdojo-ablation__examples">
+            <summary data-i18n="clothdojo.watchAblation">Watch selected rollouts</summary>
+            <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/ablation-flattening-poster.jpg" aria-label="Flattening ablation">
+          <source src="/files/clothdojo/ablation-flattening.mp4" type="video/mp4">
+          <span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span>
+        </video>
+          </details>
+        </div>
+      </div>
+    </section>
+    <section class="clothdojo-slide" data-clothdojo-slide data-slide-label-en="Folding ablation" data-slide-label-zh="折叠消融" hidden>
+      <div class="clothdojo-slide__grid">
+        <div class="clothdojo-slide__copy">
+          <h4 data-i18n="clothdojo.chapter6Heading">What helps the generator fold garments?</h4>
+          <p data-i18n="clothdojo.chapter6Text">The folding ablation applies the same cumulative changes. NOCS and mirror augmentation bring smaller gains here than in flattening.</p>
+          <p data-i18n="clothdojo.chapter6Detail">Human-in-the-loop corrections add recovery behavior from failed rollouts and provide the strongest single-step improvement for folding.</p>
+          <div class="clothdojo-slide__facts">
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter6Fact1Label">Task</strong><span data-i18n="clothdojo.chapter6Fact1Value">Garment folding</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter6Fact2Label">Factors</strong><span data-i18n="clothdojo.chapter6Fact2Value">NOCS + mirroring</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter6Fact3Label">Key addition</strong><span data-i18n="clothdojo.chapter6Fact3Value">Human corrections</span></div>
+          </div>
+        </div>
+        <div class="clothdojo-ablation">
+          <h5 data-i18n="clothdojo.ablationRate">Overall success rate</h5>
+          <div class="clothdojo-ablation__row" role="img" aria-label="White: 55.1% overall success"><span>White</span><div class="clothdojo-ablation__track"><i style="width: 55.1%"></i></div><strong>55.1%</strong></div>
+          <div class="clothdojo-ablation__row" role="img" aria-label="+ NOCS: 57.6% overall success"><span>+ NOCS</span><div class="clothdojo-ablation__track"><i style="width: 57.6%"></i></div><strong>57.6%</strong></div>
+          <div class="clothdojo-ablation__row" role="img" aria-label="+ Mirror: 60.5% overall success"><span>+ Mirror</span><div class="clothdojo-ablation__track"><i style="width: 60.5%"></i></div><strong>60.5%</strong></div>
+          <div class="clothdojo-ablation__row" role="img" aria-label="+ HIL: 70.0% overall success"><span>+ HIL</span><div class="clothdojo-ablation__track"><i style="width: 70.0%"></i></div><strong>70.0%</strong></div>
+          <details class="clothdojo-ablation__examples">
+            <summary data-i18n="clothdojo.watchAblation">Watch selected rollouts</summary>
+            <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/ablation-folding-poster.jpg" aria-label="Folding ablation">
+          <source src="/files/clothdojo/ablation-folding.mp4" type="video/mp4">
+          <span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span>
+        </video>
+          </details>
+        </div>
+      </div>
+    </section>
+    <section class="clothdojo-slide clothdojo-slide--comparison" data-clothdojo-slide data-slide-label-en="Flattening data" data-slide-label-zh="铺平数据" hidden>
+      <div class="clothdojo-slide__grid">
+        <div class="clothdojo-slide__copy">
+          <h4 data-i18n="clothdojo.chapter7Heading">Can generated data train an RGB flattening policy?</h4>
+          <p data-i18n="clothdojo.chapter7Text">Human, Generated, and Combined use the same human supervision budget and RGB rendering pipeline. Generated adds successful autonomous rollouts without extra human action labels.</p>
+          <p data-i18n="clothdojo.chapter7Detail">Switch conditions to compare three policies on the same garment and initial state. Generated exceeds Human in the full evaluation; the clips show selected examples.</p>
+          <div class="clothdojo-slide__facts">
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter7Fact1Label">Human</strong><span data-i18n="clothdojo.chapter7Fact1Value">VR demonstrations</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter7Fact2Label">Generated</strong><span data-i18n="clothdojo.chapter7Fact2Value">Successful rollouts</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter7Fact3Label">Combined</strong><span data-i18n="clothdojo.chapter7Fact3Value">Both data sources</span></div>
+          </div>
+        </div>
+        <div class="clothdojo-focus" data-clothdojo-focus data-focus-family="training_source" data-focus-task="flatten">
+          <div class="clothdojo-focus__conditions" role="tablist" aria-label="Choose garment and appearance condition">
+            <button type="button" role="tab" aria-selected="true" data-focus-condition="seen_asset_seen_appearance" data-i18n="clothdojo.condition.seen_asset.seen_appearance">Baseline</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-condition="seen_asset_unseen_appearance" data-i18n="clothdojo.condition.seen_asset.unseen_appearance">New appearance</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-condition="unseen_asset_seen_appearance" data-i18n="clothdojo.condition.unseen_asset.seen_appearance">New asset</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-condition="unseen_asset_unseen_appearance" data-i18n="clothdojo.condition.unseen_asset.unseen_appearance">New asset + appearance</button>
+          </div>
+          <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/focus/training_source/flatten_seen_asset_seen_appearance/generated.jpg" src="/files/clothdojo/focus/training_source/flatten_seen_asset_seen_appearance/generated.mp4" aria-label="Flattening data: Generated, Baseline"></video>
+          <div class="clothdojo-focus__methods" role="tablist" aria-label="Choose policy">
+            <button type="button" role="tab" aria-selected="true" data-focus-method="generated">Generated</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-method="human">Human</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-method="combined">Combined</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="clothdojo-slide clothdojo-slide--comparison" data-clothdojo-slide data-slide-label-en="Folding data" data-slide-label-zh="折叠数据" hidden>
+      <div class="clothdojo-slide__grid">
+        <div class="clothdojo-slide__copy">
+          <h4 data-i18n="clothdojo.chapter8Heading">Does the data advantage carry over to folding?</h4>
+          <p data-i18n="clothdojo.chapter8Text">The folding benchmark uses the same three training sources. Generated again outperforms Human under matched closed-loop evaluation.</p>
+          <p data-i18n="clothdojo.chapter8Detail">Each condition shows matched rollouts from the same garment and initial state. Selected autonomous successes extend the value of a fixed human supervision budget.</p>
+          <div class="clothdojo-slide__facts">
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter8Fact1Label">Human</strong><span data-i18n="clothdojo.chapter8Fact1Value">VR demonstrations</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter8Fact2Label">Generated</strong><span data-i18n="clothdojo.chapter8Fact2Value">Successful rollouts</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter8Fact3Label">Combined</strong><span data-i18n="clothdojo.chapter8Fact3Value">Both data sources</span></div>
+          </div>
+        </div>
+        <div class="clothdojo-focus" data-clothdojo-focus data-focus-family="training_source" data-focus-task="fold">
+          <div class="clothdojo-focus__conditions" role="tablist" aria-label="Choose garment and appearance condition">
+            <button type="button" role="tab" aria-selected="true" data-focus-condition="seen_asset_seen_appearance" data-i18n="clothdojo.condition.seen_asset.seen_appearance">Baseline</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-condition="seen_asset_unseen_appearance" data-i18n="clothdojo.condition.seen_asset.unseen_appearance">New appearance</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-condition="unseen_asset_seen_appearance" data-i18n="clothdojo.condition.unseen_asset.seen_appearance">New asset</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-condition="unseen_asset_unseen_appearance" data-i18n="clothdojo.condition.unseen_asset.unseen_appearance">New asset + appearance</button>
+          </div>
+          <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/focus/training_source/fold_seen_asset_seen_appearance/generated.jpg" src="/files/clothdojo/focus/training_source/fold_seen_asset_seen_appearance/generated.mp4" aria-label="Folding data: Generated, Baseline"></video>
+          <div class="clothdojo-focus__methods" role="tablist" aria-label="Choose policy">
+            <button type="button" role="tab" aria-selected="true" data-focus-method="generated">Generated</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-method="human">Human</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-method="combined">Combined</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="clothdojo-slide clothdojo-slide--comparison" data-clothdojo-slide data-slide-label-en="Flattening models" data-slide-label-zh="铺平模型" hidden>
+      <div class="clothdojo-slide__grid">
+        <div class="clothdojo-slide__copy">
+          <h4 data-i18n="clothdojo.chapter9Heading">Compare four models on flattening</h4>
+          <p data-i18n="clothdojo.chapter9Text">Holding the generated training data fixed, ClothDojo compares π0.5, a StarVLA-based policy, GR00T N1.7, and Diffusion Policy under the same closed-loop flattening protocol.</p>
+          <p data-i18n="clothdojo.chapter9Detail">The two displayed conditions have matched visual layouts. π0.5 has the highest reported success; all four models decline on unseen garments.</p>
+          <div class="clothdojo-slide__facts">
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter9Fact1Label">Training data</strong><span data-i18n="clothdojo.chapter9Fact1Value">Generated rollouts</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter9Fact2Label">Models</strong><span data-i18n="clothdojo.chapter9Fact2Value">Four policies</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter9Fact3Label">Outcome</strong><span data-i18n="clothdojo.chapter9Fact3Value">Closed-loop flattening</span></div>
+          </div>
+        </div>
+        <div class="clothdojo-focus" data-clothdojo-focus data-focus-family="policy_model" data-focus-task="flatten">
+          <div class="clothdojo-focus__conditions" role="tablist" aria-label="Choose garment and appearance condition">
+            <button type="button" role="tab" aria-selected="true" data-focus-condition="seen_asset_seen_appearance" data-i18n="clothdojo.condition.seen_asset.seen_appearance">Baseline</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-condition="unseen_asset_seen_appearance" data-i18n="clothdojo.condition.unseen_asset.seen_appearance">New asset</button>
+          </div>
+          <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/focus/policy_model/flatten_seen_asset_seen_appearance/pi05.jpg" src="/files/clothdojo/focus/policy_model/flatten_seen_asset_seen_appearance/pi05.mp4" aria-label="Flattening models: π0.5, Baseline"></video>
+          <div class="clothdojo-focus__methods" role="tablist" aria-label="Choose policy">
+            <button type="button" role="tab" aria-selected="true" data-focus-method="pi05">π0.5</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-method="starvla">StarVLA</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-method="groot">GR00T N1.7</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-method="diffusion">Diffusion Policy</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="clothdojo-slide clothdojo-slide--comparison" data-clothdojo-slide data-slide-label-en="Folding models" data-slide-label-zh="折叠模型" hidden>
+      <div class="clothdojo-slide__grid">
+        <div class="clothdojo-slide__copy">
+          <h4 data-i18n="clothdojo.chapter10Heading">Compare four models on folding</h4>
+          <p data-i18n="clothdojo.chapter10Text">With generated data held fixed, the same four models are evaluated on folding. Their relative ranking differs from flattening.</p>
+          <p data-i18n="clothdojo.chapter10Detail">Switch conditions to inspect matched rollouts. Results are from simulation; reliable end-to-end flattening followed by folding remains open.</p>
+          <div class="clothdojo-slide__facts">
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter10Fact1Label">Training data</strong><span data-i18n="clothdojo.chapter10Fact1Value">Generated rollouts</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter10Fact2Label">Models</strong><span data-i18n="clothdojo.chapter10Fact2Value">Four policies</span></div>
+            <div class="clothdojo-slide__fact"><strong data-i18n="clothdojo.chapter10Fact3Label">Outcome</strong><span data-i18n="clothdojo.chapter10Fact3Value">Closed-loop folding</span></div>
+          </div>
+        </div>
+        <div class="clothdojo-focus" data-clothdojo-focus data-focus-family="policy_model" data-focus-task="fold">
+          <div class="clothdojo-focus__conditions" role="tablist" aria-label="Choose garment and appearance condition">
+            <button type="button" role="tab" aria-selected="true" data-focus-condition="seen_asset_seen_appearance" data-i18n="clothdojo.condition.seen_asset.seen_appearance">Baseline</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-condition="seen_asset_unseen_appearance" data-i18n="clothdojo.condition.seen_asset.unseen_appearance">New appearance</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-condition="unseen_asset_seen_appearance" data-i18n="clothdojo.condition.unseen_asset.seen_appearance">New asset</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-condition="unseen_asset_unseen_appearance" data-i18n="clothdojo.condition.unseen_asset.unseen_appearance">New asset + appearance</button>
+          </div>
+          <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/focus/policy_model/fold_seen_asset_seen_appearance/pi05.jpg" src="/files/clothdojo/focus/policy_model/fold_seen_asset_seen_appearance/pi05.mp4" aria-label="Folding models: π0.5, Baseline"></video>
+          <div class="clothdojo-focus__methods" role="tablist" aria-label="Choose policy">
+            <button type="button" role="tab" aria-selected="true" data-focus-method="pi05">π0.5</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-method="starvla">StarVLA</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-method="groot">GR00T N1.7</button>
+            <button type="button" role="tab" aria-selected="false" data-focus-method="diffusion">Diffusion Policy</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <nav class="clothmate-carousel__controls" aria-label="ClothDojo video chapters">
+      <button class="clothmate-carousel__arrow" type="button" data-clothdojo-previous aria-label="Previous chapter" disabled>←</button>
+      <div class="clothmate-carousel__position">
+        <span data-clothdojo-status aria-live="polite">Platform · 1 / 11</span>
+        <span class="clothmate-carousel__dots" role="tablist" aria-label="Choose chapter">
+          <button type="button" role="tab" aria-label="Platform" aria-selected="true" data-clothdojo-page="0"></button>
+          <button type="button" role="tab" aria-label="White · NOCS · Mirror" aria-selected="false" data-clothdojo-page="1"></button>
+          <button type="button" role="tab" aria-label="Rollouts & corrections" aria-selected="false" data-clothdojo-page="2"></button>
+          <button type="button" role="tab" aria-label="Rendering & benchmark" aria-selected="false" data-clothdojo-page="3"></button>
+          <button type="button" role="tab" aria-label="Robot retargeting" aria-selected="false" data-clothdojo-page="4"></button>
+          <button type="button" role="tab" aria-label="Flattening ablation" aria-selected="false" data-clothdojo-page="5"></button>
+          <button type="button" role="tab" aria-label="Folding ablation" aria-selected="false" data-clothdojo-page="6"></button>
+          <button type="button" role="tab" aria-label="Flattening data" aria-selected="false" data-clothdojo-page="7"></button>
+          <button type="button" role="tab" aria-label="Folding data" aria-selected="false" data-clothdojo-page="8"></button>
+          <button type="button" role="tab" aria-label="Flattening models" aria-selected="false" data-clothdojo-page="9"></button>
+          <button type="button" role="tab" aria-label="Folding models" aria-selected="false" data-clothdojo-page="10"></button>
+        </span>
+      </div>
+      <button class="clothmate-carousel__arrow" type="button" data-clothdojo-next aria-label="Next chapter">→</button>
+    </nav>
+  </section>
 </article>
 
 <script defer src="/assets/js/clothmate-details.js?v=1"></script>
@@ -420,4 +738,5 @@ redirect_from:
 <script defer src="/assets/js/visual-affordance-assets.js?v=2"></script>
 <script defer src="/assets/js/visual-affordance-results.js?v=6"></script>
 <script defer src="/assets/js/visual-affordance-carousel.js?v=5"></script>
+<script defer src="/assets/js/clothdojo-details.js?v=10"></script>
 <script defer src="/assets/js/video-autoplay.js?v=1"></script>
