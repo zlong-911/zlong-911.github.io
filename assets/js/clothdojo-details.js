@@ -10,51 +10,37 @@
     const comparisons = Array.from(details.querySelectorAll("[data-clothdojo-comparison]"));
     const focusViews = Array.from(details.querySelectorAll("[data-clothdojo-focus]"));
     const assetGallery = details.querySelector("[data-clothdojo-asset-gallery]");
-    const rgbDataset = details.querySelector("[data-clothdojo-rgb-dataset]");
-    const datasetVideos = Array.from(details.querySelectorAll("[data-clothdojo-rgb-tile]"));
+    const datasetTiles = Array.from(details.querySelectorAll("[data-clothdojo-rgb-tile]"));
+    const rgbViewer = details.querySelector("[data-clothdojo-rgb-viewer]");
+    const rgbVideo = rgbViewer.querySelector("video");
+    const rgbTitle = rgbViewer.querySelector("[data-clothdojo-rgb-title]");
     const pages = Array.from(details.querySelectorAll("[data-clothdojo-page]"));
     const previous = details.querySelector("[data-clothdojo-previous]");
     const next = details.querySelector("[data-clothdojo-next]");
     const status = details.querySelector("[data-clothdojo-status]");
     let current = 0;
     let touchStart = null;
-    let rgbVisible = false;
-    const syncRgbPlayback = () => {
-      const shouldPlay = rgbVisible && !details.hidden && current === 0 &&
-        document.visibilityState === "visible" && fullVideo.paused;
-      datasetVideos.forEach((video) => {
-        if (shouldPlay) video.play().catch(() => {});
-        else video.pause();
-      });
+    const datasetTracks = [];
+    const closeRgbViewer = () => {
+      rgbVideo.pause();
+      rgbVideo.removeAttribute("src");
+      rgbVideo.load();
+      if (rgbViewer.open) rgbViewer.close();
     };
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(([entry]) => {
-        rgbVisible = entry.isIntersecting;
-        syncRgbPlayback();
-      }, { threshold: 0.1 }).observe(rgbDataset);
-    } else {
-      rgbVisible = true;
-    }
-    document.addEventListener("visibilitychange", syncRgbPlayback);
-    const datasetTracks = [
-      [null, "flatten_rand_00TKNP2XT6_000003"],
-      [null, "flatten_rand_0IX189WGFR_000002"],
-      [null, "flatten_rand_166KJGCYM8_000002"],
-      [345, "flatten_rand_1EHUSGYR73_000001"],
-      [476, "flatten_rand_1FL5UDP4YQ_000001"],
-      [null, "flatten_rand_1MBEYFUNQV_000002"],
-      [246, "flatten_rand_20JUZJXU1F_000001"],
-      [59, "flatten_rand_24XNTUDUZ1_000001"],
-      [400, "fold_rand_0EXG3ISQ34_000000"],
-      [400, "fold_rand_0EXG3ISQ34_000003"],
-      [null, "fold_rand_07SZ5QQ0QP_000002"],
-      [370, "fold_rand_0TKY8IYX0W_000003"],
-      [null, "fold_rand_0TQEY7VJ0K_000002"],
-      [263, "fold_rand_13ZRL8YUW9_000000"],
-      [110, "fold_rand_1I2KU288LG_000000"],
-      [null, "fold_rand_1UUYHHN5U4_000002"],
-      [317, "fold_rand_ZZCWITH5HY_000000"]
-    ];
+    rgbViewer.querySelector("[data-clothdojo-rgb-close]").addEventListener("click", closeRgbViewer);
+    rgbViewer.addEventListener("close", closeRgbViewer);
+    datasetTiles.forEach((tile) => tile.addEventListener("click", () => {
+      if (!tile.dataset.version) return;
+      const task = tile.dataset.version.startsWith("flatten_") ? "flatten" : "fold";
+      const chinese = document.documentElement.lang === "zh-CN";
+      rgbTitle.textContent = chinese ? `${task === "flatten" ? "展平" : "折叠"} · RGB 轨迹片段` : `${task === "flatten" ? "Flattening" : "Folding"} · RGB trajectory excerpt`;
+      rgbVideo.src = `/files/clothdojo/dataset-rgb/${tile.dataset.version}.mp4`;
+      rgbVideo.poster = tile.querySelector("img").src;
+      rgbViewer.showModal();
+      fullVideo.pause();
+      clips.forEach((clip) => clip.pause());
+      rgbVideo.play().catch(() => {});
+    }));
 
     if (assetGallery) {
       const canvas = assetGallery.querySelector("[data-clothdojo-asset-canvas]");
@@ -101,14 +87,15 @@
       const sampleRollouts = () => {
         const flatten = drawRollouts("flatten", 6);
         const fold = drawRollouts("fold", 6);
-        datasetVideos.forEach((video, slot) => {
+        closeRgbViewer();
+        datasetTiles.forEach((tile, slot) => {
           const taskSlot = Math.floor(slot / 4) * 2 + slot % 2;
           const version = (slot % 4 < 2 ? flatten : fold)[taskSlot][1];
-          video.pause();
-          video.src = `/files/clothdojo/dataset-rgb/${version}.mp4?v=2`;
-          video.poster = `/images/clothdojo/dataset-rgb/${version}.jpg`;
+          tile.dataset.version = version;
+          tile.querySelector("img").src = `/images/clothdojo/dataset-rgb/${version}.jpg`;
+          tile.disabled = false;
+          tile.setAttribute("aria-label", `${slot % 4 < 2 ? "Flattening" : "Folding"} RGB trajectory ${version}`);
         });
-        syncRgbPlayback();
       };
       master.onload = () => {
         sampleAssets();
@@ -127,11 +114,15 @@
             if (/^(flatten|fold)_episode_\d{6}$/.test(name)) datasetTracks.push([null, name]);
           });
         })
-        .catch((error) => console.warn("Using the local RGB sample pool", error))
-        .finally(() => {
+        .then(() => {
+          if (datasetTracks.filter(([, name]) => name.startsWith("flatten_")).length < 6 ||
+              datasetTracks.filter(([, name]) => name.startsWith("fold_")).length < 6) {
+            throw new Error("RGB pool has fewer than six trajectories per task");
+          }
           sampleRollouts();
           randomRgb.disabled = false;
-        });
+        })
+        .catch((error) => console.error("RGB trajectories are unavailable", error));
     }
 
     const updateLanguage = () => {
@@ -164,7 +155,7 @@
       slides[current].hidden = true;
       current = index;
       slides[current].hidden = false;
-      syncRgbPlayback();
+      closeRgbViewer();
       previous.disabled = current === 0;
       next.disabled = current === slides.length - 1;
       pages.forEach((page, pageIndex) => {
@@ -178,7 +169,7 @@
       toggle.setAttribute("aria-expanded", String(!details.hidden));
       toggle.classList.toggle("is-active", !details.hidden);
       if (details.hidden) clips.forEach((clip) => clip.pause());
-      syncRgbPlayback();
+      if (details.hidden) closeRgbViewer();
       updateLanguage();
     });
     previous.addEventListener("click", () => showPage(current - 1));
@@ -197,17 +188,12 @@
         });
       }));
     });
-    details.querySelectorAll(".clothdojo-ablation__examples").forEach((examples) => {
-      examples.addEventListener("toggle", () => {
-        if (!examples.open) examples.querySelector("video")?.pause();
-      });
-    });
     focusViews.forEach((view) => {
       const video = view.querySelector("video");
       const conditions = Array.from(view.querySelectorAll("[data-focus-condition]"));
       const methods = Array.from(view.querySelectorAll("[data-focus-method]"));
-      let condition = conditions[0].dataset.focusCondition;
-      let method = methods[0].dataset.focusMethod;
+      let condition = conditions.find((item) => item.getAttribute("aria-selected") === "true").dataset.focusCondition;
+      let method = methods.find((item) => item.getAttribute("aria-selected") === "true").dataset.focusMethod;
       const update = () => {
         const name = `${view.dataset.focusTask}_${condition}/${method}`;
         const base = `${view.dataset.focusFamily}/${name}`;
@@ -233,15 +219,15 @@
       clip.addEventListener("play", () => {
         fullVideo.pause();
         clips.filter((other) => other !== clip).forEach((other) => other.pause());
-        datasetVideos.forEach((other) => other.pause());
+        rgbVideo.pause();
       });
     });
-    datasetVideos.forEach((video) => video.addEventListener("play", () => {
-      fullVideo.pause();
+    fullVideo.addEventListener("play", () => {
       clips.forEach((clip) => clip.pause());
-    }));
-    fullVideo.addEventListener("play", () => [...clips, ...datasetVideos].forEach((clip) => clip.pause()));
+      closeRgbViewer();
+    });
     details.addEventListener("keydown", (event) => {
+      if (rgbViewer.open) return;
       if (event.key === "ArrowLeft") showPage(current - 1);
       if (event.key === "ArrowRight") showPage(current + 1);
     });

@@ -243,14 +243,14 @@
     @include breakpoint($medium) {
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1rem;
-      align-items: start;
+      align-items: center;
       padding: 0.3rem 0.35rem 0;
     }
 
     &::before {
       @include breakpoint($medium) {
         position: absolute;
-        top: 2.03rem;
+        top: 50%;
         right: 11%;
         left: 11%;
         height: 2px;
@@ -264,7 +264,7 @@
     position: relative;
     display: flex;
     gap: 0.65rem;
-    align-items: flex-start;
+    align-items: center;
     min-height: 0;
     padding: 0.3rem 0.35rem;
     border: 0;
@@ -287,8 +287,8 @@
     align-items: center;
     justify-content: center;
     flex: 0 0 auto;
-    width: 2.75rem;
-    height: 2.75rem;
+    width: 3.35rem;
+    height: 3.35rem;
     padding: 0.2rem;
     border: 1px solid rgba($primary-color, 0.18);
     border-radius: 50%;
@@ -447,6 +447,40 @@
     }
   }
 
+  .work-paper-preview,
+  .work-leaderboard-preview {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border: 1px solid rgba($primary-color, 0.2);
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(#000, 0.14);
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .work-paper-preview {
+    &::after {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 1.15rem;
+      background: linear-gradient(transparent, #fff);
+      content: "";
+      pointer-events: none;
+    }
+  }
+
+  .work-leaderboard-preview {
+    cursor: zoom-in;
+  }
+
   .work-media {
     max-width: 30rem;
 
@@ -499,6 +533,10 @@
     aspect-ratio: 16 / 9;
     object-fit: cover;
     border-radius: 6px;
+  }
+
+  .work-entry video {
+    box-shadow: 0 2px 8px rgba(#000, 0.14);
   }
 
   .work-video--wide {
@@ -594,9 +632,55 @@
 
   .clothdojo-slide:not(.clothdojo-slide--assets) .clothdojo-slide__grid {
     @include breakpoint($medium) {
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-      align-items: start;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      align-items: stretch;
     }
+  }
+
+  .clothdojo-slide--ablation .clothdojo-slide__copy,
+  .clothdojo-slide--comparison .clothdojo-slide__copy {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .clothdojo-slide--comparison > .clothdojo-slide__grid {
+    @include breakpoint($medium) {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    }
+
+    @media (max-width: 1100px) {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+  }
+
+  .clothdojo-slide--retarget > .clothdojo-slide__grid {
+    @include breakpoint($medium) {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    }
+
+    @media (max-width: 1100px) {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+  }
+
+  .clothdojo-slide--retarget .clothdojo-slide__copy {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .clothdojo-slide--comparison > .clothdojo-slide__grid > .clothdojo-clip {
+    align-self: start;
+    height: auto;
+  }
+
+  .clothdojo-slide--ablation .clothdojo-split-table,
+  .clothdojo-slide--comparison .clothdojo-slide__facts {
+    margin-top: auto;
+  }
+
+  .clothdojo-slide--ablation > .clothdojo-slide__grid > .clothdojo-clip {
+    align-self: start;
+    height: auto;
   }
 
   .clothdojo-slide:not(.clothdojo-slide--assets) {
@@ -723,14 +807,65 @@
     gap: 3px;
     background: #111;
 
-    video {
+    .clothdojo-rgb-dataset__tile {
+      position: relative;
       display: block;
       width: 100%;
-      height: auto;
+      padding: 0;
+      border: 0;
+      cursor: pointer;
+      background: #111;
+      overflow: hidden;
+      &:disabled { cursor: wait; }
+      &:focus-visible { outline: 3px solid var(--global-link-color); outline-offset: -3px; }
+      span {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-size: 1.15rem;
+        text-shadow: 0 1px 7px #000;
+        opacity: 0.8;
+        transition: opacity 120ms ease;
+      }
+      &:hover span,
+      &:focus-visible span { opacity: 1; }
+    }
+
+    img {
+      display: block;
+      width: 100%;
       aspect-ratio: 4 / 3;
       object-fit: cover;
       background: #111;
     }
+  }
+
+  .clothdojo-rgb-dataset__viewer {
+    position: fixed;
+    width: min(90vw, 900px);
+    max-width: none;
+    max-height: 90vh;
+    padding: 0.75rem;
+    border: 1px solid var(--global-border-color);
+    border-radius: 8px;
+    color: var(--global-text-color);
+    background: var(--global-bg-color);
+    &::backdrop { background: rgba(0, 0, 0, 0.8); }
+    h5 { margin: 0 2rem 0.5rem 0; }
+    video { display: block; width: 100%; max-height: 76vh; aspect-ratio: 4 / 3; background: #111; }
+  }
+
+  .clothdojo-rgb-dataset__close {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.4rem;
+    border: 0;
+    background: transparent;
+    color: var(--global-text-color);
+    font-size: 1.4rem;
+    cursor: pointer;
   }
 
   .clothdojo-rgb-dataset__labels {
@@ -774,62 +909,114 @@
 
   .clothdojo-focus__conditions { margin-bottom: 0.45rem; }
   .clothdojo-focus__methods { margin-top: 0.45rem; }
-
-  .clothdojo-focus .clothdojo-clip {
-    width: min(100%, 26rem);
-    height: auto;
-    aspect-ratio: 4 / 3;
-    margin-inline: auto;
+  .clothdojo-focus__axis {
+    margin-bottom: 0.25rem;
+    color: var(--global-text-color-light);
+    font-size: 0.69rem;
+    font-weight: 650;
+    text-align: center;
   }
 
-  .clothdojo-ablation {
-    min-width: 0;
-    padding: 0.85rem;
-    border: 1px solid var(--global-border-color);
-    border-radius: 6px;
+  .clothdojo-focus .clothdojo-clip {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    margin-inline: 0;
+  }
 
-    h5 {
-      margin: 0 0 0.9rem;
-      font-size: 0.85rem;
+  .clothdojo-split-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 0.74rem;
+
+    caption {
+      padding: 0.45rem 0;
+      text-align: left;
+      color: var(--global-text-color);
+      font-weight: 700;
+    }
+
+    th, td {
+      padding: 0.47rem 0.3rem;
+      border-bottom: 1px solid var(--global-border-color);
+      white-space: nowrap;
+    }
+
+    th:first-child { width: 5.2rem; text-align: left; }
+    thead th { color: var(--global-text-color-light); font-weight: 650; }
+    tbody th { color: var(--global-text-color); font-weight: 650; }
+    td { text-align: right; }
+    td strong { color: var(--global-text-color); font-variant-numeric: tabular-nums; }
+    td:nth-child(2) i { background: #8ac1c5; }
+    td:nth-child(3) i { background: #6c91c6; }
+  }
+
+  .clothdojo-slide--comparison .clothdojo-split-table th:first-child { width: 6.1rem; }
+
+  .clothdojo-eval-table-wrap {
+    min-width: 0;
+    margin-top: auto;
+    overflow-x: auto;
+  }
+
+  .clothdojo-eval-table {
+    width: 100%;
+    min-width: 27rem;
+    border-collapse: collapse;
+    font-size: 0.7rem;
+    font-variant-numeric: tabular-nums;
+
+    caption {
+      padding: 0.4rem 0;
+      color: var(--global-text-color);
+      font-weight: 700;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 0.34rem 0.18rem;
+      border-bottom: 1px solid var(--global-border-color);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    th:first-child { text-align: left; }
+    thead th { color: var(--global-text-color-light); font-weight: 650; }
+    tbody th { color: var(--global-text-color); font-weight: 650; }
+    tbody td.is-best { color: var(--global-link-color); font-weight: 750; }
+    tbody td:last-child { font-weight: 700; }
+  }
+
+  .clothdojo-joint-table { min-width: 0; }
+
+  .clothdojo-retarget-comparison {
+    .clothdojo-comparison__buttons { justify-content: center; }
+    .clothdojo-comparison__panel .clothdojo-clip { height: auto; }
+    figcaption {
+      margin-top: 0.4rem;
+      color: var(--global-text-color-light);
+      font-size: 0.69rem;
+      line-height: 1.35;
     }
   }
 
-  .clothdojo-ablation__row {
-    display: grid;
-    grid-template-columns: 4.7rem minmax(0, 1fr) 3.2rem;
-    align-items: center;
-    gap: 0.4rem;
-    margin: 0.65rem 0;
-    color: var(--global-text-color-light);
-    font-size: 0.72rem;
-
-    strong { color: var(--global-text-color); text-align: right; }
-  }
-
-  .clothdojo-ablation__track {
-    height: 0.52rem;
+  .clothdojo-split-table__bar {
+    display: inline-block;
+    width: min(48%, 5rem);
+    height: 0.4rem;
+    margin-right: 0.35rem;
     border-radius: 999px;
+    vertical-align: middle;
     background: var(--global-border-color);
     overflow: hidden;
 
-    i {
-      display: block;
-      height: 100%;
-      border-radius: inherit;
-      background: var(--global-link-color);
-    }
+    i { display: block; height: 100%; border-radius: inherit; }
   }
 
-  .clothdojo-ablation__examples {
-    margin-top: 0.85rem;
-
-    summary {
-      cursor: pointer;
-      color: var(--global-link-color);
-      font-size: 0.75rem;
-    }
-
-    .clothdojo-clip { margin-top: 0.55rem; }
+  .clothdojo-slide p.clothdojo-split-table__note {
+    margin: 0.3rem 0 0;
+    font-size: 0.69rem;
   }
 
   .clothdojo-comparison__buttons {
