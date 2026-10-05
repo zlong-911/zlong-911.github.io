@@ -11,9 +11,6 @@
     const focusViews = Array.from(details.querySelectorAll("[data-clothdojo-focus]"));
     const assetGallery = details.querySelector("[data-clothdojo-asset-gallery]");
     const datasetTiles = Array.from(details.querySelectorAll("[data-clothdojo-rgb-tile]"));
-    const rgbViewer = details.querySelector("[data-clothdojo-rgb-viewer]");
-    const rgbVideo = rgbViewer.querySelector("video");
-    const rgbTitle = rgbViewer.querySelector("[data-clothdojo-rgb-title]");
     const pages = Array.from(details.querySelectorAll("[data-clothdojo-page]"));
     const previous = details.querySelector("[data-clothdojo-previous]");
     const next = details.querySelector("[data-clothdojo-next]");
@@ -21,26 +18,58 @@
     let current = 0;
     let touchStart = null;
     const datasetTracks = [];
-    const closeRgbViewer = () => {
-      rgbVideo.pause();
-      rgbVideo.removeAttribute("src");
-      rgbVideo.load();
-      if (rgbViewer.open) rgbViewer.close();
+    // All tiles share one clock. Finished clips hold their final frame until
+    // the longest clip finishes; buffering pauses the entire group.
+    let rgbTime = 0;
+    let rgbLastTick = null;
+    let rgbFrame = null;
+    const pauseRgb = () => {
+      datasetTiles.forEach((video) => video.pause());
+      rgbLastTick = null;
+      if (rgbFrame !== null) cancelAnimationFrame(rgbFrame);
+      rgbFrame = null;
     };
-    rgbViewer.querySelector("[data-clothdojo-rgb-close]").addEventListener("click", closeRgbViewer);
-    rgbViewer.addEventListener("close", closeRgbViewer);
-    datasetTiles.forEach((tile) => tile.addEventListener("click", () => {
-      if (!tile.dataset.version) return;
-      const task = tile.dataset.version.startsWith("flatten_") ? "flatten" : "fold";
-      const chinese = document.documentElement.lang === "zh-CN";
-      rgbTitle.textContent = chinese ? `${task === "flatten" ? "展平" : "折叠"} · RGB 轨迹片段` : `${task === "flatten" ? "Flattening" : "Folding"} · RGB trajectory excerpt`;
-      rgbVideo.src = `/files/clothdojo/dataset-rgb/${tile.dataset.version}.mp4`;
-      rgbVideo.poster = tile.querySelector("img").src;
-      rgbViewer.showModal();
-      fullVideo.pause();
-      clips.forEach((clip) => clip.pause());
-      rgbVideo.play().catch(() => {});
-    }));
+    const tickRgb = (now) => {
+      rgbFrame = null;
+      if (details.hidden || current !== 0 || document.hidden) {
+        pauseRgb();
+        return;
+      }
+      const ready = datasetTiles.every((video) =>
+        Number.isFinite(video.duration) && video.duration > 0 &&
+        (rgbTime >= video.duration || (video.readyState >= 3 && !video.seeking)));
+      if (!ready) {
+        datasetTiles.forEach((video) => video.pause());
+        rgbLastTick = null;
+      } else {
+        const duration = Math.max(...datasetTiles.map((video) => video.duration));
+        if (rgbLastTick !== null) rgbTime += (now - rgbLastTick) / 1000;
+        rgbLastTick = now;
+        if (rgbTime >= duration) rgbTime = 0;
+        datasetTiles.forEach((video) => {
+          if (rgbTime >= video.duration) {
+            // Native ended playback leaves the final decoded frame visible.
+            if (!video.ended && video.currentTime < video.duration - 0.08) {
+              video.currentTime = Math.max(0, video.duration - 0.04);
+            }
+            video.pause();
+          } else {
+            if (Math.abs(video.currentTime - rgbTime) > 0.15 || video.ended) {
+              video.currentTime = rgbTime;
+            }
+            if (video.paused) video.play().catch(() => {});
+          }
+        });
+      }
+      rgbFrame = requestAnimationFrame(tickRgb);
+    };
+    const syncRgb = () => {
+      if (details.hidden || current !== 0 || document.hidden) pauseRgb();
+      else if (rgbFrame === null && datasetTiles.every((video) => video.getAttribute("src"))) {
+        rgbFrame = requestAnimationFrame(tickRgb);
+      }
+    };
+    document.addEventListener("visibilitychange", syncRgb);
 
     if (assetGallery) {
       const canvas = assetGallery.querySelector("[data-clothdojo-asset-canvas]");
@@ -87,15 +116,19 @@
       const sampleRollouts = () => {
         const flatten = drawRollouts("flatten", 6);
         const fold = drawRollouts("fold", 6);
-        closeRgbViewer();
+        pauseRgb();
+        rgbTime = 0;
         datasetTiles.forEach((tile, slot) => {
           const taskSlot = Math.floor(slot / 4) * 2 + slot % 2;
           const version = (slot % 4 < 2 ? flatten : fold)[taskSlot][1];
           tile.dataset.version = version;
-          tile.querySelector("img").src = `/images/clothdojo/dataset-rgb/${version}.jpg`;
-          tile.disabled = false;
+          tile.poster = `/images/clothdojo/dataset-rgb/${version}.jpg`;
+          tile.src = `/files/clothdojo/dataset-rgb/${version}.mp4`;
+          tile.muted = true;
+          tile.load();
           tile.setAttribute("aria-label", `${slot % 4 < 2 ? "Flattening" : "Folding"} RGB trajectory ${version}`);
         });
+        syncRgb();
       };
       master.onload = () => {
         sampleAssets();
@@ -155,7 +188,7 @@
       slides[current].hidden = true;
       current = index;
       slides[current].hidden = false;
-      closeRgbViewer();
+      syncRgb();
       previous.disabled = current === 0;
       next.disabled = current === slides.length - 1;
       pages.forEach((page, pageIndex) => {
@@ -169,7 +202,7 @@
       toggle.setAttribute("aria-expanded", String(!details.hidden));
       toggle.classList.toggle("is-active", !details.hidden);
       if (details.hidden) clips.forEach((clip) => clip.pause());
-      if (details.hidden) closeRgbViewer();
+      syncRgb();
       updateLanguage();
     });
     previous.addEventListener("click", () => showPage(current - 1));
@@ -219,15 +252,14 @@
       clip.addEventListener("play", () => {
         fullVideo.pause();
         clips.filter((other) => other !== clip).forEach((other) => other.pause());
-        rgbVideo.pause();
+        pauseRgb();
       });
     });
     fullVideo.addEventListener("play", () => {
       clips.forEach((clip) => clip.pause());
-      closeRgbViewer();
+      pauseRgb();
     });
     details.addEventListener("keydown", (event) => {
-      if (rgbViewer.open) return;
       if (event.key === "ArrowLeft") showPage(current - 1);
       if (event.key === "ArrowRight") showPage(current + 1);
     });

@@ -435,27 +435,22 @@ redirect_from:
             <span data-i18n="clothdojo.asset.fold">Folding</span>
           </div>
           <div class="clothdojo-rgb-dataset__grid">
-            <button type="button" class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile aria-label="Open RGB trajectory sample 1" disabled><img alt="" loading="lazy"><span aria-hidden="true">▶</span></button>
-            <button type="button" class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile aria-label="Open RGB trajectory sample 2" disabled><img alt="" loading="lazy"><span aria-hidden="true">▶</span></button>
-            <button type="button" class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile aria-label="Open RGB trajectory sample 3" disabled><img alt="" loading="lazy"><span aria-hidden="true">▶</span></button>
-            <button type="button" class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile aria-label="Open RGB trajectory sample 4" disabled><img alt="" loading="lazy"><span aria-hidden="true">▶</span></button>
-            <button type="button" class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile aria-label="Open RGB trajectory sample 5" disabled><img alt="" loading="lazy"><span aria-hidden="true">▶</span></button>
-            <button type="button" class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile aria-label="Open RGB trajectory sample 6" disabled><img alt="" loading="lazy"><span aria-hidden="true">▶</span></button>
-            <button type="button" class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile aria-label="Open RGB trajectory sample 7" disabled><img alt="" loading="lazy"><span aria-hidden="true">▶</span></button>
-            <button type="button" class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile aria-label="Open RGB trajectory sample 8" disabled><img alt="" loading="lazy"><span aria-hidden="true">▶</span></button>
-            <button type="button" class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile aria-label="Open RGB trajectory sample 9" disabled><img alt="" loading="lazy"><span aria-hidden="true">▶</span></button>
-            <button type="button" class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile aria-label="Open RGB trajectory sample 10" disabled><img alt="" loading="lazy"><span aria-hidden="true">▶</span></button>
-            <button type="button" class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile aria-label="Open RGB trajectory sample 11" disabled><img alt="" loading="lazy"><span aria-hidden="true">▶</span></button>
-            <button type="button" class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile aria-label="Open RGB trajectory sample 12" disabled><img alt="" loading="lazy"><span aria-hidden="true">▶</span></button>
+            <video class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile muted playsinline preload="none"></video>
+            <video class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile muted playsinline preload="none"></video>
+            <video class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile muted playsinline preload="none"></video>
+            <video class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile muted playsinline preload="none"></video>
+            <video class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile muted playsinline preload="none"></video>
+            <video class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile muted playsinline preload="none"></video>
+            <video class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile muted playsinline preload="none"></video>
+            <video class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile muted playsinline preload="none"></video>
+            <video class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile muted playsinline preload="none"></video>
+            <video class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile muted playsinline preload="none"></video>
+            <video class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile muted playsinline preload="none"></video>
+            <video class="clothdojo-rgb-dataset__tile" data-clothdojo-rgb-tile muted playsinline preload="none"></video>
           </div>
           <div class="clothdojo-rgb-dataset__controls">
             <button type="button" data-clothdojo-rgb-random data-i18n="clothdojo.asset.randomRgb" disabled>Sample RGB rollouts</button>
           </div>
-          <dialog class="clothdojo-rgb-dataset__viewer" data-clothdojo-rgb-viewer aria-label="RGB trajectory viewer">
-            <button type="button" class="clothdojo-rgb-dataset__close" data-clothdojo-rgb-close aria-label="Close">×</button>
-            <h5 data-clothdojo-rgb-title>RGB trajectory</h5>
-            <video controls playsinline preload="none"></video>
-          </dialog>
         </div>
       </div>
     </section>
@@ -747,5 +742,5 @@ redirect_from:
 <script defer src="/assets/js/visual-affordance-assets.js?v=2"></script>
 <script defer src="/assets/js/visual-affordance-results.js?v=6"></script>
 <script defer src="/assets/js/visual-affordance-carousel.js?v=5"></script>
-<script defer src="/assets/js/clothdojo-details.js?v=12"></script>
+<script defer src="/assets/js/clothdojo-details.js?v=13"></script>
 <script defer src="/assets/js/video-autoplay.js?v=1"></script>

@@ -808,64 +808,12 @@
     background: #111;
 
     .clothdojo-rgb-dataset__tile {
-      position: relative;
-      display: block;
-      width: 100%;
-      padding: 0;
-      border: 0;
-      cursor: pointer;
-      background: #111;
-      overflow: hidden;
-      &:disabled { cursor: wait; }
-      &:focus-visible { outline: 3px solid var(--global-link-color); outline-offset: -3px; }
-      span {
-        position: absolute;
-        inset: 0;
-        display: grid;
-        place-items: center;
-        color: #fff;
-        font-size: 1.15rem;
-        text-shadow: 0 1px 7px #000;
-        opacity: 0.8;
-        transition: opacity 120ms ease;
-      }
-      &:hover span,
-      &:focus-visible span { opacity: 1; }
-    }
-
-    img {
       display: block;
       width: 100%;
       aspect-ratio: 4 / 3;
       object-fit: cover;
       background: #111;
     }
-  }
-
-  .clothdojo-rgb-dataset__viewer {
-    position: fixed;
-    width: min(90vw, 900px);
-    max-width: none;
-    max-height: 90vh;
-    padding: 0.75rem;
-    border: 1px solid var(--global-border-color);
-    border-radius: 8px;
-    color: var(--global-text-color);
-    background: var(--global-bg-color);
-    &::backdrop { background: rgba(0, 0, 0, 0.8); }
-    h5 { margin: 0 2rem 0.5rem 0; }
-    video { display: block; width: 100%; max-height: 76vh; aspect-ratio: 4 / 3; background: #111; }
-  }
-
-  .clothdojo-rgb-dataset__close {
-    position: absolute;
-    top: 0.3rem;
-    right: 0.4rem;
-    border: 0;
-    background: transparent;
-    color: var(--global-text-color);
-    font-size: 1.4rem;
-    cursor: pointer;
   }
 
   .clothdojo-rgb-dataset__labels {
