@@ -198,7 +198,7 @@ redirect_from:
 <article class="work-entry">
   <div class="work-media">
     <video class="work-video" controls muted loop playsinline preload="none" poster="/images/visual-affordance-priors-poster.webp" data-viewport-autoplay>
-      <source src="/files/visual-affordance-priors.mp4" type="video/mp4">
+      <source src="/files/web/visual-affordance-priors.mp4" type="video/mp4">
       <span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span>
     </video>
   </div>
@@ -401,8 +401,8 @@ redirect_from:
 
 <article class="work-entry work-entry--clothdojo">
   <div class="work-media">
-    <video id="clothdojo-video" class="work-video" controls playsinline preload="metadata" poster="/images/clothdojo/overview-poster.jpg" aria-label="ClothDojo full project video">
-      <source src="/files/clothdojo/clothdojo-full.mp4" type="video/mp4">
+    <video id="clothdojo-video" class="work-video" controls playsinline preload="none" poster="/images/clothdojo/overview-poster.jpg" aria-label="ClothDojo full project video">
+      <source src="/files/web/clothdojo-clothdojo-full.mp4" type="video/mp4">
       <span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span>
     </video>
   </div>
@@ -467,7 +467,7 @@ redirect_from:
             <span>NOCS</span>
             <span data-i18n="clothdojo.mirrorLabel">Mirror augmentation</span>
           </div>
-          <video class="clothdojo-clip" controls playsinline preload="metadata" poster="/images/clothdojo/texture/white-nocs-mirror.jpg" src="/files/clothdojo/texture/white-nocs-mirror.mp4" aria-label="Synchronized White, NOCS, mirror augmentation rollouts"></video>
+          <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/texture/white-nocs-mirror.jpg" src="/files/web/clothdojo-texture-white-nocs-mirror.mp4" aria-label="Synchronized White, NOCS, mirror augmentation rollouts"></video>
           <figcaption class="clothdojo-pair__captions">
             <span data-i18n="clothdojo.whiteCaption">Uniform garment color; no canonical surface coordinates.</span>
             <span data-i18n="clothdojo.nocsCaption">Canonical surface colors, without mirror augmentation.</span>
@@ -513,7 +513,7 @@ redirect_from:
           <p class="clothdojo-split-table__note" data-i18n="clothdojo.splitFlatCount">100 Seen · 100 Unseen garments</p>
         </div>
         <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/ablation-flattening-poster.jpg" aria-label="Flattening ablation">
-          <source src="/files/clothdojo/ablation-flattening.mp4" type="video/mp4">
+          <source src="/files/web/clothdojo-ablation-flattening.mp4" type="video/mp4">
           <span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span>
         </video>
       </div>
@@ -537,7 +537,7 @@ redirect_from:
           <p class="clothdojo-split-table__note" data-i18n="clothdojo.splitFoldCount">130 Seen · 70 Unseen garments</p>
         </div>
         <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/ablation-folding-poster.jpg" aria-label="Folding ablation">
-          <source src="/files/clothdojo/ablation-folding.mp4" type="video/mp4">
+          <source src="/files/web/clothdojo-ablation-folding.mp4" type="video/mp4">
           <span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span>
         </video>
       </div>
@@ -562,7 +562,7 @@ redirect_from:
           </table></div>
           <p class="clothdojo-split-table__note" data-i18n="clothdojo.evalNote">Each pool has 400 closed-loop rollouts; Avg. covers all 1,600. The edited video shows selected cases.</p>
         </div>
-        <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/comparisons/complete-training_source-flatten.jpg" aria-label="Flattening data: edited comparison"><source src="/files/clothdojo/comparisons/complete-training_source-flatten.mp4" type="video/mp4"><span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span></video>
+        <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/comparisons/complete-training_source-flatten.jpg" aria-label="Flattening data: edited comparison"><source src="/files/web/clothdojo-comparisons-complete-training_source-flatten.mp4" type="video/mp4"><span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span></video>
       </div>
     </section>
     <section class="clothdojo-slide clothdojo-slide--comparison" data-clothdojo-slide data-slide-label-en="Folding data" data-slide-label-zh="折叠数据" hidden>
@@ -585,7 +585,7 @@ redirect_from:
           </table></div>
           <p class="clothdojo-split-table__note" data-i18n="clothdojo.evalNote">Each pool has 400 closed-loop rollouts; Avg. covers all 1,600. The edited video shows selected cases.</p>
         </div>
-        <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/comparisons/complete-training_source-fold.jpg" aria-label="Folding data: edited comparison"><source src="/files/clothdojo/comparisons/complete-training_source-fold.mp4" type="video/mp4"><span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span></video>
+        <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/comparisons/complete-training_source-fold.jpg" aria-label="Folding data: edited comparison"><source src="/files/web/clothdojo-comparisons-complete-training_source-fold.mp4" type="video/mp4"><span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span></video>
       </div>
     </section>
     <section class="clothdojo-slide clothdojo-slide--comparison" data-clothdojo-slide data-slide-label-en="Flattening models" data-slide-label-zh="铺平模型" hidden>
@@ -609,7 +609,7 @@ redirect_from:
           </table></div>
           <p class="clothdojo-split-table__note" data-i18n="clothdojo.evalNote">Each pool has 400 closed-loop rollouts; Avg. covers all 1,600. The edited video shows selected cases.</p>
         </div>
-        <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/comparisons/complete-policy_models-flatten.jpg" aria-label="Flattening models: edited comparison"><source src="/files/clothdojo/comparisons/complete-policy_models-flatten.mp4" type="video/mp4"><span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span></video>
+        <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/comparisons/complete-policy_models-flatten.jpg" aria-label="Flattening models: edited comparison"><source src="/files/web/clothdojo-comparisons-complete-policy_models-flatten.mp4" type="video/mp4"><span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span></video>
       </div>
     </section>
     <section class="clothdojo-slide clothdojo-slide--comparison" data-clothdojo-slide data-slide-label-en="Folding models" data-slide-label-zh="折叠模型" hidden>
@@ -633,7 +633,7 @@ redirect_from:
           </table></div>
           <p class="clothdojo-split-table__note" data-i18n="clothdojo.evalNote">Each pool has 400 closed-loop rollouts; Avg. covers all 1,600. The edited video shows selected cases.</p>
         </div>
-        <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/comparisons/complete-policy_models-fold.jpg" aria-label="Folding models: edited comparison"><source src="/files/clothdojo/comparisons/complete-policy_models-fold.mp4" type="video/mp4"><span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span></video>
+        <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/comparisons/complete-policy_models-fold.jpg" aria-label="Folding models: edited comparison"><source src="/files/web/clothdojo-comparisons-complete-policy_models-fold.mp4" type="video/mp4"><span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span></video>
       </div>
     </section>
     <section class="clothdojo-slide clothdojo-slide--retarget" data-clothdojo-slide data-slide-label-en="Robot retargeting" data-slide-label-zh="机器人重定向" hidden>
@@ -661,11 +661,11 @@ redirect_from:
             <button type="button" role="tab" aria-selected="false" aria-controls="clothdojo-joint-policy" data-comparison-button data-i18n="clothdojo.jointMontage">Piper + UR5e policies</button>
           </div>
           <figure class="clothdojo-comparison__panel" id="clothdojo-retarget-montage" role="tabpanel" data-comparison-panel>
-            <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/comparisons/retarget-five-robots.jpg" aria-label="Five-robot trajectory retargeting montage"><source src="/files/clothdojo/comparisons/retarget-five-robots.mp4" type="video/mp4"><span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span></video>
+            <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/comparisons/retarget-five-robots.jpg" aria-label="Five-robot trajectory retargeting montage"><source src="/files/web/clothdojo-comparisons-retarget-five-robots.mp4" type="video/mp4"><span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span></video>
             <figcaption data-i18n="clothdojo.retargetCaption">Reference trajectories retargeted to five robot embodiments; these are not learned-policy evaluations.</figcaption>
           </figure>
           <figure class="clothdojo-comparison__panel" id="clothdojo-joint-policy" role="tabpanel" data-comparison-panel hidden>
-            <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/comparisons/joint-policy-piper-ur5e.jpg" aria-label="Piper and UR5e joint-policy rollout montage"><source src="/files/clothdojo/comparisons/joint-policy-piper-ur5e.mp4" type="video/mp4"><span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span></video>
+            <video class="clothdojo-clip" controls playsinline preload="none" poster="/images/clothdojo/comparisons/joint-policy-piper-ur5e.jpg" aria-label="Piper and UR5e joint-policy rollout montage"><source src="/files/web/clothdojo-comparisons-joint-policy-piper-ur5e.mp4" type="video/mp4"><span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span></video>
             <figcaption data-i18n="clothdojo.jointCaption">Selected joint-task rollouts from Piper and UR5e; success rates come from all trials.</figcaption>
           </figure>
         </div>
@@ -695,8 +695,8 @@ redirect_from:
 
 <article class="work-entry">
   <div class="work-media">
-    <video class="work-video" controls playsinline preload="metadata" poster="/images/simpt/poster.jpg" aria-label="SimPT project video">
-      <source src="/files/simpt/simpt-video.mp4" type="video/mp4">
+    <video class="work-video" controls playsinline preload="none" poster="/images/simpt/poster.jpg" aria-label="SimPT project video">
+      <source src="/files/web/simpt-simpt-video.mp4" type="video/mp4">
       <span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span>
     </video>
   </div>
@@ -736,11 +736,11 @@ redirect_from:
 </article>
 
 <script defer src="/assets/js/clothmate-details.js?v=1"></script>
-<script defer src="/assets/js/clothmate-carousel.js?v=5"></script>
+<script defer src="/assets/js/clothmate-carousel.js?v=6"></script>
 <script defer src="/assets/js/real-inference-home.js?v=4"></script>
 <script defer src="/assets/js/visual-affordance-method.js?v=6"></script>
 <script defer src="/assets/js/visual-affordance-assets.js?v=2"></script>
-<script defer src="/assets/js/visual-affordance-results.js?v=6"></script>
-<script defer src="/assets/js/visual-affordance-carousel.js?v=5"></script>
-<script defer src="/assets/js/clothdojo-details.js?v=13"></script>
-<script defer src="/assets/js/video-autoplay.js?v=1"></script>
+<script defer src="/assets/js/visual-affordance-results.js?v=7"></script>
+<script defer src="/assets/js/visual-affordance-carousel.js?v=6"></script>
+<script defer src="/assets/js/clothdojo-details.js?v=14"></script>
+<script defer src="/assets/js/video-autoplay.js?v=2"></script>

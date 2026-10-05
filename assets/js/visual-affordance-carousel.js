@@ -10,6 +10,7 @@
     const pageButtons = Array.from(carousel.querySelectorAll("[data-vap-page]"));
     if (!slides.length || !previousButton || !nextButton || !status) return;
 
+    let inViewport = true;
     let currentPage = 0;
     let touchStartX = null;
     let touchStartY = null;
@@ -24,7 +25,7 @@
     const syncVideos = () => {
       slides.forEach((slide, index) => {
         slide.querySelectorAll("video").forEach((video) => {
-          if (carousel.hidden || index !== currentPage) {
+          if (document.hidden || !inViewport || carousel.hidden || index !== currentPage) {
             video.pause();
           } else {
             video.play().catch(() => {});
@@ -32,6 +33,14 @@
         });
       });
     };
+
+    document.addEventListener("visibilitychange", syncVideos);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([entry]) => {
+        inViewport = entry.isIntersecting;
+        syncVideos();
+      }, { threshold: 0.01 }).observe(carousel);
+    }
 
     const updateStatus = () => {
       const language = document.documentElement.lang === "zh-CN" ? "zh" : "en";

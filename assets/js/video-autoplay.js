@@ -1,7 +1,6 @@
 (() => {
   document.addEventListener("DOMContentLoaded", () => {
     const videos = Array.from(document.querySelectorAll("video[data-viewport-autoplay]"));
-    if (!videos.length) return;
 
     const syncVideo = (video, shouldPlay) => {
       if (shouldPlay && document.visibilityState === "visible") {
@@ -28,10 +27,25 @@
           syncVideo(entry.target, entry.isIntersecting);
         });
       },
-      { rootMargin: "120px 0px", threshold: 0.1 },
+      { threshold: 0.1 },
     );
 
     videos.forEach((video) => observer.observe(video));
+    // Warm only the metadata of manual players as they approach the screen.
+    // Fast-start MP4s keep that request small, without fetching hidden chapters.
+    const warmed = new WeakSet();
+    const warmObserver = new IntersectionObserver((entries) => {
+      entries.forEach(({ target: video, isIntersecting }) => {
+        if (!isIntersecting || warmed.has(video)) return;
+        warmed.add(video);
+        if (video.preload === "none" && video.readyState === 0) {
+          video.preload = "metadata";
+          video.load();
+        }
+      });
+    }, { rootMargin: "200px 0px" });
+    document.querySelectorAll("video[controls]:not([data-viewport-autoplay])")
+      .forEach((video) => warmObserver.observe(video));
     document.addEventListener("visibilitychange", () => {
       videos.forEach((video) => syncVideo(video, visibleVideos.has(video)));
     });

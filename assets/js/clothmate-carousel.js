@@ -16,6 +16,7 @@
 
     if (!slides.length || !previousButton || !nextButton || !status) return;
 
+    let inViewport = true;
     let currentPage = 0;
     let touchStartX = null;
     let touchStartY = null;
@@ -29,13 +30,21 @@
     const syncPlayback = () => {
       videos.forEach((video) => {
         const isActive = slides[currentPage].contains(video);
-        if (carousel.hidden || !isActive) {
+        if (document.hidden || !inViewport || carousel.hidden || !isActive) {
           video.pause();
         } else {
           video.play().catch(() => {});
         }
       });
     };
+
+    document.addEventListener("visibilitychange", syncPlayback);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([entry]) => {
+        inViewport = entry.isIntersecting;
+        syncPlayback();
+      }, { threshold: 0.01 }).observe(carousel);
+    }
 
     const showPage = (nextPage, direction = 1) => {
       const targetPage = Math.max(0, Math.min(slides.length - 1, nextPage));

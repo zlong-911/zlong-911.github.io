@@ -20,6 +20,7 @@
     const datasetTracks = [];
     // All tiles share one clock. Finished clips hold their final frame until
     // the longest clip finishes; buffering pauses the entire group.
+    let rgbInViewport = true;
     let rgbTime = 0;
     let rgbLastTick = null;
     let rgbFrame = null;
@@ -31,7 +32,7 @@
     };
     const tickRgb = (now) => {
       rgbFrame = null;
-      if (details.hidden || current !== 0 || document.hidden) {
+      if (details.hidden || current !== 0 || document.hidden || !rgbInViewport) {
         pauseRgb();
         return;
       }
@@ -64,14 +65,29 @@
       rgbFrame = requestAnimationFrame(tickRgb);
     };
     const syncRgb = () => {
-      if (details.hidden || current !== 0 || document.hidden) pauseRgb();
+      if (details.hidden || current !== 0 || document.hidden || !rgbInViewport) pauseRgb();
       else if (rgbFrame === null && datasetTiles.every((video) => video.getAttribute("src"))) {
+        datasetTiles.forEach((video) => {
+          if (video.preload !== "auto") {
+            video.preload = "auto";
+            video.load();
+          }
+        });
         rgbFrame = requestAnimationFrame(tickRgb);
       }
     };
     document.addEventListener("visibilitychange", syncRgb);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([entry]) => {
+        rgbInViewport = entry.isIntersecting;
+        syncRgb();
+      }, { rootMargin: "100px 0px" }).observe(details.querySelector("[data-clothdojo-rgb-dataset]"));
+    }
 
-    if (assetGallery) {
+    let galleryInitialized = false;
+    const initializeGallery = () => {
+      if (!assetGallery || galleryInitialized) return;
+      galleryInitialized = true;
       const canvas = assetGallery.querySelector("[data-clothdojo-asset-canvas]");
       const context = canvas.getContext("2d");
       const randomAsset = assetGallery.querySelector("[data-clothdojo-asset-random]");
@@ -123,6 +139,7 @@
           const version = (slot % 4 < 2 ? flatten : fold)[taskSlot][1];
           tile.dataset.version = version;
           tile.poster = `/images/clothdojo/dataset-rgb/${version}.jpg`;
+          tile.preload = "none";
           tile.src = `/files/clothdojo/dataset-rgb/${version}.mp4`;
           tile.muted = true;
           tile.load();
@@ -156,7 +173,8 @@
           randomRgb.disabled = false;
         })
         .catch((error) => console.error("RGB trajectories are unavailable", error));
-    }
+    };
+    if (!details.hidden) initializeGallery();
 
     const updateLanguage = () => {
       const chinese = document.documentElement.lang === "zh-CN";
@@ -201,6 +219,7 @@
       details.hidden = !details.hidden;
       toggle.setAttribute("aria-expanded", String(!details.hidden));
       toggle.classList.toggle("is-active", !details.hidden);
+      if (!details.hidden) initializeGallery();
       if (details.hidden) clips.forEach((clip) => clip.pause());
       syncRgb();
       updateLanguage();

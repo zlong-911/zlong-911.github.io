@@ -8,8 +8,6 @@
     if (!video || !sceneButtons.length || !previousButton || !nextButton || !status) return;
 
     const groupCounts = { 1: 6, 2: 4, 3: 4, 4: 3 };
-    const cachedVideos = new Map();
-    const pendingVideos = new Map();
     let currentScene = 1;
     let currentGroup = 0;
     let hasLoaded = false;
@@ -25,31 +23,6 @@
       `/files/visual-affordance-results/inference-grids/${groupName(scene, group)}.mp4`
     );
 
-    const preloadGroup = (scene, group) => {
-      if (group < 0 || group >= groupCounts[scene]) return;
-      const key = groupName(scene, group);
-      if (cachedVideos.has(key) || pendingVideos.has(key)) return;
-      const request = fetch(groupUrl(scene, group), { cache: "force-cache" })
-        .then((response) => {
-          if (!response.ok) throw new Error(`Unable to preload ${key}`);
-          return response.blob();
-        })
-        .then((blob) => {
-          cachedVideos.set(key, URL.createObjectURL(blob));
-          pendingVideos.delete(key);
-        })
-        .catch(() => pendingVideos.delete(key));
-      pendingVideos.set(key, request);
-    };
-
-    const warmNearbyGroups = () => {
-      preloadGroup(currentScene, currentGroup - 1);
-      preloadGroup(currentScene, currentGroup + 1);
-      Object.keys(groupCounts).forEach((scene) => {
-        if (Number(scene) !== currentScene) preloadGroup(Number(scene), 0);
-      });
-    };
-
     const updateStatus = () => {
       const start = currentGroup * 4;
       const first = String(start + 1).padStart(2, "0");
@@ -64,13 +37,11 @@
     };
 
     const loadGroup = () => {
-      const group = currentGroup + 1;
       const name = groupName(currentScene, currentGroup);
       video.pause();
       video.poster = `/images/visual-affordance-priors/results/inference-grids/${name}.webp`;
-      video.src = cachedVideos.get(name) || groupUrl(currentScene, currentGroup);
+      video.src = groupUrl(currentScene, currentGroup);
       video.load();
-      video.addEventListener("canplay", warmNearbyGroups, { once: true });
       updateStatus();
       hasLoaded = true;
       if (isVisible()) video.play().catch(() => {});
