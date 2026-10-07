@@ -46,8 +46,18 @@
     }, { rootMargin: "200px 0px" });
     document.querySelectorAll("video[controls]:not([data-viewport-autoplay])")
       .forEach((video) => warmObserver.observe(video));
+    const manualVideos = Array.from(document.querySelectorAll(
+      ".work-video:not([data-viewport-autoplay]), .clothdojo-clip",
+    ));
+    const pauseObserver = new IntersectionObserver((entries) => {
+      entries.forEach(({ target: video, isIntersecting }) => {
+        if (!isIntersecting && !video.paused) video.pause();
+      });
+    }, { threshold: 0.01 });
+    manualVideos.forEach((video) => pauseObserver.observe(video));
     document.addEventListener("visibilitychange", () => {
       videos.forEach((video) => syncVideo(video, visibleVideos.has(video)));
+      if (document.hidden) manualVideos.forEach((video) => video.pause());
     });
   });
 })();

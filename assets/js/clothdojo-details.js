@@ -23,11 +23,13 @@
     let rgbInViewport = true;
     let rgbTime = 0;
     let rgbLastTick = null;
+    // The clips run at 8 fps; one check per frame avoids a 60 Hz polling loop.
     let rgbFrame = null;
+    const pendingRgbPlay = new WeakSet();
     const pauseRgb = () => {
-      datasetTiles.forEach((video) => video.pause());
+      datasetTiles.forEach((video) => { if (!video.paused) video.pause(); });
       rgbLastTick = null;
-      if (rgbFrame !== null) cancelAnimationFrame(rgbFrame);
+      if (rgbFrame !== null) clearTimeout(rgbFrame);
       rgbFrame = null;
     };
     const tickRgb = (now) => {
@@ -40,7 +42,7 @@
         Number.isFinite(video.duration) && video.duration > 0 &&
         (rgbTime >= video.duration || (video.readyState >= 3 && !video.seeking)));
       if (!ready) {
-        datasetTiles.forEach((video) => video.pause());
+        datasetTiles.forEach((video) => { if (!video.paused) video.pause(); });
         rgbLastTick = null;
       } else {
         const duration = Math.max(...datasetTiles.map((video) => video.duration));
@@ -53,16 +55,19 @@
             if (!video.ended && video.currentTime < video.duration - 0.08) {
               video.currentTime = Math.max(0, video.duration - 0.04);
             }
-            video.pause();
+            if (!video.paused) video.pause();
           } else {
-            if (Math.abs(video.currentTime - rgbTime) > 0.15 || video.ended) {
+            if (Math.abs(video.currentTime - rgbTime) > 0.3 || video.ended) {
               video.currentTime = rgbTime;
             }
-            if (video.paused) video.play().catch(() => {});
+            if (video.paused && !pendingRgbPlay.has(video)) {
+              pendingRgbPlay.add(video);
+              video.play().catch(() => {}).finally(() => pendingRgbPlay.delete(video));
+            }
           }
         });
       }
-      rgbFrame = requestAnimationFrame(tickRgb);
+      rgbFrame = setTimeout(() => tickRgb(performance.now()), 125);
     };
     const syncRgb = () => {
       if (details.hidden || current !== 0 || document.hidden || !rgbInViewport) pauseRgb();
@@ -73,7 +78,7 @@
             video.load();
           }
         });
-        rgbFrame = requestAnimationFrame(tickRgb);
+        rgbFrame = setTimeout(() => tickRgb(performance.now()), 125);
       }
     };
     document.addEventListener("visibilitychange", syncRgb);

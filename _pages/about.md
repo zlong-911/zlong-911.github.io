@@ -83,7 +83,7 @@ redirect_from:
 <article class="work-entry">
   <div class="work-media">
     <video class="work-video" controls muted loop playsinline preload="none" poster="/images/clothmate-poster.webp" data-viewport-autoplay>
-      <source src="/files/clothmate-preview.mp4" type="video/mp4">
+      <source src="/files/web/clothmate-preview.mp4" type="video/mp4">
       <span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span>
     </video>
   </div>
@@ -198,7 +198,7 @@ redirect_from:
 <article class="work-entry">
   <div class="work-media">
     <video class="work-video" controls muted loop playsinline preload="none" poster="/images/visual-affordance-priors-poster.webp" data-viewport-autoplay>
-      <source src="/files/web/visual-affordance-priors.mp4" type="video/mp4">
+      <source src="/files/web/visual-affordance-preview.mp4" type="video/mp4">
       <span data-i18n="home.unsupportedVideo">Your browser does not support embedded video.</span>
     </video>
   </div>
@@ -742,5 +742,5 @@ redirect_from:
 <script defer src="/assets/js/visual-affordance-assets.js?v=2"></script>
 <script defer src="/assets/js/visual-affordance-results.js?v=7"></script>
 <script defer src="/assets/js/visual-affordance-carousel.js?v=6"></script>
-<script defer src="/assets/js/clothdojo-details.js?v=14"></script>
-<script defer src="/assets/js/video-autoplay.js?v=2"></script>
+<script defer src="/assets/js/clothdojo-details.js?v=15"></script>
+<script defer src="/assets/js/video-autoplay.js?v=3"></script>
