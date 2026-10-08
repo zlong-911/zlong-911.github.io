@@ -164,7 +164,7 @@
         })
         .then((records) => {
           records.forEach(({ name }) => {
-            if (/^(flatten|fold)_rand_[A-Z0-9]+_\d{6}$/.test(name)) datasetTracks.push([null, name]);
+            if (/^(flatten|fold)_(?:rand_[A-Z0-9]+|episode)_\d{6}$/.test(name)) datasetTracks.push([null, name]);
           });
         })
         .then(() => {
