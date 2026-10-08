@@ -742,5 +742,5 @@ redirect_from:
 <script defer src="/assets/js/visual-affordance-assets.js?v=2"></script>
 <script defer src="/assets/js/visual-affordance-results.js?v=7"></script>
 <script defer src="/assets/js/visual-affordance-carousel.js?v=6"></script>
-<script defer src="/assets/js/clothdojo-details.js?v=15"></script>
+<script defer src="/assets/js/clothdojo-details.js?v=16"></script>
 <script defer src="/assets/js/video-autoplay.js?v=3"></script>

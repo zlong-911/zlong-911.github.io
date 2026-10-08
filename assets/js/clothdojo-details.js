@@ -18,17 +18,16 @@
     let current = 0;
     let touchStart = null;
     const datasetTracks = [];
-    // All tiles share one clock. Finished clips hold their final frame until
-    // the longest clip finishes; buffering pauses the entire group.
+    // Start tiles as a group. Native playback reaches each actual final frame;
+    // buffering pauses the group, and only all-ended playback may restart.
     let rgbInViewport = true;
-    let rgbTime = 0;
-    let rgbLastTick = null;
+    let rgbHoldStarted = null;
     // The clips run at 8 fps; one check per frame avoids a 60 Hz polling loop.
     let rgbFrame = null;
     const pendingRgbPlay = new WeakSet();
     const pauseRgb = () => {
       datasetTiles.forEach((video) => { if (!video.paused) video.pause(); });
-      rgbLastTick = null;
+      rgbHoldStarted = null;
       if (rgbFrame !== null) clearTimeout(rgbFrame);
       rgbFrame = null;
     };
@@ -40,30 +39,24 @@
       }
       const ready = datasetTiles.every((video) =>
         Number.isFinite(video.duration) && video.duration > 0 &&
-        (rgbTime >= video.duration || (video.readyState >= 3 && !video.seeking)));
+        (video.ended || (video.readyState >= 3 && !video.seeking)));
       if (!ready) {
         datasetTiles.forEach((video) => { if (!video.paused) video.pause(); });
-        rgbLastTick = null;
+        rgbHoldStarted = null;
+      } else if (datasetTiles.every((video) => video.ended)) {
+        // Only actual ended events qualify. Timer delays never skip footage.
+        if (rgbHoldStarted === null) rgbHoldStarted = now;
+        if (now - rgbHoldStarted >= 2000) {
+          datasetTiles.forEach((video) => { video.currentTime = 0; });
+          rgbHoldStarted = null;
+        }
       } else {
-        const duration = Math.max(...datasetTiles.map((video) => video.duration));
-        if (rgbLastTick !== null) rgbTime += (now - rgbLastTick) / 1000;
-        rgbLastTick = now;
-        if (rgbTime >= duration) rgbTime = 0;
+        rgbHoldStarted = null;
         datasetTiles.forEach((video) => {
-          if (rgbTime >= video.duration) {
-            // Native ended playback leaves the final decoded frame visible.
-            if (!video.ended && video.currentTime < video.duration - 0.08) {
-              video.currentTime = Math.max(0, video.duration - 0.04);
-            }
-            if (!video.paused) video.pause();
-          } else {
-            if (Math.abs(video.currentTime - rgbTime) > 0.3 || video.ended) {
-              video.currentTime = rgbTime;
-            }
-            if (video.paused && !pendingRgbPlay.has(video)) {
-              pendingRgbPlay.add(video);
-              video.play().catch(() => {}).finally(() => pendingRgbPlay.delete(video));
-            }
+          // Short clips retain their decoded last frame while others finish.
+          if (!video.ended && video.paused && !pendingRgbPlay.has(video)) {
+            pendingRgbPlay.add(video);
+            video.play().catch(() => {}).finally(() => pendingRgbPlay.delete(video));
           }
         });
       }
@@ -138,14 +131,14 @@
         const flatten = drawRollouts("flatten", 6);
         const fold = drawRollouts("fold", 6);
         pauseRgb();
-        rgbTime = 0;
+        rgbHoldStarted = null;
         datasetTiles.forEach((tile, slot) => {
           const taskSlot = Math.floor(slot / 4) * 2 + slot % 2;
           const version = (slot % 4 < 2 ? flatten : fold)[taskSlot][1];
           tile.dataset.version = version;
           tile.poster = `/images/clothdojo/dataset-rgb/${version}.jpg`;
           tile.preload = "none";
-          tile.src = `/files/clothdojo/dataset-rgb/${version}.mp4`;
+          tile.src = `/files/clothdojo/dataset-rgb-complete/${version}.mp4`;
           tile.muted = true;
           tile.load();
           tile.setAttribute("aria-label", `${slot % 4 < 2 ? "Flattening" : "Folding"} RGB trajectory ${version}`);
@@ -159,14 +152,14 @@
       master.src = "/images/clothdojo/assets/master-500.webp";
       randomAsset.addEventListener("click", sampleAssets);
       randomRgb.addEventListener("click", sampleRollouts);
-      fetch("/assets/data/clothdojo-rgb-pool.json")
+      fetch("/assets/data/clothdojo-rgb-complete-pool.json")
         .then((response) => {
           if (!response.ok) throw new Error(`RGB pool request failed: ${response.status}`);
           return response.json();
         })
         .then((records) => {
           records.forEach(({ name }) => {
-            if (/^(flatten|fold)_episode_\d{6}$/.test(name)) datasetTracks.push([null, name]);
+            if (/^(flatten|fold)_rand_[A-Z0-9]+_\d{6}$/.test(name)) datasetTracks.push([null, name]);
           });
         })
         .then(() => {
