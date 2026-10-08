@@ -52,9 +52,14 @@
         }
       } else {
         rgbHoldStarted = null;
+        const unfinished = datasetTiles.filter((video) => !video.ended);
+        const groupTime = Math.min(...unfinished.map((video) => video.currentTime));
         datasetTiles.forEach((video) => {
-          // Short clips retain their decoded last frame while others finish.
-          if (!video.ended && video.paused && !pendingRgbPlay.has(video)) {
+          // Pause an advancing tile to let a delayed tile catch up; never seek
+          // forward past footage. Ended short clips keep their final frame.
+          if (!video.ended && video.currentTime > groupTime + 0.25) {
+            if (!video.paused) video.pause();
+          } else if (!video.ended && video.paused && !pendingRgbPlay.has(video)) {
             pendingRgbPlay.add(video);
             video.play().catch(() => {}).finally(() => pendingRgbPlay.delete(video));
           }
